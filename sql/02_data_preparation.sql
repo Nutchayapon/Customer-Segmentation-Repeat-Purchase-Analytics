@@ -1,0 +1,7 @@
+-- Status: TODO. Comment-only placeholder; no executable SQL.
+-- Purpose: Build a validated order-level analytical base.
+-- Expected inputs: Profiled source tables and reviewed eligibility/cutoff decisions.
+-- Expected outputs and grain: One row per eligible order_id with customer_unique_id and separate monetary values.
+-- Planned transformations: Aggregate items and payments separately; join to orders/customers; flag exceptions; apply eligibility.
+-- Assumptions: Delivered orders and merchandise excluding freight are proposed defaults.
+-- Validation: Check unique order grain, eligible counts, item totals, and missing matches.

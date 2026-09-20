@@ -1,0 +1,6 @@
+// Status: TODO. Comment-only placeholder; no measures implemented.
+// Purpose: aggregate validated SQL outputs within report filter context.
+// Planned outputs: customer/order counts, eligible repeat rates, and shares.
+// SQL owns RFM rules, cohort membership, history, and window eligibility.
+// Preserve cohort/window denominators and use safe division.
+// Validation: reconcile totals, slices, and empty populations with SQL.

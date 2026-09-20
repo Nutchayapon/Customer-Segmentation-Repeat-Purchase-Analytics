@@ -1,0 +1,30 @@
+# Source data and customer-level extracts
+data/raw/*
+!data/raw/.gitkeep
+data/exports/*
+!data/exports/.gitkeep
+outputs/tables/*
+!outputs/tables/.gitkeep
+*.zip
+*.bak
+*.log
+
+# Local credentials/configuration
+.env
+.env.*
+!.env.example
+*.pgpass
+pgpass.conf
+
+# Power BI local caches and reports containing imported data
+*.pbix
+*.pbit
+**/.pbi/localSettings.json
+**/.pbi/cache.abf
+**/.pbi/unappliedChanges.json
+*.tmp
+
+# OS/editor files
+Thumbs.db
+.DS_Store
+.vscode/

@@ -1,0 +1,7 @@
+-- Status: TODO. Comment-only placeholder; no executable SQL.
+-- Purpose: Summarize customer history and establish purchase sequence.
+-- Expected inputs: Validated eligible order dataset.
+-- Expected outputs and grain: One row per customer for metrics; one row per order for purchase sequence.
+-- Planned transformations: Calculate first/last purchase, distinct order count, observed spend, and span; order by timestamp and order_id.
+-- Assumptions: Use customer_unique_id; first observed purchase may not be first-ever purchase.
+-- Validation: Reconcile customer counts/spend to orders and inspect selected histories.

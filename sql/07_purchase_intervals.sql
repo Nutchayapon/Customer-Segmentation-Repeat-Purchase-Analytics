@@ -1,0 +1,7 @@
+-- Status: TODO. Comment-only placeholder; no executable SQL.
+-- Purpose: Calculate elapsed time between observed consecutive purchases.
+-- Expected inputs: Eligible orders and deterministic customer purchase sequence.
+-- Expected outputs and grain: One row per order with a preceding order; separate first-to-second summaries.
+-- Planned transformations: Use LAG by customer ordered by timestamp and order_id; retain zero gaps; summarize appropriate populations.
+-- Assumptions: Observed repeaters only for time-to-second; all-pair summaries give frequent buyers more weight.
+-- Validation: Check k orders yield k-1 intervals, nonnegative gaps, ties, and example histories.

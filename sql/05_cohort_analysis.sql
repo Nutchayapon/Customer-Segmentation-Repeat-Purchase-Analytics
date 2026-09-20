@@ -1,0 +1,7 @@
+-- Status: TODO. Comment-only placeholder; no executable SQL.
+-- Purpose: Measure monthly purchasing activity by first-observed cohort.
+-- Expected inputs: Eligible orders, first-purchase dates, and reviewed coverage.
+-- Expected outputs and grain: Customer-month activity; summary per cohort_month and month_index.
+-- Planned transformations: Deduplicate monthly customers; calculate calendar month offsets; build observable grid; calculate counts/rates.
+-- Assumptions: Month 0 is baseline; fully observed zero activity differs from unobservable NULL.
+-- Validation: Check cohort membership, unique customer-months, cohort-size limits, and partial months.

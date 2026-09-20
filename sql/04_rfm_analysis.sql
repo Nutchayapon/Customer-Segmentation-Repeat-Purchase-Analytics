@@ -1,0 +1,7 @@
+-- Status: TODO. Comment-only placeholder; no executable SQL.
+-- Purpose: Calculate raw RFM metrics, scores, and descriptive segments.
+-- Expected inputs: Customer metrics, fixed reference date, reviewed scoring rules.
+-- Expected outputs and grain: One row per customer at the initial snapshot.
+-- Planned transformations: Calculate recency/frequency/monetary; inspect distributions; apply documented score and segment boundaries.
+-- Assumptions: Do not choose thresholds before profiling; equal metric values receive equal scores.
+-- Validation: Check raw metrics, ties, boundaries, segment completeness, and exclusive assignment.

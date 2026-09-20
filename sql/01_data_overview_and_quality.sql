@@ -1,0 +1,7 @@
+-- Status: TODO. Comment-only placeholder; no executable SQL.
+-- Purpose: Profile source structure, quality, and observation coverage.
+-- Expected inputs: Imported customers, orders, items, and payments.
+-- Expected outputs and grain: Quality summaries by source, key, status, and day/month; exception records.
+-- Planned transformations: Measure counts, nulls, duplicates, orphan keys, value ranges, coverage, and delivery lag.
+-- Assumptions: Maximum timestamp alone does not establish complete coverage.
+-- Validation: Reconcile import counts and document exceptions before preparation.

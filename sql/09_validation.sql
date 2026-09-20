@@ -1,0 +1,7 @@
+-- Status: TODO. Comment-only placeholder; no executable SQL.
+-- Purpose: Validate analytical invariants and reconciliation throughout implementation.
+-- Expected inputs: Implemented source, analytical, and BI objects as they become available.
+-- Expected outputs and grain: Checks with expected/actual results and explicit exception records.
+-- Planned transformations: Compare counts/value; validate grains, RFM assignment, cohorts, window denominators, and intervals.
+-- Assumptions: Add checks as outputs are implemented; do not claim unexecuted checks passed.
+-- Validation: Inspect representative customers and compare Power BI totals/slices with SQL.

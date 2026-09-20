@@ -1,0 +1,7 @@
+-- Status: TODO. Comment-only placeholder; no executable SQL.
+-- Purpose: Measure observed and fixed-window repeat behavior.
+-- Expected inputs: Purchase history, first/second purchase dates, and observation end.
+-- Expected outputs and grain: One row per customer and 30/60/90-day window, plus documented summaries.
+-- Planned transformations: Classify one-time/repeat; calculate follow-up eligibility and repeat flags; aggregate with eligible denominators.
+-- Assumptions: Use documented inclusive date boundaries; same-day distinct orders count; ineligible flags stay NULL.
+-- Validation: Check exact boundaries, zero denominators, repeated <= eligible, and consistent populations.

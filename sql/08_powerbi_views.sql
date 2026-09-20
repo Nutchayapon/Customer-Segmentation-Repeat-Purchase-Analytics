@@ -1,0 +1,7 @@
+-- Status: TODO. Comment-only placeholder; no executable SQL.
+-- Purpose: Expose reviewed analytical outputs for Power BI.
+-- Expected inputs: Validated order/customer, RFM, cohort, window, and interval outputs.
+-- Expected outputs and grain: Stable views with documented grains plus date/customer dimensions.
+-- Planned transformations: Expose keys, counts, flags, reference dates, and observability; preserve fact grains.
+-- Assumptions: Exact names/relationships are pending; SQL owns analytical definitions.
+-- Validation: Check unique dimension keys, join cardinality, supported filters, and SQL-to-BI reconciliation.

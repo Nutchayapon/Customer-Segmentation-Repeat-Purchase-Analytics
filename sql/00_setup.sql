@@ -1,0 +1,7 @@
+-- Status: TODO. Comment-only placeholder; no executable SQL.
+-- Purpose: Prepare CSV-compatible raw tables and analysis configuration.
+-- Expected inputs: Verified source headers and PostgreSQL setup decisions.
+-- Expected outputs and grain: Planned raw tables at source grain; one documented configuration for the initial snapshot.
+-- Planned transformations: Define raw, analytics, and bi schemas; map all CSV columns; record parameters.
+-- Assumptions: Data types and dates require source inspection; no cutoff is selected yet.
+-- Validation: Review headers, types, key constraints, configuration, and rerun behavior.

@@ -36,3 +36,7 @@ The source exceptions are preserved rather than declared resolved. Payment misma
 - [ ] Save reviewed project-generated screenshots; never upload user-provided chat screenshots.
 
 No screenshot or file-format validation is evidence that native DAX queries and rendering have executed successfully.
+
+## Desktop schema compatibility correction
+
+The first native open attempt after enabling PBIR failed because September 2024 Desktop (2.136.1202.0) could not resolve report schema 2.0.0, released in June 2025. The report, four pages and 32 visual containers now use their September 2024 schema 1.2.0; the report includes the required `layoutOptimization: None`. All 40 schema-bearing documents passed validation again against eight Microsoft schema documents with resolved references. Reopening, refreshing and visual acceptance remain pending. User-provided screenshots and diagnostic logs are not repository assets.

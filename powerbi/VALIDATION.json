@@ -8,8 +8,13 @@
   "model_parse": "Passed using the installed Power BI Tabular Object Model deserializer in PowerBI compatibility mode.",
   "visual_bindings": "All authored column and measure references resolve to model metadata.",
   "pbir_schema_validation": {
+    "verified_at_utc": "2026-09-20T16:40:21.572969+00:00",
     "documents": 40,
-    "result": "Passed against 13 official Microsoft schema documents and resolved references."
+    "result": "Passed against eight official Microsoft schema documents and resolved references.",
+    "report_page_visual_schema_version": "1.2.0",
+    "target_desktop_version": "2.136.1202.0 (September 2024)",
+    "compatibility_basis": "Microsoft schema changelogs identify version 1.2.0 for report, page and visualContainer as September 2024 releases.",
+    "native_reopen_after_fix": "Pending; schema validation does not establish native refresh or rendering success."
   },
   "rendered_validation": "Not performed: native Power BI Desktop refresh, DAX execution, and visual interactions remain unverified.",
   "portfolio_figures": "Four independently rendered SQL-backed PNG figures inspected; these are not Power BI screenshots."

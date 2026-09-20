@@ -4,6 +4,10 @@ Status: semantic model, DAX and four PBIR report pages are authored. The model p
 
 ## Open and refresh
 
+The report, page and visual-container definitions target schema **1.2.0**, released with September 2024 Desktop, to match the installed 2.136.1202.0 version. The report also includes the required `layoutOptimization` property. Newer public schemas can validate successfully while still being unreadable by an older Desktop installation.
+
+If Desktop reports `Can't resolve schema '2.0.0' in 'report.json'`, use the corrected files on `dev_v1` and reopen `Olist.pbip`. Do not change only the report schema: the page and visual-container schemas must also match the supported format. Keep the PBIR preview feature enabled. Refresh and rendered acceptance still need to be checked in Desktop.
+
 1. Start Power BI Desktop and open Olist.pbip in this folder.
 2. If required, enable Power BI Project/PBIP and enhanced report format/PBIR in File > Options and settings > Options > Preview features, then restart Desktop. The locally installed Desktop is 2.136.1202.0; use a compatible supported Desktop release if it rejects the project format.
 3. The model connects to PostgreSQL at 127.0.0.1:5432, database olist_customer_analytics, schema bi.
@@ -63,5 +67,8 @@ Customers 87,214; Snapshot Orders 90,127; merchandise BRL 12,382,921.47; observe
 - [Microsoft PBIP overview](https://learn.microsoft.com/en-us/power-bi/developer/projects/projects-overview)
 - [PBIR report format and schemas](https://learn.microsoft.com/en-us/power-bi/developer/projects/projects-report)
 - [Semantic model project folder](https://learn.microsoft.com/en-us/power-bi/developer/projects/projects-dataset)
+- [Report schema release history](https://github.com/microsoft/json-schemas/blob/main/fabric/item/report/definition/report/CHANGELOG.md)
+- [Page schema release history](https://github.com/microsoft/json-schemas/blob/main/fabric/item/report/definition/page/CHANGELOG.md)
+- [Visual-container schema release history](https://github.com/microsoft/json-schemas/blob/main/fabric/item/report/definition/visualContainer/CHANGELOG.md)
 
 Public metadata formats make the project reviewable in Git. Successful parsing/schema validation does not replace Desktop acceptance.

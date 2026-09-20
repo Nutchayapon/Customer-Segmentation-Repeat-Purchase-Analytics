@@ -1,6 +1,6 @@
 # Data Quality Summary
 
-Status: source inspection, PostgreSQL import, and database profiling completed. Analytical cutoff and exception policies remain open.
+Status: source inspection, PostgreSQL import, and database profiling completed. The subsequent analytical cutoff and exception policies are documented in METHODOLOGY.md.
 
 ## Evidence and scope
 
@@ -38,7 +38,7 @@ Inspection completed (UTC): 2026-09-20T11:53:48.892515+00:00. A one-off local in
 
 These are measured source-file findings reproduced in PostgreSQL. Root causes for missing payments, timestamp gaps, and monetary differences remain unconfirmed.
 
-## Observation-period decision remains open
+## Observation-period evidence and subsequent decision
 
 - All-status purchase range: 2016-09-04 21:15:19 through 2018-10-17 17:30:18.
 - Delivered-order purchase range: 2016-09-15 12:16:38 through 2018-08-29 15:00:37.
@@ -46,7 +46,7 @@ These are measured source-file findings reproduced in PostgreSQL. Root causes fo
 - The early months are sparse: September 2016 has 4 orders, October 324, November 0, and December 1.
 - Among 96,470 delivered orders with known delivery dates, median elapsed delivery time is 10.22 days and p95 is 29.27 days. These conditional statistics do not establish coverage completeness.
 
-The analysis configuration deliberately keeps observation dates NULL. Before preparation, compare candidate cutoffs and document a full-month cohort policy plus delivery-maturity limitations. Do not interpret September–October as two extra months of complete delivered-purchase follow-up. Do not silently discard early history when defining first observed purchase; if a later reporting window is selected, preserve any available prior history for cohort/returning classification.
+The initial inspection left configuration dates NULL. The implemented analysis subsequently selected July 31, 2018 and compared June/July/August cutoffs; see METHODOLOGY.md and ANALYSIS_RESULTS.json. Do not interpret September–October as two extra months of complete delivered-purchase follow-up. Do not silently discard early history when defining first observed purchase; if a later reporting window is selected, preserve any available prior history for cohort/returning classification.
 
 ## Monthly source coverage
 
@@ -83,10 +83,8 @@ This table describes the downloaded extract, not customer retention. A zero reco
 
 ## Current readiness
 
-PostgreSQL import and profiling are complete. Core keys and joins show no observed defects under the inspected definitions, and full-table comparisons matched the CSV inputs. Analytical preparation remains conditional on a documented cutoff and exception policy. Transformed datasets, RFM, cohorts, repeat metrics, and Power BI validation are not complete.
+PostgreSQL import and profiling are complete. Core keys and joins show no observed defects under the inspected definitions, and full-table comparisons matched the CSV inputs. Analytical preparation, RFM, cohorts, repeat metrics and SQL validation are now complete under the documented cutoff and exception policies. Native Power BI refresh and visual acceptance remain pending.
 
-## Next actions
+## Downstream references
 
-1. Finalize the observation cutoff and eligible population.
-2. Document treatment of missing payments/dates and monetary differences.
-3. Implement preparation with separate item/payment aggregation and reconciliation.
+See METHODOLOGY.md for implemented policies, ANALYSIS_RESULTS.json for executed outputs, and VALIDATION.md for the checked scope and remaining Power BI acceptance.

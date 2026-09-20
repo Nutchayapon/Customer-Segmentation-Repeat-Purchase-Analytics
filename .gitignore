@@ -22,6 +22,7 @@ pgpass.conf
 **/.pbi/localSettings.json
 **/.pbi/cache.abf
 **/.pbi/unappliedChanges.json
+**/.pbi/
 *.tmp
 
 # OS/editor files

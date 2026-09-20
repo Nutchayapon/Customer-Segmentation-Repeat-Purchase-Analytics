@@ -1,6 +1,6 @@
 # Runbook
 
-Status: PostgreSQL setup, four-table import, and source profiling completed on September 20, 2026. Full-table comparisons matched the original CSV fields and record counts. Analytical SQL 02-09 and DAX remain placeholders.
+Status: PostgreSQL setup, four-table import, and source profiling completed on September 20, 2026. Full-table comparisons matched the original CSV fields and record counts. Analytical SQL 02-09, exports and DAX are implemented. Native Power BI refresh and visual acceptance remain pending.
 
 ## Installed local environment
 
@@ -35,7 +35,7 @@ Download the same dataset version into `data/raw/`. Compare file hashes with [SO
 
 Connect to the project database as its owner and execute [00_setup.sql](../sql/00_setup.sql). It creates raw/analytics/bi schemas, four CSV-compatible landing tables, non-unique indexes, and an analysis configuration row.
 
-Re-running setup preserves data but does not repair schema drift. Observation dates remain NULL until a defensible cutoff is documented.
+Re-running setup preserves data but does not repair schema drift. On a fresh database the dates start as NULL; SQL 02 seeds the documented July 31, 2018 cutoff if they are still unset.
 
 ## 4. Import once
 
@@ -80,15 +80,29 @@ Verification compared every source CSV field with PostgreSQL COPY output, in the
 
 The database reproduces the documented missing payments/dates and payment/item differences. These are source exceptions to resolve in the analytical policy, not import failures. See [VALIDATION.md](VALIDATION.md).
 
-## 6. Select analytical boundaries
+## 6. Recorded analytical boundaries
 
-Review monthly/daily coverage and delivery lag before setting observation dates and writing a cutoff rationale. Do not use October 2018 merely because it contains the last all-status purchase.
+The configuration now records September 4, 2016 through July 31, 2018, with an August 1 reference date. See METHODOLOGY.md for the cutoff rationale, retrospective status limitation and June/July/August sensitivity.
 
 Document sparse early history, incomplete late periods, missing dates/payments, and monetary differences. Preserve available earlier history for first-observed/returning classification even when reporting starts later.
 
-## 7. Continue implementation
+## 7. Re-run analysis and export
 
-Prepare and reconcile the order-level dataset, then build customer metrics, RFM, cohorts, repeat windows, and purchase intervals. Add analytical validation checks as outputs appear. Produce reviewed tables and written findings before Power BI views and measures.
+From the repository root in PowerShell:
+
+~~~powershell
+./scripts/run_analysis.ps1 -PassFile 'D:/PostgreSQL/private/olist.pgpass'
+~~~
+
+Set -PsqlPath, -Server, -Port, -Database and -User for another workstation. The runner uses psql and fails on SQL errors; it runs 02-09, then 10_export_results.psql. It does not repeat raw imports.
+
+The runner refreshes views, validates 28 invariants, publishes aggregate JSON to docs/ANALYSIS_RESULTS.json, and exports customer-level CSVs only to ignored outputs/tables/. Written findings and PNG figures are reviewed snapshots and are not automatically rewritten by this command. Review them after changing data or definitions.
+
+## 8. Open Power BI
+
+Open powerbi/Olist.pbip in Power BI Desktop and follow powerbi/README.md. Enter the project database credential in Desktop, then Refresh. Credentials are not stored in the report definitions. Native refresh and visual acceptance have not been verified in this task; file/schema validation has completed.
+
+On this workstation, the protected analyst credential is stored in D:/PostgreSQL/private/olist-analyst-password.dpapi. Retrieve it locally under the same Windows account when needed; never copy it into project files or GitHub. Contact the local database administrator or rotate the project credential if access is unavailable.
 
 ## Development and publication
 

@@ -1,0 +1,171 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.0.0/schema.json",
+  "name": "denominators",
+  "position": {
+    "x": 24,
+    "y": 550,
+    "z": 0,
+    "width": 1230,
+    "height": 175,
+    "tabOrder": 55024
+  },
+  "visual": {
+    "visualType": "tableEx",
+    "visualContainerObjects": {
+      "title": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "text": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Window denominators and observed second purchases'"
+                }
+              }
+            },
+            "fontSize": {
+              "expr": {
+                "Literal": {
+                  "Value": "12D"
+                }
+              }
+            },
+            "fontColor": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "'#17324D'"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      ],
+      "background": [
+        {
+          "properties": {
+            "color": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "'#FFFFFF'"
+                    }
+                  }
+                }
+              }
+            },
+            "transparency": {
+              "expr": {
+                "Literal": {
+                  "Value": "0D"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "query": {
+      "queryState": {
+        "Values": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "RepeatWindows"
+                    }
+                  },
+                  "Property": "window_days"
+                }
+              },
+              "queryRef": "RepeatWindows.window_days",
+              "nativeQueryRef": "window_days"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "RepeatWindows"
+                    }
+                  },
+                  "Property": "Eligible Customers"
+                }
+              },
+              "queryRef": "RepeatWindows.Eligible Customers",
+              "nativeQueryRef": "Eligible Customers"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "RepeatWindows"
+                    }
+                  },
+                  "Property": "Window Repeat Customers"
+                }
+              },
+              "queryRef": "RepeatWindows.Window Repeat Customers",
+              "nativeQueryRef": "Window Repeat Customers"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "RepeatWindows"
+                    }
+                  },
+                  "Property": "Window Repeat Rate"
+                }
+              },
+              "queryRef": "RepeatWindows.Window Repeat Rate",
+              "nativeQueryRef": "Window Repeat Rate"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "RepeatWindows"
+                    }
+                  },
+                  "Property": "Common Eligible Customers"
+                }
+              },
+              "queryRef": "RepeatWindows.Common Eligible Customers",
+              "nativeQueryRef": "Common Eligible Customers"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "RepeatWindows"
+                    }
+                  },
+                  "Property": "Common Window Repeat Rate"
+                }
+              },
+              "queryRef": "RepeatWindows.Common Window Repeat Rate",
+              "nativeQueryRef": "Common Window Repeat Rate"
+            }
+          ]
+        }
+      }
+    }
+  }
+}

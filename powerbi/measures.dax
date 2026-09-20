@@ -1,6 +1,83 @@
-// Status: TODO. Comment-only placeholder; no measures implemented.
-// Purpose: aggregate validated SQL outputs within report filter context.
-// Planned outputs: customer/order counts, eligible repeat rates, and shares.
-// SQL owns RFM rules, cohort membership, history, and window eligibility.
-// Preserve cohort/window denominators and use safe division.
-// Validation: reconcile totals, slices, and empty populations with SQL.
+// Measures belong to the tables named below. SQL owns segmentation, cohorts and eligibility.
+// Customers are a fixed snapshot; activity dates filter Orders only.
+
+// Table: Customers | Format: #,0
+Customers = COUNTROWS(Customers)
+
+// Table: Customers | Format: #,0
+Snapshot Orders = SUM(Customers[order_count])
+
+// Table: Customers | Format: "BRL " #,0.00
+Observed Merchandise Value = SUM(Customers[monetary_value])
+
+// Table: Customers | Format: #,0
+Repeat Customers = CALCULATE([Customers], KEEPFILTERS(Customers[is_repeat_customer] = TRUE()))
+
+// Table: Customers | Format: 0.00%
+Observed Repeat Rate = DIVIDE([Repeat Customers], [Customers])
+
+// Table: Customers | Format: 0.00
+Purchases per Customer = DIVIDE([Snapshot Orders], [Customers])
+
+// Table: Customers | Format: 0.0
+Average Recency Days = AVERAGE(Customers[recency_days])
+
+// Table: Customers | Format: 0.00
+Average Frequency = AVERAGE(Customers[order_count])
+
+// Table: Customers | Format: "BRL " #,0.00
+Median Customer Value = MEDIAN(Customers[monetary_value])
+
+// Table: Customers | Format: 0.00%
+Customer Share = DIVIDE([Customers], CALCULATE([Customers], REMOVEFILTERS(Customers[segment])))
+
+// Table: Orders | Format: #,0
+Orders in Activity Period = COUNTROWS(Orders)
+
+// Table: Orders | Format: #,0
+Returning Orders = CALCULATE([Orders in Activity Period], KEEPFILTERS(Orders[is_returning_order] = TRUE()))
+
+// Table: Orders | Format: "BRL " #,0.00
+Activity Merchandise Value = SUM(Orders[merchandise_value])
+
+// Table: RepeatWindows | Format: #,0
+Eligible Customers = IF(HASONEVALUE(RepeatWindows[window_days]), CALCULATE(COUNTROWS(RepeatWindows), RepeatWindows[is_eligible] = TRUE()))
+
+// Table: RepeatWindows | Format: #,0
+Window Repeat Customers = IF(HASONEVALUE(RepeatWindows[window_days]), CALCULATE(COUNTROWS(RepeatWindows), RepeatWindows[repeated_within_window] = TRUE()))
+
+// Table: RepeatWindows | Format: 0.00%
+Window Repeat Rate = DIVIDE([Window Repeat Customers], [Eligible Customers])
+
+// Table: RepeatWindows | Format: #,0
+Common Eligible Customers = IF(HASONEVALUE(RepeatWindows[window_days]), CALCULATE(COUNTROWS(RepeatWindows), RepeatWindows[common_90_day_population] = TRUE()))
+
+// Table: RepeatWindows | Format: #,0
+Common Window Repeat Customers = IF(HASONEVALUE(RepeatWindows[window_days]), CALCULATE(COUNTROWS(RepeatWindows), RepeatWindows[common_90_day_population] = TRUE(), RepeatWindows[repeated_within_window] = TRUE()))
+
+// Table: RepeatWindows | Format: 0.00%
+Common Window Repeat Rate = DIVIDE([Common Window Repeat Customers], [Common Eligible Customers])
+
+// Table: RepeatWindows | Format: 0.00%
+90 Day Repeat Rate = CALCULATE([Window Repeat Rate], RepeatWindows[window_days] = 90)
+
+// Table: Intervals | Format: #,0
+Purchase Intervals = COUNTROWS(Intervals)
+
+// Table: Intervals | Format: 0.0
+Median Gap Days = MEDIAN(Intervals[gap_days])
+
+// Table: Intervals | Format: 0.0
+Median Days to Second Purchase = CALCULATE([Median Gap Days], Intervals[is_first_to_second] = TRUE())
+
+// Table: GapDistribution | Format: #,0
+All Intervals = SUM(GapDistribution[all_intervals])
+
+// Table: Cohort | Format: #,0
+Cohort Customers = SUMX(VALUES(Cohort[cohort_month]), CALCULATE(MAX(Cohort[cohort_size])))
+
+// Table: Cohort | Format: 0.00%
+Cohort Activity Rate = IF(HASONEVALUE(Cohort[month_index]), DIVIDE(CALCULATE(SUM(Cohort[active_customers]), Cohort[is_observable] = TRUE()), CALCULATE([Cohort Customers], Cohort[is_observable] = TRUE())))
+
+// Table: Cohort | Format: 0.00%
+Later Month Activity Rate = IF(SELECTEDVALUE(Cohort[month_index], -1) > 0, [Cohort Activity Rate])

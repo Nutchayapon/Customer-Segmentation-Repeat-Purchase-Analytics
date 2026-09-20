@@ -1,0 +1,133 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.0.0/schema.json",
+  "name": "windowrates",
+  "position": {
+    "x": 24,
+    "y": 230,
+    "z": 0,
+    "width": 740,
+    "height": 300,
+    "tabOrder": 23024
+  },
+  "visual": {
+    "visualType": "clusteredColumnChart",
+    "visualContainerObjects": {
+      "title": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "text": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Repeat rates: window-eligible vs common 90-day population'"
+                }
+              }
+            },
+            "fontSize": {
+              "expr": {
+                "Literal": {
+                  "Value": "12D"
+                }
+              }
+            },
+            "fontColor": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "'#17324D'"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      ],
+      "background": [
+        {
+          "properties": {
+            "color": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "'#FFFFFF'"
+                    }
+                  }
+                }
+              }
+            },
+            "transparency": {
+              "expr": {
+                "Literal": {
+                  "Value": "0D"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "query": {
+      "queryState": {
+        "Category": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "RepeatWindows"
+                    }
+                  },
+                  "Property": "window_days"
+                }
+              },
+              "queryRef": "RepeatWindows.window_days",
+              "nativeQueryRef": "window_days"
+            }
+          ]
+        },
+        "Y": {
+          "projections": [
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "RepeatWindows"
+                    }
+                  },
+                  "Property": "Window Repeat Rate"
+                }
+              },
+              "queryRef": "RepeatWindows.Window Repeat Rate",
+              "nativeQueryRef": "Window Repeat Rate"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "RepeatWindows"
+                    }
+                  },
+                  "Property": "Common Window Repeat Rate"
+                }
+              },
+              "queryRef": "RepeatWindows.Common Window Repeat Rate",
+              "nativeQueryRef": "Common Window Repeat Rate"
+            }
+          ]
+        }
+      }
+    }
+  }
+}

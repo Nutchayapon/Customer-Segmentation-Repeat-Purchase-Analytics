@@ -1,59 +1,32 @@
-# Project Plan
+# Project Plan and Delivery Status
 
-Status: scaffold, source acquisition, PostgreSQL installation, core import, and database profiling completed. Analytical boundaries, preparation, and customer analytics remain pending.
+## Objective
 
-## Objective and scope
+A reproducible SQL and Power BI portfolio analyzing customer segmentation and observed repeat purchasing. Source data, customer histories and screenshots supplied in chat stay outside Git.
 
-Build a reproducible customer analytics portfolio using PostgreSQL and Power BI. Produce validated tables and written findings before creating a dashboard. Describe observed behavior without claiming permanent churn, complete lifetime histories, or predictive customer lifetime value.
+## Delivered work
 
-The initial scope includes customers, orders, items, and payments; customer metrics; RFM; monthly cohort activity; fixed-window repeat purchases; and purchase intervals. Product/category enrichment may follow later. Seller analysis, reviews, geolocation, machine learning, and automated pipelines are outside the initial scope.
-
-## Phases and completion criteria
-
-| Phase | Work | Output | Completion criterion |
-|---|---|---|---|
-| 1. Scaffold | English documentation, placeholders, Git branches | Organized repository | Links resolve and status statements are accurate |
-| 2. Acquire and profile | Record version, inspect headers, import, check quality and coverage | Raw tables and quality summary | Import counts reconcile and exceptions have a documented disposition |
-| 3. Prepare | Aggregate items/payments before joining and apply reviewed eligibility | Order and customer datasets | Grains are unique and counts/value reconcile |
-| 4. RFM | Calculate raw metrics, inspect distributions, select scores/segments | Customer RFM snapshot | Ties are handled consistently; each customer has one segment |
-| 5. Cohorts | First-observed month, monthly activity, observable grid | Cohort activity table | Counts respect cohort size; zero and unobservable differ |
-| 6. Repeat behavior | Purchase sequence, windows, and intervals | Repeat rates and gap datasets | Denominators are eligible and sample histories pass review |
-| 7. Findings | Validate results and write explanations | Analytical findings document | Every finding has supporting output and material caveats |
-| 8. Power BI | Relationships, measures, visuals, slicers | Report and screenshots | KPIs match SQL under documented filters |
-| 9. Portfolio | Reproduction guide and final presentation | Shareable repository | Another reader can understand and reproduce the work |
-
-Phases 4-6 depend on validated purchase history from phase 3. Phase 8 follows reviewed findings rather than replacing analysis.
-
-## Planned analytical outputs
-
-| Output | Grain | Purpose |
+| Stage | Output | Status |
 |---|---|---|
-| Order dataset | One eligible order | Common transaction base |
-| Customer metrics | One customer | First/last purchase, order count, observed spend |
-| RFM snapshot | One customer at a fixed reference date | Descriptive segmentation |
-| Customer-month activity | One customer per purchase month | Deduplicated monthly activity |
-| Cohort summary | One cohort month and month index | Active customers, cohort size, observability |
-| Repeat windows | One customer per 30/60/90-day window | Eligibility and repeat indicators |
-| Purchase intervals | One order with a preceding order | Time between observed purchases |
+| Source acquisition and inspection | Nine local CSVs, source profile, dictionary | Complete |
+| Database setup/import | PostgreSQL 18.6, four raw tables, verified field fingerprints | Complete |
+| Methodology | Cutoff, eligibility, monetary, RFM, cohort and repeat definitions | Complete with documented limitations |
+| Order/customer preparation | Diagnostic, order, customer and sequence views | Executed |
+| RFM | Raw metrics, tied-value-safe scores, five descriptive groups | Executed |
+| Cohorts | Customer-month activity and explicit observable grid | Executed |
+| Repeat behavior | Order counts, 30/60/90-day rates, common population, distinct-day sensitivity | Executed |
+| Purchase intervals | Consecutive/first-to-second gaps and distribution summaries | Executed |
+| Validation | 28 SQL invariants and full-population independent CSV comparisons | Passed |
+| Findings | Evidence-backed English narrative and testable recommendations | Complete |
+| Power BI | Seven-table semantic model, DAX, four PBIR report pages | Authored; Desktop refresh/render acceptance pending |
+| Portfolio | English README, reproduction scripts, documentation, aggregate evidence | Prepared on dev_v1 |
 
-These analytical outputs are proposed. Raw landing tables and the analysis configuration exist; analytical datasets do not.
+The remaining acceptance step is Power BI Desktop refresh with local database credentials, followed by checking the rendered visuals and representative filters against SQL. Do not label this as completed visual validation.
 
-## Current milestone
+## Sequence and maintenance
 
-All nine CSVs were acquired and inventoried. PostgreSQL 18.6 and pgAdmin 9.17 are installed on drive D. Four core files were imported, setup/profiling executed, and every imported field matched its CSV source under canonical full-table comparison. See [database validation](DATABASE_VALIDATION.json) and the [quality summary](DATA_QUALITY_SUMMARY.md).
+Run SQL 02-09 after the existing setup/import; run 10_export_results.psql to refresh aggregate evidence and ignored local CSV exports. The PowerShell runner performs this sequence with stop-on-error behavior. Refresh Power BI separately.
 
-Next: select a defensible observation cutoff and exception policies, then prepare and reconcile the order-level dataset before implementing RFM.
+The configuration row stores observation boundaries. SQL 02 seeds the documented dates only when they are unset. Changing the period requires reviewing cohort policy, RFM thresholds, sensitivity candidates, findings and evidence; do not retain the published narrative unchanged.
 
-## Definition of done
-
-- Source version, import process, and actual coverage are recorded.
-- Populations, grains, date boundaries, and cutoff are explicit.
-- PostgreSQL SQL uses readable CTEs and window functions where appropriate.
-- Validation includes reconciliation, invariants, and example customer histories.
-- Findings distinguish evidence, interpretation, and proposed actions.
-- Power BI filter behavior and SQL reconciliation are documented.
-- Portfolio claims match completed work and observed results.
-
-## Development workflow
-
-Use main for the reviewed baseline and dev_v1 for implementation. Commit reviewable units such as setup/profiling, preparation, RFM, cohorts, repeat behavior, findings, and Power BI. Review changes before merging into main. Documentation evolves alongside implementation; findings remain empty until supported by results.
+Review dev_v1 before merging into main. No automatic merge or public deployment is included.

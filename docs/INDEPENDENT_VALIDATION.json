@@ -1,0 +1,18 @@
+{
+  "engine": "Python standard-library CSV recomputation (verification only; no project runtime dependency)",
+  "source": "Original customers, orders and order_items CSVs",
+  "customer_rows_checked": 87214,
+  "cohort_cells_checked": 361,
+  "repeat_window_rows_checked": 261642,
+  "interval_rows_checked": 2913,
+  "status": "All comparisons passed",
+  "verified_at_utc": "2026-09-20T14:28:36.547520+00:00",
+  "observation_start": "2016-09-04",
+  "observation_end": "2018-07-31",
+  "source_archive_sha256": "967e41e04fc306fe604e2a693f488995a8b41e5047418f8a5c8e4abd6deca784",
+  "distinct_day_sensitivity": {
+    "customers": 87214,
+    "later_day_repeat_customers": 1846,
+    "status": "Matched direct original CSV date-set recomputation"
+  }
+}

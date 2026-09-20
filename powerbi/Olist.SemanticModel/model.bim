@@ -1,0 +1,995 @@
+{
+  "name": "Olist Analytics",
+  "compatibilityLevel": 1601,
+  "model": {
+    "culture": "en-US",
+    "defaultPowerBIDataSourceVersion": "powerBI_V3",
+    "sourceQueryCulture": "en-US",
+    "tables": [
+      {
+        "name": "Customers",
+        "lineageTag": "14e16d43-75bb-5c70-8eb4-4fcf6830c1a5",
+        "columns": [
+          {
+            "name": "customer_unique_id",
+            "dataType": "string",
+            "sourceColumn": "customer_unique_id",
+            "summarizeBy": "none",
+            "lineageTag": "0c3bcd3b-bd9d-5590-aa2c-ff3b82b0b83b",
+            "isHidden": true
+          },
+          {
+            "name": "first_purchase_timestamp",
+            "dataType": "dateTime",
+            "sourceColumn": "first_purchase_timestamp",
+            "summarizeBy": "none",
+            "lineageTag": "ad20f6e1-cc11-52af-b07d-45f8d91a9494",
+            "formatString": "yyyy-MM-dd HH:mm:ss",
+            "isHidden": true
+          },
+          {
+            "name": "last_purchase_timestamp",
+            "dataType": "dateTime",
+            "sourceColumn": "last_purchase_timestamp",
+            "summarizeBy": "none",
+            "lineageTag": "576bb7da-346e-5771-b2ee-23dbc65d278c",
+            "formatString": "yyyy-MM-dd HH:mm:ss",
+            "isHidden": true
+          },
+          {
+            "name": "second_purchase_timestamp",
+            "dataType": "dateTime",
+            "sourceColumn": "second_purchase_timestamp",
+            "summarizeBy": "none",
+            "lineageTag": "b9fed5f2-22a9-55e3-9a2c-9c4a2f540bd8",
+            "formatString": "yyyy-MM-dd HH:mm:ss",
+            "isHidden": true
+          },
+          {
+            "name": "order_count",
+            "dataType": "int64",
+            "sourceColumn": "order_count",
+            "summarizeBy": "none",
+            "lineageTag": "c919174b-b655-581f-af7a-4862fb028bf4"
+          },
+          {
+            "name": "monetary_value",
+            "dataType": "decimal",
+            "sourceColumn": "monetary_value",
+            "summarizeBy": "none",
+            "lineageTag": "f06f653f-a04b-5159-b110-4ecbac83f0b4"
+          },
+          {
+            "name": "item_count",
+            "dataType": "double",
+            "sourceColumn": "item_count",
+            "summarizeBy": "none",
+            "lineageTag": "1db6ee15-abb8-5866-87e7-e2070196cc72"
+          },
+          {
+            "name": "first_purchase_state",
+            "dataType": "string",
+            "sourceColumn": "first_purchase_state",
+            "summarizeBy": "none",
+            "lineageTag": "b56a2b93-d0db-515d-99aa-8df55bff5cc3"
+          },
+          {
+            "name": "missing_payment_orders",
+            "dataType": "int64",
+            "sourceColumn": "missing_payment_orders",
+            "summarizeBy": "none",
+            "lineageTag": "aba01a15-0d8a-54f3-9a6b-0e2518a686f6"
+          },
+          {
+            "name": "payment_mismatch_orders",
+            "dataType": "int64",
+            "sourceColumn": "payment_mismatch_orders",
+            "summarizeBy": "none",
+            "lineageTag": "2fbb6d12-122f-5ecc-98c0-7cd9a07dfe9b"
+          },
+          {
+            "name": "observation_start",
+            "dataType": "dateTime",
+            "sourceColumn": "observation_start",
+            "summarizeBy": "none",
+            "lineageTag": "2cffe38b-92f7-5fbe-80b7-0253147c0661",
+            "formatString": "yyyy-MM-dd"
+          },
+          {
+            "name": "observation_end",
+            "dataType": "dateTime",
+            "sourceColumn": "observation_end",
+            "summarizeBy": "none",
+            "lineageTag": "eda23ace-1b8e-5ebe-b491-e9f0b4a9faec",
+            "formatString": "yyyy-MM-dd"
+          },
+          {
+            "name": "first_purchase_date",
+            "dataType": "dateTime",
+            "sourceColumn": "first_purchase_date",
+            "summarizeBy": "none",
+            "lineageTag": "46017a67-8466-5e9c-892a-32cfb4b61cda",
+            "formatString": "yyyy-MM-dd"
+          },
+          {
+            "name": "last_purchase_date",
+            "dataType": "dateTime",
+            "sourceColumn": "last_purchase_date",
+            "summarizeBy": "none",
+            "lineageTag": "f5a63156-2720-5667-beed-bd9c6637b188",
+            "formatString": "yyyy-MM-dd"
+          },
+          {
+            "name": "cohort_month",
+            "dataType": "dateTime",
+            "sourceColumn": "cohort_month",
+            "summarizeBy": "none",
+            "lineageTag": "5b620b9f-1344-5d30-a7b7-cf48c7299615",
+            "formatString": "yyyy-MM-dd"
+          },
+          {
+            "name": "primary_cohort",
+            "dataType": "boolean",
+            "sourceColumn": "primary_cohort",
+            "summarizeBy": "none",
+            "lineageTag": "d3c6a3fc-b595-5e0c-85f0-ff1a29edc38f"
+          },
+          {
+            "name": "reference_date",
+            "dataType": "dateTime",
+            "sourceColumn": "reference_date",
+            "summarizeBy": "none",
+            "lineageTag": "45a287a7-c2cf-583f-aaac-e6daea60753a",
+            "formatString": "yyyy-MM-dd"
+          },
+          {
+            "name": "recency_days",
+            "dataType": "int64",
+            "sourceColumn": "recency_days",
+            "summarizeBy": "none",
+            "lineageTag": "aeca6d4c-ee4b-5996-a10b-1026e9348831"
+          },
+          {
+            "name": "observed_followup_days",
+            "dataType": "int64",
+            "sourceColumn": "observed_followup_days",
+            "summarizeBy": "none",
+            "lineageTag": "6a58a695-2727-5b73-b163-a4edf4f86e83"
+          },
+          {
+            "name": "purchase_span_days",
+            "dataType": "int64",
+            "sourceColumn": "purchase_span_days",
+            "summarizeBy": "none",
+            "lineageTag": "db962fad-aa58-5f6f-ac94-fa43fed3859b"
+          },
+          {
+            "name": "average_order_value",
+            "dataType": "double",
+            "sourceColumn": "average_order_value",
+            "summarizeBy": "none",
+            "lineageTag": "02c7c118-d7e5-535d-8dde-129329fd8f4e"
+          },
+          {
+            "name": "is_repeat_customer",
+            "dataType": "boolean",
+            "sourceColumn": "is_repeat_customer",
+            "summarizeBy": "none",
+            "lineageTag": "76835658-d2db-5c54-b43a-b19aeb4e687c"
+          },
+          {
+            "name": "r_score",
+            "dataType": "int64",
+            "sourceColumn": "r_score",
+            "summarizeBy": "none",
+            "lineageTag": "c5fcb058-dd0c-514c-a4e5-8a8dfe1cd6f5"
+          },
+          {
+            "name": "f_score",
+            "dataType": "int64",
+            "sourceColumn": "f_score",
+            "summarizeBy": "none",
+            "lineageTag": "3c5d423d-9192-50c1-b863-99fcb5c2230e"
+          },
+          {
+            "name": "m_score",
+            "dataType": "int64",
+            "sourceColumn": "m_score",
+            "summarizeBy": "none",
+            "lineageTag": "d19d45f5-929a-5e8a-b1f0-4352f0b12a04"
+          },
+          {
+            "name": "rfm_code",
+            "dataType": "string",
+            "sourceColumn": "rfm_code",
+            "summarizeBy": "none",
+            "lineageTag": "a179f69f-c1fb-540d-bcd6-b541d973970b"
+          },
+          {
+            "name": "segment",
+            "dataType": "string",
+            "sourceColumn": "segment",
+            "summarizeBy": "none",
+            "lineageTag": "a3bada93-76f0-5dc3-b49c-232639abe794"
+          }
+        ],
+        "partitions": [
+          {
+            "name": "Customers",
+            "mode": "import",
+            "source": {
+              "type": "m",
+              "expression": [
+                "let",
+                "    Source = PostgreSQL.Database(\"127.0.0.1:5432\", \"olist_customer_analytics\", [CreateNavigationProperties=false]),",
+                "    Data = Source{[Schema=\"bi\",Item=\"customers\"]}[Data]",
+                "in",
+                "    Data"
+              ]
+            }
+          }
+        ],
+        "measures": [
+          {
+            "name": "Customers",
+            "expression": "COUNTROWS(Customers)",
+            "formatString": "#,0",
+            "lineageTag": "99d10e15-9ec2-5e80-9a22-48c13f0a5d13"
+          },
+          {
+            "name": "Snapshot Orders",
+            "expression": "SUM(Customers[order_count])",
+            "formatString": "#,0",
+            "lineageTag": "dec75506-af55-5ecc-a2da-3f2c760fc1ba"
+          },
+          {
+            "name": "Observed Merchandise Value",
+            "expression": "SUM(Customers[monetary_value])",
+            "formatString": "\"BRL \" #,0.00",
+            "lineageTag": "1f9091d7-1500-5fd0-b5d9-f6cfdbde5621"
+          },
+          {
+            "name": "Repeat Customers",
+            "expression": "CALCULATE([Customers], KEEPFILTERS(Customers[is_repeat_customer] = TRUE()))",
+            "formatString": "#,0",
+            "lineageTag": "29726d15-eaa3-5370-9894-c956603882c0"
+          },
+          {
+            "name": "Observed Repeat Rate",
+            "expression": "DIVIDE([Repeat Customers], [Customers])",
+            "formatString": "0.00%",
+            "lineageTag": "c1818f20-9b6e-5cb7-a900-4cad3bf4dca1"
+          },
+          {
+            "name": "Purchases per Customer",
+            "expression": "DIVIDE([Snapshot Orders], [Customers])",
+            "formatString": "0.00",
+            "lineageTag": "af8a8846-1d14-5680-b9c7-23a173984746"
+          },
+          {
+            "name": "Average Recency Days",
+            "expression": "AVERAGE(Customers[recency_days])",
+            "formatString": "0.0",
+            "lineageTag": "e2659de6-9ad8-52c4-bb2e-96eb272106ed"
+          },
+          {
+            "name": "Average Frequency",
+            "expression": "AVERAGE(Customers[order_count])",
+            "formatString": "0.00",
+            "lineageTag": "e68488c3-ae72-50ac-a084-78984ea93bd8"
+          },
+          {
+            "name": "Median Customer Value",
+            "expression": "MEDIAN(Customers[monetary_value])",
+            "formatString": "\"BRL \" #,0.00",
+            "lineageTag": "577f40fc-43a1-51b8-95e0-0e988d0f346b"
+          },
+          {
+            "name": "Customer Share",
+            "expression": "DIVIDE([Customers], CALCULATE([Customers], REMOVEFILTERS(Customers[segment])))",
+            "formatString": "0.00%",
+            "lineageTag": "0659f98e-11d0-5d9d-b3bb-0ceba7c1390a"
+          }
+        ]
+      },
+      {
+        "name": "Orders",
+        "lineageTag": "a1f307c1-f8ea-55c5-b03a-d41d907c0eef",
+        "columns": [
+          {
+            "name": "order_id",
+            "dataType": "string",
+            "sourceColumn": "order_id",
+            "summarizeBy": "none",
+            "lineageTag": "334f8a29-41df-598d-93d8-8dcbe801c380",
+            "isHidden": true
+          },
+          {
+            "name": "customer_id",
+            "dataType": "string",
+            "sourceColumn": "customer_id",
+            "summarizeBy": "none",
+            "lineageTag": "0002f381-1416-5b14-a28b-760cb7c6da75",
+            "isHidden": true
+          },
+          {
+            "name": "customer_unique_id",
+            "dataType": "string",
+            "sourceColumn": "customer_unique_id",
+            "summarizeBy": "none",
+            "lineageTag": "3565aa45-65e7-5a41-8dfe-60b826bc5044",
+            "isHidden": true
+          },
+          {
+            "name": "order_purchase_timestamp",
+            "dataType": "dateTime",
+            "sourceColumn": "order_purchase_timestamp",
+            "summarizeBy": "none",
+            "lineageTag": "00ae1c8a-f97b-5bbd-84d4-4956179899b8",
+            "formatString": "yyyy-MM-dd HH:mm:ss",
+            "isHidden": true
+          },
+          {
+            "name": "purchase_date",
+            "dataType": "dateTime",
+            "sourceColumn": "purchase_date",
+            "summarizeBy": "none",
+            "lineageTag": "e91f178f-c9c2-51c4-bd7a-0585e70fc2f4",
+            "formatString": "yyyy-MM-dd"
+          },
+          {
+            "name": "customer_state",
+            "dataType": "string",
+            "sourceColumn": "customer_state",
+            "summarizeBy": "none",
+            "lineageTag": "a2d3a808-c3aa-57cc-9466-59a787d2c5bb"
+          },
+          {
+            "name": "item_count",
+            "dataType": "int64",
+            "sourceColumn": "item_count",
+            "summarizeBy": "none",
+            "lineageTag": "6cc0a3bf-df03-5698-90a1-ea4828ca61d3"
+          },
+          {
+            "name": "merchandise_value",
+            "dataType": "decimal",
+            "sourceColumn": "merchandise_value",
+            "summarizeBy": "none",
+            "lineageTag": "e5c75bc5-b597-5e90-b804-21e8e266a8a8"
+          },
+          {
+            "name": "freight_value",
+            "dataType": "decimal",
+            "sourceColumn": "freight_value",
+            "summarizeBy": "none",
+            "lineageTag": "0568017f-2db3-5629-a016-f8c3dd3df838"
+          },
+          {
+            "name": "payment_entry_count",
+            "dataType": "int64",
+            "sourceColumn": "payment_entry_count",
+            "summarizeBy": "none",
+            "lineageTag": "c33f7803-b055-51ad-a91c-f9f5e2032e0f"
+          },
+          {
+            "name": "payment_value",
+            "dataType": "decimal",
+            "sourceColumn": "payment_value",
+            "summarizeBy": "none",
+            "lineageTag": "a65eb553-187d-566b-a83b-1a7560f49e05"
+          },
+          {
+            "name": "payment_difference",
+            "dataType": "decimal",
+            "sourceColumn": "payment_difference",
+            "summarizeBy": "none",
+            "lineageTag": "1401cfdb-53a1-51dd-86c7-63f05582ad30"
+          },
+          {
+            "name": "missing_payment",
+            "dataType": "boolean",
+            "sourceColumn": "missing_payment",
+            "summarizeBy": "none",
+            "lineageTag": "8daf36f7-8906-5f29-89cb-e13642506701"
+          },
+          {
+            "name": "missing_delivery_date",
+            "dataType": "boolean",
+            "sourceColumn": "missing_delivery_date",
+            "summarizeBy": "none",
+            "lineageTag": "d0f9ac1b-6081-513a-a82a-98645e0f58b8"
+          },
+          {
+            "name": "missing_approval_date",
+            "dataType": "boolean",
+            "sourceColumn": "missing_approval_date",
+            "summarizeBy": "none",
+            "lineageTag": "7f871e11-1a5f-52d3-aed0-4390b1942fb9"
+          },
+          {
+            "name": "payment_mismatch",
+            "dataType": "boolean",
+            "sourceColumn": "payment_mismatch",
+            "summarizeBy": "none",
+            "lineageTag": "8791a790-d645-5859-b393-9e374a6f5c1a"
+          },
+          {
+            "name": "observation_start",
+            "dataType": "dateTime",
+            "sourceColumn": "observation_start",
+            "summarizeBy": "none",
+            "lineageTag": "ffb14f6a-d383-511e-9102-5426a53b8b88",
+            "formatString": "yyyy-MM-dd"
+          },
+          {
+            "name": "observation_end",
+            "dataType": "dateTime",
+            "sourceColumn": "observation_end",
+            "summarizeBy": "none",
+            "lineageTag": "42278dd4-346a-5a8e-a647-e12f2d01696f",
+            "formatString": "yyyy-MM-dd"
+          },
+          {
+            "name": "purchase_number",
+            "dataType": "int64",
+            "sourceColumn": "purchase_number",
+            "summarizeBy": "none",
+            "lineageTag": "667922ce-c321-5908-acac-5fb61a4f0338"
+          },
+          {
+            "name": "previous_purchase_timestamp",
+            "dataType": "dateTime",
+            "sourceColumn": "previous_purchase_timestamp",
+            "summarizeBy": "none",
+            "lineageTag": "cc9ee031-cefe-5f2e-b0e4-785866e9b73a",
+            "formatString": "yyyy-MM-dd HH:mm:ss",
+            "isHidden": true
+          },
+          {
+            "name": "previous_order_id",
+            "dataType": "string",
+            "sourceColumn": "previous_order_id",
+            "summarizeBy": "none",
+            "lineageTag": "4834e732-a723-5476-b5ab-bb5f81e793f9",
+            "isHidden": true
+          },
+          {
+            "name": "first_purchase_state",
+            "dataType": "string",
+            "sourceColumn": "first_purchase_state",
+            "summarizeBy": "none",
+            "lineageTag": "e3c73499-0d81-5089-9d77-d1ce7f71d56a"
+          },
+          {
+            "name": "is_returning_order",
+            "dataType": "boolean",
+            "sourceColumn": "is_returning_order",
+            "summarizeBy": "none",
+            "lineageTag": "bf33d6cc-32ba-58e6-8d42-26dd261fbc81"
+          }
+        ],
+        "partitions": [
+          {
+            "name": "Orders",
+            "mode": "import",
+            "source": {
+              "type": "m",
+              "expression": [
+                "let",
+                "    Source = PostgreSQL.Database(\"127.0.0.1:5432\", \"olist_customer_analytics\", [CreateNavigationProperties=false]),",
+                "    Data = Source{[Schema=\"bi\",Item=\"orders\"]}[Data]",
+                "in",
+                "    Data"
+              ]
+            }
+          }
+        ],
+        "measures": [
+          {
+            "name": "Orders in Activity Period",
+            "expression": "COUNTROWS(Orders)",
+            "formatString": "#,0",
+            "lineageTag": "95c9a026-890f-58fd-ac41-f4406533e9de"
+          },
+          {
+            "name": "Returning Orders",
+            "expression": "CALCULATE([Orders in Activity Period], KEEPFILTERS(Orders[is_returning_order] = TRUE()))",
+            "formatString": "#,0",
+            "lineageTag": "5bbbac45-0759-5947-bb1c-8b5d406d6463"
+          },
+          {
+            "name": "Activity Merchandise Value",
+            "expression": "SUM(Orders[merchandise_value])",
+            "formatString": "\"BRL \" #,0.00",
+            "lineageTag": "a1156e7a-2a63-51bc-be37-ed1d43b9a67c"
+          }
+        ]
+      },
+      {
+        "name": "RepeatWindows",
+        "lineageTag": "988d0432-72aa-5a20-9c45-8e35e132c0be",
+        "columns": [
+          {
+            "name": "customer_unique_id",
+            "dataType": "string",
+            "sourceColumn": "customer_unique_id",
+            "summarizeBy": "none",
+            "lineageTag": "45dd3a3a-530d-5d08-8b8c-27e9b1ec4a7b",
+            "isHidden": true
+          },
+          {
+            "name": "cohort_month",
+            "dataType": "dateTime",
+            "sourceColumn": "cohort_month",
+            "summarizeBy": "none",
+            "lineageTag": "95776c1d-abb3-5772-8692-03ac2e70b3ef",
+            "formatString": "yyyy-MM-dd"
+          },
+          {
+            "name": "primary_cohort",
+            "dataType": "boolean",
+            "sourceColumn": "primary_cohort",
+            "summarizeBy": "none",
+            "lineageTag": "95d5e17b-91f6-5ba3-a197-9657e4bf2598"
+          },
+          {
+            "name": "window_days",
+            "dataType": "int64",
+            "sourceColumn": "window_days",
+            "summarizeBy": "none",
+            "lineageTag": "d3bf46c9-6379-5410-aeea-848042cb57e0"
+          },
+          {
+            "name": "is_eligible",
+            "dataType": "boolean",
+            "sourceColumn": "is_eligible",
+            "summarizeBy": "none",
+            "lineageTag": "5587a7f3-a7cf-5710-9aaa-7eb380feb9ac"
+          },
+          {
+            "name": "repeated_within_window",
+            "dataType": "boolean",
+            "sourceColumn": "repeated_within_window",
+            "summarizeBy": "none",
+            "lineageTag": "3fca5f11-658e-5070-859b-1f28b09edd95"
+          },
+          {
+            "name": "common_90_day_population",
+            "dataType": "boolean",
+            "sourceColumn": "common_90_day_population",
+            "summarizeBy": "none",
+            "lineageTag": "b91c775a-6fd8-593b-976d-e1a85775ed70"
+          }
+        ],
+        "partitions": [
+          {
+            "name": "RepeatWindows",
+            "mode": "import",
+            "source": {
+              "type": "m",
+              "expression": [
+                "let",
+                "    Source = PostgreSQL.Database(\"127.0.0.1:5432\", \"olist_customer_analytics\", [CreateNavigationProperties=false]),",
+                "    Data = Source{[Schema=\"bi\",Item=\"repeat_windows\"]}[Data]",
+                "in",
+                "    Data"
+              ]
+            }
+          }
+        ],
+        "measures": [
+          {
+            "name": "Eligible Customers",
+            "expression": "IF(HASONEVALUE(RepeatWindows[window_days]), CALCULATE(COUNTROWS(RepeatWindows), RepeatWindows[is_eligible] = TRUE()))",
+            "formatString": "#,0",
+            "lineageTag": "9c58f30c-2b4b-5045-ab59-0d786f04ae76"
+          },
+          {
+            "name": "Window Repeat Customers",
+            "expression": "IF(HASONEVALUE(RepeatWindows[window_days]), CALCULATE(COUNTROWS(RepeatWindows), RepeatWindows[repeated_within_window] = TRUE()))",
+            "formatString": "#,0",
+            "lineageTag": "f20c7211-ee54-5872-a6f2-0c5ca4047192"
+          },
+          {
+            "name": "Window Repeat Rate",
+            "expression": "DIVIDE([Window Repeat Customers], [Eligible Customers])",
+            "formatString": "0.00%",
+            "lineageTag": "6d260a9c-a3da-5aec-8ec2-9b97deef186a"
+          },
+          {
+            "name": "Common Eligible Customers",
+            "expression": "IF(HASONEVALUE(RepeatWindows[window_days]), CALCULATE(COUNTROWS(RepeatWindows), RepeatWindows[common_90_day_population] = TRUE()))",
+            "formatString": "#,0",
+            "lineageTag": "45c18343-2f99-5382-95c8-d7a186a97afe"
+          },
+          {
+            "name": "Common Window Repeat Customers",
+            "expression": "IF(HASONEVALUE(RepeatWindows[window_days]), CALCULATE(COUNTROWS(RepeatWindows), RepeatWindows[common_90_day_population] = TRUE(), RepeatWindows[repeated_within_window] = TRUE()))",
+            "formatString": "#,0",
+            "lineageTag": "51a4e024-7e2d-502b-bbae-da46b757ff87"
+          },
+          {
+            "name": "Common Window Repeat Rate",
+            "expression": "DIVIDE([Common Window Repeat Customers], [Common Eligible Customers])",
+            "formatString": "0.00%",
+            "lineageTag": "3e165f0c-de3e-5120-bd03-43f46bca1741"
+          },
+          {
+            "name": "90 Day Repeat Rate",
+            "expression": "CALCULATE([Window Repeat Rate], RepeatWindows[window_days] = 90)",
+            "formatString": "0.00%",
+            "lineageTag": "392d5c5c-d664-5835-a0d4-ffbaf4839ae1"
+          }
+        ]
+      },
+      {
+        "name": "Intervals",
+        "lineageTag": "6f7345a4-30d2-54c0-8f39-dd3980be610f",
+        "columns": [
+          {
+            "name": "customer_unique_id",
+            "dataType": "string",
+            "sourceColumn": "customer_unique_id",
+            "summarizeBy": "none",
+            "lineageTag": "ae5d0e55-dd9f-5411-9e2f-93e7b40156df",
+            "isHidden": true
+          },
+          {
+            "name": "order_id",
+            "dataType": "string",
+            "sourceColumn": "order_id",
+            "summarizeBy": "none",
+            "lineageTag": "95a9551c-fd49-564e-bf37-010e5afc6771",
+            "isHidden": true
+          },
+          {
+            "name": "previous_order_id",
+            "dataType": "string",
+            "sourceColumn": "previous_order_id",
+            "summarizeBy": "none",
+            "lineageTag": "01f2d86e-4717-5e05-a22c-226e545858cf",
+            "isHidden": true
+          },
+          {
+            "name": "purchase_number",
+            "dataType": "int64",
+            "sourceColumn": "purchase_number",
+            "summarizeBy": "none",
+            "lineageTag": "898e31df-d513-57b2-ae85-f543dad43c44"
+          },
+          {
+            "name": "order_purchase_timestamp",
+            "dataType": "dateTime",
+            "sourceColumn": "order_purchase_timestamp",
+            "summarizeBy": "none",
+            "lineageTag": "ffb9dac9-25a9-5944-901e-9941e8a5b1ec",
+            "formatString": "yyyy-MM-dd HH:mm:ss",
+            "isHidden": true
+          },
+          {
+            "name": "previous_purchase_timestamp",
+            "dataType": "dateTime",
+            "sourceColumn": "previous_purchase_timestamp",
+            "summarizeBy": "none",
+            "lineageTag": "bdb1a93c-d0ef-55b2-ab05-0228ce34e554",
+            "formatString": "yyyy-MM-dd HH:mm:ss",
+            "isHidden": true
+          },
+          {
+            "name": "gap_days",
+            "dataType": "double",
+            "sourceColumn": "gap_days",
+            "summarizeBy": "none",
+            "lineageTag": "a1a00719-4bb9-581a-a418-4032e3bfb9a7"
+          },
+          {
+            "name": "is_first_to_second",
+            "dataType": "boolean",
+            "sourceColumn": "is_first_to_second",
+            "summarizeBy": "none",
+            "lineageTag": "fd21eaec-d225-5247-a665-b1c3d2358d69"
+          },
+          {
+            "name": "same_day",
+            "dataType": "boolean",
+            "sourceColumn": "same_day",
+            "summarizeBy": "none",
+            "lineageTag": "f3f88730-7564-58aa-9ed4-60a0a6189a18"
+          },
+          {
+            "name": "same_timestamp",
+            "dataType": "boolean",
+            "sourceColumn": "same_timestamp",
+            "summarizeBy": "none",
+            "lineageTag": "2ae9e1a6-3499-5851-859f-33a3e87a00c6",
+            "isHidden": true
+          }
+        ],
+        "partitions": [
+          {
+            "name": "Intervals",
+            "mode": "import",
+            "source": {
+              "type": "m",
+              "expression": [
+                "let",
+                "    Source = PostgreSQL.Database(\"127.0.0.1:5432\", \"olist_customer_analytics\", [CreateNavigationProperties=false]),",
+                "    Data = Source{[Schema=\"bi\",Item=\"purchase_intervals\"]}[Data]",
+                "in",
+                "    Data"
+              ]
+            }
+          }
+        ],
+        "measures": [
+          {
+            "name": "Purchase Intervals",
+            "expression": "COUNTROWS(Intervals)",
+            "formatString": "#,0",
+            "lineageTag": "056449d4-b325-5d2f-91c7-b6a2db33310a"
+          },
+          {
+            "name": "Median Gap Days",
+            "expression": "MEDIAN(Intervals[gap_days])",
+            "formatString": "0.0",
+            "lineageTag": "7da23e24-694d-52d4-8613-c8e9d69dee82"
+          },
+          {
+            "name": "Median Days to Second Purchase",
+            "expression": "CALCULATE([Median Gap Days], Intervals[is_first_to_second] = TRUE())",
+            "formatString": "0.0",
+            "lineageTag": "e91215b2-ff39-5c2a-8917-7f66e104225c"
+          }
+        ]
+      },
+      {
+        "name": "Cohort",
+        "lineageTag": "83679ac1-8464-5606-8d99-048ab9bd7dff",
+        "columns": [
+          {
+            "name": "cohort_month",
+            "dataType": "dateTime",
+            "sourceColumn": "cohort_month",
+            "summarizeBy": "none",
+            "lineageTag": "16e0c56d-4eab-5ab8-b3a4-07eaa866cb7f",
+            "formatString": "yyyy-MM-dd"
+          },
+          {
+            "name": "month_index",
+            "dataType": "int64",
+            "sourceColumn": "month_index",
+            "summarizeBy": "none",
+            "lineageTag": "44d0500e-c929-5ee4-be72-a13d47eae5b1"
+          },
+          {
+            "name": "activity_month",
+            "dataType": "dateTime",
+            "sourceColumn": "activity_month",
+            "summarizeBy": "none",
+            "lineageTag": "4c08284b-cd44-5d56-a5ed-4fbc34143aa7",
+            "formatString": "yyyy-MM-dd"
+          },
+          {
+            "name": "cohort_size",
+            "dataType": "int64",
+            "sourceColumn": "cohort_size",
+            "summarizeBy": "none",
+            "lineageTag": "f275f418-9fc4-5767-909a-93d0cd23afa9"
+          },
+          {
+            "name": "is_observable",
+            "dataType": "boolean",
+            "sourceColumn": "is_observable",
+            "summarizeBy": "none",
+            "lineageTag": "8e31d74a-b965-5f22-bc38-fdf3a1e6a0d6"
+          },
+          {
+            "name": "active_customers",
+            "dataType": "int64",
+            "sourceColumn": "active_customers",
+            "summarizeBy": "none",
+            "lineageTag": "251cce01-0696-5ab5-b7d2-115a79457c5e"
+          },
+          {
+            "name": "activity_rate",
+            "dataType": "double",
+            "sourceColumn": "activity_rate",
+            "summarizeBy": "none",
+            "lineageTag": "209d2082-4bee-59a2-9ae0-2f720216d314"
+          }
+        ],
+        "partitions": [
+          {
+            "name": "Cohort",
+            "mode": "import",
+            "source": {
+              "type": "m",
+              "expression": [
+                "let",
+                "    Source = PostgreSQL.Database(\"127.0.0.1:5432\", \"olist_customer_analytics\", [CreateNavigationProperties=false]),",
+                "    Data = Source{[Schema=\"bi\",Item=\"cohort_activity\"]}[Data]",
+                "in",
+                "    Data"
+              ]
+            }
+          }
+        ],
+        "measures": [
+          {
+            "name": "Cohort Customers",
+            "expression": "SUMX(VALUES(Cohort[cohort_month]), CALCULATE(MAX(Cohort[cohort_size])))",
+            "formatString": "#,0",
+            "lineageTag": "70bba090-011e-5642-8a47-c5c6ae2c903a"
+          },
+          {
+            "name": "Cohort Activity Rate",
+            "expression": "IF(HASONEVALUE(Cohort[month_index]), DIVIDE(CALCULATE(SUM(Cohort[active_customers]), Cohort[is_observable] = TRUE()), CALCULATE([Cohort Customers], Cohort[is_observable] = TRUE())))",
+            "formatString": "0.00%",
+            "lineageTag": "89003dec-46b1-5418-b8af-a9ba44c9cc5d"
+          },
+          {
+            "name": "Later Month Activity Rate",
+            "expression": "IF(SELECTEDVALUE(Cohort[month_index], -1) > 0, [Cohort Activity Rate])",
+            "formatString": "0.00%",
+            "lineageTag": "b5639da0-227e-5fb2-a4c9-ad27250c6b17"
+          }
+        ]
+      },
+      {
+        "name": "Dates",
+        "lineageTag": "ad7e7051-de20-5739-9e2e-0d8d9c302c52",
+        "columns": [
+          {
+            "name": "date",
+            "dataType": "dateTime",
+            "sourceColumn": "date",
+            "summarizeBy": "none",
+            "lineageTag": "15e23994-327b-5bed-9743-606d6688dcca",
+            "formatString": "yyyy-MM-dd"
+          },
+          {
+            "name": "year",
+            "dataType": "int64",
+            "sourceColumn": "year",
+            "summarizeBy": "none",
+            "lineageTag": "41b682a7-0f56-5ce1-a830-864d7cf657e7"
+          },
+          {
+            "name": "month_number",
+            "dataType": "int64",
+            "sourceColumn": "month_number",
+            "summarizeBy": "none",
+            "lineageTag": "bec9f44c-6b16-5aab-9ad1-ba3e810099c1"
+          },
+          {
+            "name": "year_month",
+            "dataType": "string",
+            "sourceColumn": "year_month",
+            "summarizeBy": "none",
+            "lineageTag": "0deab937-b082-5ce1-84de-e0ae66e02df6"
+          }
+        ],
+        "partitions": [
+          {
+            "name": "Dates",
+            "mode": "import",
+            "source": {
+              "type": "m",
+              "expression": [
+                "let",
+                "    Source = PostgreSQL.Database(\"127.0.0.1:5432\", \"olist_customer_analytics\", [CreateNavigationProperties=false]),",
+                "    Data = Source{[Schema=\"bi\",Item=\"dates\"]}[Data]",
+                "in",
+                "    Data"
+              ]
+            }
+          }
+        ]
+      },
+      {
+        "name": "GapDistribution",
+        "lineageTag": "d3bbd506-0666-5027-aedb-1953e4fb0c0f",
+        "columns": [
+          {
+            "name": "bucket_order",
+            "dataType": "int64",
+            "sourceColumn": "bucket_order",
+            "summarizeBy": "none",
+            "lineageTag": "d7ec8865-294e-5b16-a093-7a34796f6275"
+          },
+          {
+            "name": "gap_bucket",
+            "dataType": "string",
+            "sourceColumn": "gap_bucket",
+            "summarizeBy": "none",
+            "lineageTag": "9094c9d0-43bc-50ca-9f1a-eecc2981f4df",
+            "sortByColumn": "bucket_order"
+          },
+          {
+            "name": "all_intervals",
+            "dataType": "int64",
+            "sourceColumn": "all_intervals",
+            "summarizeBy": "none",
+            "lineageTag": "49aba14f-8882-565e-8d5f-eb966d095df8"
+          },
+          {
+            "name": "first_to_second_intervals",
+            "dataType": "int64",
+            "sourceColumn": "first_to_second_intervals",
+            "summarizeBy": "none",
+            "lineageTag": "a02fabfe-28b7-5441-a3aa-7d1eb129c0dd"
+          }
+        ],
+        "partitions": [
+          {
+            "name": "GapDistribution",
+            "mode": "import",
+            "source": {
+              "type": "m",
+              "expression": [
+                "let",
+                "    Source = PostgreSQL.Database(\"127.0.0.1:5432\", \"olist_customer_analytics\", [CreateNavigationProperties=false]),",
+                "    Data = Source{[Schema=\"bi\",Item=\"interval_distribution\"]}[Data]",
+                "in",
+                "    Data"
+              ]
+            }
+          }
+        ],
+        "measures": [
+          {
+            "name": "All Intervals",
+            "expression": "SUM(GapDistribution[all_intervals])",
+            "formatString": "#,0",
+            "lineageTag": "12f50601-1eb9-52d8-8af7-eeef404c8b56"
+          }
+        ]
+      }
+    ],
+    "relationships": [
+      {
+        "name": "9249a96d-c500-57fb-a00e-892ecf9008fa",
+        "fromTable": "Orders",
+        "fromColumn": "customer_unique_id",
+        "toTable": "Customers",
+        "toColumn": "customer_unique_id",
+        "crossFilteringBehavior": "oneDirection"
+      },
+      {
+        "name": "18244f8f-e808-51d0-9a17-6b2f994c3fa3",
+        "fromTable": "RepeatWindows",
+        "fromColumn": "customer_unique_id",
+        "toTable": "Customers",
+        "toColumn": "customer_unique_id",
+        "crossFilteringBehavior": "oneDirection"
+      },
+      {
+        "name": "f6a91978-5bcf-5b45-8d9d-8fcd97bc4c52",
+        "fromTable": "Intervals",
+        "fromColumn": "customer_unique_id",
+        "toTable": "Customers",
+        "toColumn": "customer_unique_id",
+        "crossFilteringBehavior": "oneDirection"
+      },
+      {
+        "name": "a2a2a165-1dba-50d9-90ae-af4f54028d5b",
+        "fromTable": "Orders",
+        "fromColumn": "purchase_date",
+        "toTable": "Dates",
+        "toColumn": "date",
+        "crossFilteringBehavior": "oneDirection"
+      }
+    ],
+    "annotations": [
+      {
+        "name": "PBI_QueryOrder",
+        "value": "[\"Customers\", \"Orders\", \"RepeatWindows\", \"Intervals\", \"Cohort\", \"Dates\", \"GapDistribution\"]"
+      }
+    ],
+    "dataAccessOptions": {
+      "legacyRedirects": true,
+      "returnErrorValuesAsNull": true
+    }
+  }
+}

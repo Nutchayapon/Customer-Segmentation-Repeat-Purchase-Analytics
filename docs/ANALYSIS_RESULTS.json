@@ -1,0 +1,3931 @@
+{
+    "source": "Olist version 2, local PostgreSQL",
+    "queries": {
+        "config": {
+            "sql": "SELECT observation_start,observation_end,observation_end+1 AS reference_date,cutoff_rationale FROM analytics.analysis_config",
+            "rows": [
+                {
+                    "reference_date": "2018-08-01",
+                    "observation_end": "2018-07-31",
+                    "cutoff_rationale": "Retain all available earlier history. End on July 31, 2018 to exclude August near the extract boundary. Later delivered purchases extend to August 29; this buffer does not prove complete follow-up. Final status is retrospective, not a historical backtest.",
+                    "observation_start": "2016-09-04"
+                }
+            ]
+        },
+        "repeat": {
+            "sql": "SELECT * FROM analytics.repeat_summary ORDER BY window_days",
+            "rows": [
+                {
+                    "repeat_rate": 0.01596678907871627016,
+                    "window_days": 30,
+                    "repeat_customers": 1300,
+                    "common_repeat_rate": 0.01727516353053050169,
+                    "eligible_customers": 81419,
+                    "common_repeat_customers": 1199,
+                    "common_eligible_customers": 69406
+                },
+                {
+                    "repeat_rate": 0.02019506901525879068,
+                    "window_days": 60,
+                    "repeat_customers": 1526,
+                    "common_repeat_rate": 0.02090597354695559462,
+                    "eligible_customers": 75563,
+                    "common_repeat_customers": 1451,
+                    "common_eligible_customers": 69406
+                },
+                {
+                    "repeat_rate": 0.02344177736795089762,
+                    "window_days": 90,
+                    "repeat_customers": 1627,
+                    "common_repeat_rate": 0.02344177736795089762,
+                    "eligible_customers": 69406,
+                    "common_repeat_customers": 1627,
+                    "common_eligible_customers": 69406
+                }
+            ]
+        },
+        "cohorts": {
+            "sql": "SELECT * FROM analytics.cohort_activity ORDER BY cohort_month,month_index",
+            "rows": [
+                {
+                    "cohort_size": 717,
+                    "month_index": 0,
+                    "cohort_month": "2017-01-01",
+                    "activity_rate": 1.00000000000000000000,
+                    "is_observable": true,
+                    "activity_month": "2017-01-01",
+                    "active_customers": 717
+                },
+                {
+                    "cohort_size": 717,
+                    "month_index": 1,
+                    "cohort_month": "2017-01-01",
+                    "activity_rate": 0.00278940027894002789,
+                    "is_observable": true,
+                    "activity_month": "2017-02-01",
+                    "active_customers": 2
+                },
+                {
+                    "cohort_size": 717,
+                    "month_index": 2,
+                    "cohort_month": "2017-01-01",
+                    "activity_rate": 0.00278940027894002789,
+                    "is_observable": true,
+                    "activity_month": "2017-03-01",
+                    "active_customers": 2
+                },
+                {
+                    "cohort_size": 717,
+                    "month_index": 3,
+                    "cohort_month": "2017-01-01",
+                    "activity_rate": 0.00139470013947001395,
+                    "is_observable": true,
+                    "activity_month": "2017-04-01",
+                    "active_customers": 1
+                },
+                {
+                    "cohort_size": 717,
+                    "month_index": 4,
+                    "cohort_month": "2017-01-01",
+                    "activity_rate": 0.00418410041841004184,
+                    "is_observable": true,
+                    "activity_month": "2017-05-01",
+                    "active_customers": 3
+                },
+                {
+                    "cohort_size": 717,
+                    "month_index": 5,
+                    "cohort_month": "2017-01-01",
+                    "activity_rate": 0.00139470013947001395,
+                    "is_observable": true,
+                    "activity_month": "2017-06-01",
+                    "active_customers": 1
+                },
+                {
+                    "cohort_size": 717,
+                    "month_index": 6,
+                    "cohort_month": "2017-01-01",
+                    "activity_rate": 0.00418410041841004184,
+                    "is_observable": true,
+                    "activity_month": "2017-07-01",
+                    "active_customers": 3
+                },
+                {
+                    "cohort_size": 717,
+                    "month_index": 7,
+                    "cohort_month": "2017-01-01",
+                    "activity_rate": 0.00139470013947001395,
+                    "is_observable": true,
+                    "activity_month": "2017-08-01",
+                    "active_customers": 1
+                },
+                {
+                    "cohort_size": 717,
+                    "month_index": 8,
+                    "cohort_month": "2017-01-01",
+                    "activity_rate": 0.00139470013947001395,
+                    "is_observable": true,
+                    "activity_month": "2017-09-01",
+                    "active_customers": 1
+                },
+                {
+                    "cohort_size": 717,
+                    "month_index": 9,
+                    "cohort_month": "2017-01-01",
+                    "activity_rate": 0.00000000000000000000,
+                    "is_observable": true,
+                    "activity_month": "2017-10-01",
+                    "active_customers": 0
+                },
+                {
+                    "cohort_size": 717,
+                    "month_index": 10,
+                    "cohort_month": "2017-01-01",
+                    "activity_rate": 0.00418410041841004184,
+                    "is_observable": true,
+                    "activity_month": "2017-11-01",
+                    "active_customers": 3
+                },
+                {
+                    "cohort_size": 717,
+                    "month_index": 11,
+                    "cohort_month": "2017-01-01",
+                    "activity_rate": 0.00139470013947001395,
+                    "is_observable": true,
+                    "activity_month": "2017-12-01",
+                    "active_customers": 1
+                },
+                {
+                    "cohort_size": 717,
+                    "month_index": 12,
+                    "cohort_month": "2017-01-01",
+                    "activity_rate": 0.00697350069735006974,
+                    "is_observable": true,
+                    "activity_month": "2018-01-01",
+                    "active_customers": 5
+                },
+                {
+                    "cohort_size": 717,
+                    "month_index": 13,
+                    "cohort_month": "2017-01-01",
+                    "activity_rate": 0.00418410041841004184,
+                    "is_observable": true,
+                    "activity_month": "2018-02-01",
+                    "active_customers": 3
+                },
+                {
+                    "cohort_size": 717,
+                    "month_index": 14,
+                    "cohort_month": "2017-01-01",
+                    "activity_rate": 0.00139470013947001395,
+                    "is_observable": true,
+                    "activity_month": "2018-03-01",
+                    "active_customers": 1
+                },
+                {
+                    "cohort_size": 717,
+                    "month_index": 15,
+                    "cohort_month": "2017-01-01",
+                    "activity_rate": 0.00139470013947001395,
+                    "is_observable": true,
+                    "activity_month": "2018-04-01",
+                    "active_customers": 1
+                },
+                {
+                    "cohort_size": 717,
+                    "month_index": 16,
+                    "cohort_month": "2017-01-01",
+                    "activity_rate": 0.00278940027894002789,
+                    "is_observable": true,
+                    "activity_month": "2018-05-01",
+                    "active_customers": 2
+                },
+                {
+                    "cohort_size": 717,
+                    "month_index": 17,
+                    "cohort_month": "2017-01-01",
+                    "activity_rate": 0.00418410041841004184,
+                    "is_observable": true,
+                    "activity_month": "2018-06-01",
+                    "active_customers": 3
+                },
+                {
+                    "cohort_size": 717,
+                    "month_index": 18,
+                    "cohort_month": "2017-01-01",
+                    "activity_rate": 0.00000000000000000000,
+                    "is_observable": true,
+                    "activity_month": "2018-07-01",
+                    "active_customers": 0
+                },
+                {
+                    "cohort_size": 1628,
+                    "month_index": 0,
+                    "cohort_month": "2017-02-01",
+                    "activity_rate": 1.00000000000000000000,
+                    "is_observable": true,
+                    "activity_month": "2017-02-01",
+                    "active_customers": 1628
+                },
+                {
+                    "cohort_size": 1628,
+                    "month_index": 1,
+                    "cohort_month": "2017-02-01",
+                    "activity_rate": 0.00184275184275184275,
+                    "is_observable": true,
+                    "activity_month": "2017-03-01",
+                    "active_customers": 3
+                },
+                {
+                    "cohort_size": 1628,
+                    "month_index": 2,
+                    "cohort_month": "2017-02-01",
+                    "activity_rate": 0.00307125307125307125,
+                    "is_observable": true,
+                    "activity_month": "2017-04-01",
+                    "active_customers": 5
+                },
+                {
+                    "cohort_size": 1628,
+                    "month_index": 3,
+                    "cohort_month": "2017-02-01",
+                    "activity_rate": 0.00122850122850122850,
+                    "is_observable": true,
+                    "activity_month": "2017-05-01",
+                    "active_customers": 2
+                },
+                {
+                    "cohort_size": 1628,
+                    "month_index": 4,
+                    "cohort_month": "2017-02-01",
+                    "activity_rate": 0.00429975429975429975,
+                    "is_observable": true,
+                    "activity_month": "2017-06-01",
+                    "active_customers": 7
+                },
+                {
+                    "cohort_size": 1628,
+                    "month_index": 5,
+                    "cohort_month": "2017-02-01",
+                    "activity_rate": 0.00122850122850122850,
+                    "is_observable": true,
+                    "activity_month": "2017-07-01",
+                    "active_customers": 2
+                },
+                {
+                    "cohort_size": 1628,
+                    "month_index": 6,
+                    "cohort_month": "2017-02-01",
+                    "activity_rate": 0.00245700245700245700,
+                    "is_observable": true,
+                    "activity_month": "2017-08-01",
+                    "active_customers": 4
+                },
+                {
+                    "cohort_size": 1628,
+                    "month_index": 7,
+                    "cohort_month": "2017-02-01",
+                    "activity_rate": 0.00184275184275184275,
+                    "is_observable": true,
+                    "activity_month": "2017-09-01",
+                    "active_customers": 3
+                },
+                {
+                    "cohort_size": 1628,
+                    "month_index": 8,
+                    "cohort_month": "2017-02-01",
+                    "activity_rate": 0.00122850122850122850,
+                    "is_observable": true,
+                    "activity_month": "2017-10-01",
+                    "active_customers": 2
+                },
+                {
+                    "cohort_size": 1628,
+                    "month_index": 9,
+                    "cohort_month": "2017-02-01",
+                    "activity_rate": 0.00184275184275184275,
+                    "is_observable": true,
+                    "activity_month": "2017-11-01",
+                    "active_customers": 3
+                },
+                {
+                    "cohort_size": 1628,
+                    "month_index": 10,
+                    "cohort_month": "2017-02-01",
+                    "activity_rate": 0.00122850122850122850,
+                    "is_observable": true,
+                    "activity_month": "2017-12-01",
+                    "active_customers": 2
+                },
+                {
+                    "cohort_size": 1628,
+                    "month_index": 11,
+                    "cohort_month": "2017-02-01",
+                    "activity_rate": 0.00307125307125307125,
+                    "is_observable": true,
+                    "activity_month": "2018-01-01",
+                    "active_customers": 5
+                },
+                {
+                    "cohort_size": 1628,
+                    "month_index": 12,
+                    "cohort_month": "2017-02-01",
+                    "activity_rate": 0.00122850122850122850,
+                    "is_observable": true,
+                    "activity_month": "2018-02-01",
+                    "active_customers": 2
+                },
+                {
+                    "cohort_size": 1628,
+                    "month_index": 13,
+                    "cohort_month": "2017-02-01",
+                    "activity_rate": 0.00184275184275184275,
+                    "is_observable": true,
+                    "activity_month": "2018-03-01",
+                    "active_customers": 3
+                },
+                {
+                    "cohort_size": 1628,
+                    "month_index": 14,
+                    "cohort_month": "2017-02-01",
+                    "activity_rate": 0.00122850122850122850,
+                    "is_observable": true,
+                    "activity_month": "2018-04-01",
+                    "active_customers": 2
+                },
+                {
+                    "cohort_size": 1628,
+                    "month_index": 15,
+                    "cohort_month": "2017-02-01",
+                    "activity_rate": 0.00061425061425061425,
+                    "is_observable": true,
+                    "activity_month": "2018-05-01",
+                    "active_customers": 1
+                },
+                {
+                    "cohort_size": 1628,
+                    "month_index": 16,
+                    "cohort_month": "2017-02-01",
+                    "activity_rate": 0.00061425061425061425,
+                    "is_observable": true,
+                    "activity_month": "2018-06-01",
+                    "active_customers": 1
+                },
+                {
+                    "cohort_size": 1628,
+                    "month_index": 17,
+                    "cohort_month": "2017-02-01",
+                    "activity_rate": 0.00184275184275184275,
+                    "is_observable": true,
+                    "activity_month": "2018-07-01",
+                    "active_customers": 3
+                },
+                {
+                    "cohort_size": 1628,
+                    "month_index": 18,
+                    "cohort_month": "2017-02-01",
+                    "activity_rate": null,
+                    "is_observable": false,
+                    "activity_month": "2018-08-01",
+                    "active_customers": null
+                },
+                {
+                    "cohort_size": 2503,
+                    "month_index": 0,
+                    "cohort_month": "2017-03-01",
+                    "activity_rate": 1.00000000000000000000,
+                    "is_observable": true,
+                    "activity_month": "2017-03-01",
+                    "active_customers": 2503
+                },
+                {
+                    "cohort_size": 2503,
+                    "month_index": 1,
+                    "cohort_month": "2017-03-01",
+                    "activity_rate": 0.00439472632840591290,
+                    "is_observable": true,
+                    "activity_month": "2017-04-01",
+                    "active_customers": 11
+                },
+                {
+                    "cohort_size": 2503,
+                    "month_index": 2,
+                    "cohort_month": "2017-03-01",
+                    "activity_rate": 0.00359568517778665601,
+                    "is_observable": true,
+                    "activity_month": "2017-05-01",
+                    "active_customers": 9
+                },
+                {
+                    "cohort_size": 2503,
+                    "month_index": 3,
+                    "cohort_month": "2017-03-01",
+                    "activity_rate": 0.00399520575309628446,
+                    "is_observable": true,
+                    "activity_month": "2017-06-01",
+                    "active_customers": 10
+                },
+                {
+                    "cohort_size": 2503,
+                    "month_index": 4,
+                    "cohort_month": "2017-03-01",
+                    "activity_rate": 0.00359568517778665601,
+                    "is_observable": true,
+                    "activity_month": "2017-07-01",
+                    "active_customers": 9
+                },
+                {
+                    "cohort_size": 2503,
+                    "month_index": 5,
+                    "cohort_month": "2017-03-01",
+                    "activity_rate": 0.00159808230123851378,
+                    "is_observable": true,
+                    "activity_month": "2017-08-01",
+                    "active_customers": 4
+                },
+                {
+                    "cohort_size": 2503,
+                    "month_index": 6,
+                    "cohort_month": "2017-03-01",
+                    "activity_rate": 0.00159808230123851378,
+                    "is_observable": true,
+                    "activity_month": "2017-09-01",
+                    "active_customers": 4
+                },
+                {
+                    "cohort_size": 2503,
+                    "month_index": 7,
+                    "cohort_month": "2017-03-01",
+                    "activity_rate": 0.00319616460247702757,
+                    "is_observable": true,
+                    "activity_month": "2017-10-01",
+                    "active_customers": 8
+                },
+                {
+                    "cohort_size": 2503,
+                    "month_index": 8,
+                    "cohort_month": "2017-03-01",
+                    "activity_rate": 0.00319616460247702757,
+                    "is_observable": true,
+                    "activity_month": "2017-11-01",
+                    "active_customers": 8
+                },
+                {
+                    "cohort_size": 2503,
+                    "month_index": 9,
+                    "cohort_month": "2017-03-01",
+                    "activity_rate": 0.00079904115061925689,
+                    "is_observable": true,
+                    "activity_month": "2017-12-01",
+                    "active_customers": 2
+                },
+                {
+                    "cohort_size": 2503,
+                    "month_index": 10,
+                    "cohort_month": "2017-03-01",
+                    "activity_rate": 0.00359568517778665601,
+                    "is_observable": true,
+                    "activity_month": "2018-01-01",
+                    "active_customers": 9
+                },
+                {
+                    "cohort_size": 2503,
+                    "month_index": 11,
+                    "cohort_month": "2017-03-01",
+                    "activity_rate": 0.00119856172592888534,
+                    "is_observable": true,
+                    "activity_month": "2018-02-01",
+                    "active_customers": 3
+                },
+                {
+                    "cohort_size": 2503,
+                    "month_index": 12,
+                    "cohort_month": "2017-03-01",
+                    "activity_rate": 0.00199760287654814223,
+                    "is_observable": true,
+                    "activity_month": "2018-03-01",
+                    "active_customers": 5
+                },
+                {
+                    "cohort_size": 2503,
+                    "month_index": 13,
+                    "cohort_month": "2017-03-01",
+                    "activity_rate": 0.00119856172592888534,
+                    "is_observable": true,
+                    "activity_month": "2018-04-01",
+                    "active_customers": 3
+                },
+                {
+                    "cohort_size": 2503,
+                    "month_index": 14,
+                    "cohort_month": "2017-03-01",
+                    "activity_rate": 0.00159808230123851378,
+                    "is_observable": true,
+                    "activity_month": "2018-05-01",
+                    "active_customers": 4
+                },
+                {
+                    "cohort_size": 2503,
+                    "month_index": 15,
+                    "cohort_month": "2017-03-01",
+                    "activity_rate": 0.00239712345185777068,
+                    "is_observable": true,
+                    "activity_month": "2018-06-01",
+                    "active_customers": 6
+                },
+                {
+                    "cohort_size": 2503,
+                    "month_index": 16,
+                    "cohort_month": "2017-03-01",
+                    "activity_rate": 0.00079904115061925689,
+                    "is_observable": true,
+                    "activity_month": "2018-07-01",
+                    "active_customers": 2
+                },
+                {
+                    "cohort_size": 2503,
+                    "month_index": 17,
+                    "cohort_month": "2017-03-01",
+                    "activity_rate": null,
+                    "is_observable": false,
+                    "activity_month": "2018-08-01",
+                    "active_customers": null
+                },
+                {
+                    "cohort_size": 2503,
+                    "month_index": 18,
+                    "cohort_month": "2017-03-01",
+                    "activity_rate": null,
+                    "is_observable": false,
+                    "activity_month": "2018-09-01",
+                    "active_customers": null
+                },
+                {
+                    "cohort_size": 2256,
+                    "month_index": 0,
+                    "cohort_month": "2017-04-01",
+                    "activity_rate": 1.00000000000000000000,
+                    "is_observable": true,
+                    "activity_month": "2017-04-01",
+                    "active_customers": 2256
+                },
+                {
+                    "cohort_size": 2256,
+                    "month_index": 1,
+                    "cohort_month": "2017-04-01",
+                    "activity_rate": 0.00620567375886524823,
+                    "is_observable": true,
+                    "activity_month": "2017-05-01",
+                    "active_customers": 14
+                },
+                {
+                    "cohort_size": 2256,
+                    "month_index": 2,
+                    "cohort_month": "2017-04-01",
+                    "activity_rate": 0.00221631205673758865,
+                    "is_observable": true,
+                    "activity_month": "2017-06-01",
+                    "active_customers": 5
+                },
+                {
+                    "cohort_size": 2256,
+                    "month_index": 3,
+                    "cohort_month": "2017-04-01",
+                    "activity_rate": 0.00177304964539007092,
+                    "is_observable": true,
+                    "activity_month": "2017-07-01",
+                    "active_customers": 4
+                },
+                {
+                    "cohort_size": 2256,
+                    "month_index": 4,
+                    "cohort_month": "2017-04-01",
+                    "activity_rate": 0.00265957446808510638,
+                    "is_observable": true,
+                    "activity_month": "2017-08-01",
+                    "active_customers": 6
+                },
+                {
+                    "cohort_size": 2256,
+                    "month_index": 5,
+                    "cohort_month": "2017-04-01",
+                    "activity_rate": 0.00265957446808510638,
+                    "is_observable": true,
+                    "activity_month": "2017-09-01",
+                    "active_customers": 6
+                },
+                {
+                    "cohort_size": 2256,
+                    "month_index": 6,
+                    "cohort_month": "2017-04-01",
+                    "activity_rate": 0.00354609929078014184,
+                    "is_observable": true,
+                    "activity_month": "2017-10-01",
+                    "active_customers": 8
+                },
+                {
+                    "cohort_size": 2256,
+                    "month_index": 7,
+                    "cohort_month": "2017-04-01",
+                    "activity_rate": 0.00310283687943262411,
+                    "is_observable": true,
+                    "activity_month": "2017-11-01",
+                    "active_customers": 7
+                },
+                {
+                    "cohort_size": 2256,
+                    "month_index": 8,
+                    "cohort_month": "2017-04-01",
+                    "activity_rate": 0.00310283687943262411,
+                    "is_observable": true,
+                    "activity_month": "2017-12-01",
+                    "active_customers": 7
+                },
+                {
+                    "cohort_size": 2256,
+                    "month_index": 9,
+                    "cohort_month": "2017-04-01",
+                    "activity_rate": 0.00177304964539007092,
+                    "is_observable": true,
+                    "activity_month": "2018-01-01",
+                    "active_customers": 4
+                },
+                {
+                    "cohort_size": 2256,
+                    "month_index": 10,
+                    "cohort_month": "2017-04-01",
+                    "activity_rate": 0.00265957446808510638,
+                    "is_observable": true,
+                    "activity_month": "2018-02-01",
+                    "active_customers": 6
+                },
+                {
+                    "cohort_size": 2256,
+                    "month_index": 11,
+                    "cohort_month": "2017-04-01",
+                    "activity_rate": 0.00088652482269503546,
+                    "is_observable": true,
+                    "activity_month": "2018-03-01",
+                    "active_customers": 2
+                },
+                {
+                    "cohort_size": 2256,
+                    "month_index": 12,
+                    "cohort_month": "2017-04-01",
+                    "activity_rate": 0.00044326241134751773,
+                    "is_observable": true,
+                    "activity_month": "2018-04-01",
+                    "active_customers": 1
+                },
+                {
+                    "cohort_size": 2256,
+                    "month_index": 13,
+                    "cohort_month": "2017-04-01",
+                    "activity_rate": 0.00044326241134751773,
+                    "is_observable": true,
+                    "activity_month": "2018-05-01",
+                    "active_customers": 1
+                },
+                {
+                    "cohort_size": 2256,
+                    "month_index": 14,
+                    "cohort_month": "2017-04-01",
+                    "activity_rate": 0.00088652482269503546,
+                    "is_observable": true,
+                    "activity_month": "2018-06-01",
+                    "active_customers": 2
+                },
+                {
+                    "cohort_size": 2256,
+                    "month_index": 15,
+                    "cohort_month": "2017-04-01",
+                    "activity_rate": 0.00088652482269503546,
+                    "is_observable": true,
+                    "activity_month": "2018-07-01",
+                    "active_customers": 2
+                },
+                {
+                    "cohort_size": 2256,
+                    "month_index": 16,
+                    "cohort_month": "2017-04-01",
+                    "activity_rate": null,
+                    "is_observable": false,
+                    "activity_month": "2018-08-01",
+                    "active_customers": null
+                },
+                {
+                    "cohort_size": 2256,
+                    "month_index": 17,
+                    "cohort_month": "2017-04-01",
+                    "activity_rate": null,
+                    "is_observable": false,
+                    "activity_month": "2018-09-01",
+                    "active_customers": null
+                },
+                {
+                    "cohort_size": 2256,
+                    "month_index": 18,
+                    "cohort_month": "2017-04-01",
+                    "activity_rate": null,
+                    "is_observable": false,
+                    "activity_month": "2018-10-01",
+                    "active_customers": null
+                },
+                {
+                    "cohort_size": 3451,
+                    "month_index": 0,
+                    "cohort_month": "2017-05-01",
+                    "activity_rate": 1.00000000000000000000,
+                    "is_observable": true,
+                    "activity_month": "2017-05-01",
+                    "active_customers": 3451
+                },
+                {
+                    "cohort_size": 3451,
+                    "month_index": 1,
+                    "cohort_month": "2017-05-01",
+                    "activity_rate": 0.00463633729353810490,
+                    "is_observable": true,
+                    "activity_month": "2017-06-01",
+                    "active_customers": 16
+                },
+                {
+                    "cohort_size": 3451,
+                    "month_index": 2,
+                    "cohort_month": "2017-05-01",
+                    "activity_rate": 0.00463633729353810490,
+                    "is_observable": true,
+                    "activity_month": "2017-07-01",
+                    "active_customers": 16
+                },
+                {
+                    "cohort_size": 3451,
+                    "month_index": 3,
+                    "cohort_month": "2017-05-01",
+                    "activity_rate": 0.00289771080846131556,
+                    "is_observable": true,
+                    "activity_month": "2017-08-01",
+                    "active_customers": 10
+                },
+                {
+                    "cohort_size": 3451,
+                    "month_index": 4,
+                    "cohort_month": "2017-05-01",
+                    "activity_rate": 0.00289771080846131556,
+                    "is_observable": true,
+                    "activity_month": "2017-09-01",
+                    "active_customers": 10
+                },
+                {
+                    "cohort_size": 3451,
+                    "month_index": 5,
+                    "cohort_month": "2017-05-01",
+                    "activity_rate": 0.00318748188930744712,
+                    "is_observable": true,
+                    "activity_month": "2017-10-01",
+                    "active_customers": 11
+                },
+                {
+                    "cohort_size": 3451,
+                    "month_index": 6,
+                    "cohort_month": "2017-05-01",
+                    "activity_rate": 0.00405679513184584178,
+                    "is_observable": true,
+                    "activity_month": "2017-11-01",
+                    "active_customers": 14
+                },
+                {
+                    "cohort_size": 3451,
+                    "month_index": 7,
+                    "cohort_month": "2017-05-01",
+                    "activity_rate": 0.00144885540423065778,
+                    "is_observable": true,
+                    "activity_month": "2017-12-01",
+                    "active_customers": 5
+                },
+                {
+                    "cohort_size": 3451,
+                    "month_index": 8,
+                    "cohort_month": "2017-05-01",
+                    "activity_rate": 0.00260793972761518400,
+                    "is_observable": true,
+                    "activity_month": "2018-01-01",
+                    "active_customers": 9
+                },
+                {
+                    "cohort_size": 3451,
+                    "month_index": 9,
+                    "cohort_month": "2017-05-01",
+                    "activity_rate": 0.00260793972761518400,
+                    "is_observable": true,
+                    "activity_month": "2018-02-01",
+                    "active_customers": 9
+                },
+                {
+                    "cohort_size": 3451,
+                    "month_index": 10,
+                    "cohort_month": "2017-05-01",
+                    "activity_rate": 0.00260793972761518400,
+                    "is_observable": true,
+                    "activity_month": "2018-03-01",
+                    "active_customers": 9
+                },
+                {
+                    "cohort_size": 3451,
+                    "month_index": 11,
+                    "cohort_month": "2017-05-01",
+                    "activity_rate": 0.00347725297015357867,
+                    "is_observable": true,
+                    "activity_month": "2018-04-01",
+                    "active_customers": 12
+                },
+                {
+                    "cohort_size": 3451,
+                    "month_index": 12,
+                    "cohort_month": "2017-05-01",
+                    "activity_rate": 0.00231816864676905245,
+                    "is_observable": true,
+                    "activity_month": "2018-05-01",
+                    "active_customers": 8
+                },
+                {
+                    "cohort_size": 3451,
+                    "month_index": 13,
+                    "cohort_month": "2017-05-01",
+                    "activity_rate": 0.00028977108084613156,
+                    "is_observable": true,
+                    "activity_month": "2018-06-01",
+                    "active_customers": 1
+                },
+                {
+                    "cohort_size": 3451,
+                    "month_index": 14,
+                    "cohort_month": "2017-05-01",
+                    "activity_rate": 0.00173862648507678934,
+                    "is_observable": true,
+                    "activity_month": "2018-07-01",
+                    "active_customers": 6
+                },
+                {
+                    "cohort_size": 3451,
+                    "month_index": 15,
+                    "cohort_month": "2017-05-01",
+                    "activity_rate": null,
+                    "is_observable": false,
+                    "activity_month": "2018-08-01",
+                    "active_customers": null
+                },
+                {
+                    "cohort_size": 3451,
+                    "month_index": 16,
+                    "cohort_month": "2017-05-01",
+                    "activity_rate": null,
+                    "is_observable": false,
+                    "activity_month": "2018-09-01",
+                    "active_customers": null
+                },
+                {
+                    "cohort_size": 3451,
+                    "month_index": 17,
+                    "cohort_month": "2017-05-01",
+                    "activity_rate": null,
+                    "is_observable": false,
+                    "activity_month": "2018-10-01",
+                    "active_customers": null
+                },
+                {
+                    "cohort_size": 3451,
+                    "month_index": 18,
+                    "cohort_month": "2017-05-01",
+                    "activity_rate": null,
+                    "is_observable": false,
+                    "activity_month": "2018-11-01",
+                    "active_customers": null
+                },
+                {
+                    "cohort_size": 3037,
+                    "month_index": 0,
+                    "cohort_month": "2017-06-01",
+                    "activity_rate": 1.00000000000000000000,
+                    "is_observable": true,
+                    "activity_month": "2017-06-01",
+                    "active_customers": 3037
+                },
+                {
+                    "cohort_size": 3037,
+                    "month_index": 1,
+                    "cohort_month": "2017-06-01",
+                    "activity_rate": 0.00493908462298320711,
+                    "is_observable": true,
+                    "activity_month": "2017-07-01",
+                    "active_customers": 15
+                },
+                {
+                    "cohort_size": 3037,
+                    "month_index": 2,
+                    "cohort_month": "2017-06-01",
+                    "activity_rate": 0.00395126769838656569,
+                    "is_observable": true,
+                    "activity_month": "2017-08-01",
+                    "active_customers": 12
+                },
+                {
+                    "cohort_size": 3037,
+                    "month_index": 3,
+                    "cohort_month": "2017-06-01",
+                    "activity_rate": 0.00428054000658544616,
+                    "is_observable": true,
+                    "activity_month": "2017-09-01",
+                    "active_customers": 13
+                },
+                {
+                    "cohort_size": 3037,
+                    "month_index": 4,
+                    "cohort_month": "2017-06-01",
+                    "activity_rate": 0.00296345077378992427,
+                    "is_observable": true,
+                    "activity_month": "2017-10-01",
+                    "active_customers": 9
+                },
+                {
+                    "cohort_size": 3037,
+                    "month_index": 5,
+                    "cohort_month": "2017-06-01",
+                    "activity_rate": 0.00395126769838656569,
+                    "is_observable": true,
+                    "activity_month": "2017-11-01",
+                    "active_customers": 12
+                },
+                {
+                    "cohort_size": 3037,
+                    "month_index": 6,
+                    "cohort_month": "2017-06-01",
+                    "activity_rate": 0.00362199539018768522,
+                    "is_observable": true,
+                    "activity_month": "2017-12-01",
+                    "active_customers": 11
+                },
+                {
+                    "cohort_size": 3037,
+                    "month_index": 7,
+                    "cohort_month": "2017-06-01",
+                    "activity_rate": 0.00230490615739216332,
+                    "is_observable": true,
+                    "activity_month": "2018-01-01",
+                    "active_customers": 7
+                },
+                {
+                    "cohort_size": 3037,
+                    "month_index": 8,
+                    "cohort_month": "2017-06-01",
+                    "activity_rate": 0.00131708923279552190,
+                    "is_observable": true,
+                    "activity_month": "2018-02-01",
+                    "active_customers": 4
+                },
+                {
+                    "cohort_size": 3037,
+                    "month_index": 9,
+                    "cohort_month": "2017-06-01",
+                    "activity_rate": 0.00197563384919328284,
+                    "is_observable": true,
+                    "activity_month": "2018-03-01",
+                    "active_customers": 6
+                },
+                {
+                    "cohort_size": 3037,
+                    "month_index": 10,
+                    "cohort_month": "2017-06-01",
+                    "activity_rate": 0.00296345077378992427,
+                    "is_observable": true,
+                    "activity_month": "2018-04-01",
+                    "active_customers": 9
+                },
+                {
+                    "cohort_size": 3037,
+                    "month_index": 11,
+                    "cohort_month": "2017-06-01",
+                    "activity_rate": 0.00362199539018768522,
+                    "is_observable": true,
+                    "activity_month": "2018-05-01",
+                    "active_customers": 11
+                },
+                {
+                    "cohort_size": 3037,
+                    "month_index": 12,
+                    "cohort_month": "2017-06-01",
+                    "activity_rate": 0.00164636154099440237,
+                    "is_observable": true,
+                    "activity_month": "2018-06-01",
+                    "active_customers": 5
+                },
+                {
+                    "cohort_size": 3037,
+                    "month_index": 13,
+                    "cohort_month": "2017-06-01",
+                    "activity_rate": 0.00164636154099440237,
+                    "is_observable": true,
+                    "activity_month": "2018-07-01",
+                    "active_customers": 5
+                },
+                {
+                    "cohort_size": 3037,
+                    "month_index": 14,
+                    "cohort_month": "2017-06-01",
+                    "activity_rate": null,
+                    "is_observable": false,
+                    "activity_month": "2018-08-01",
+                    "active_customers": null
+                },
+                {
+                    "cohort_size": 3037,
+                    "month_index": 15,
+                    "cohort_month": "2017-06-01",
+                    "activity_rate": null,
+                    "is_observable": false,
+                    "activity_month": "2018-09-01",
+                    "active_customers": null
+                },
+                {
+                    "cohort_size": 3037,
+                    "month_index": 16,
+                    "cohort_month": "2017-06-01",
+                    "activity_rate": null,
+                    "is_observable": false,
+                    "activity_month": "2018-10-01",
+                    "active_customers": null
+                },
+                {
+                    "cohort_size": 3037,
+                    "month_index": 17,
+                    "cohort_month": "2017-06-01",
+                    "activity_rate": null,
+                    "is_observable": false,
+                    "activity_month": "2018-11-01",
+                    "active_customers": null
+                },
+                {
+                    "cohort_size": 3037,
+                    "month_index": 18,
+                    "cohort_month": "2017-06-01",
+                    "activity_rate": null,
+                    "is_observable": false,
+                    "activity_month": "2018-12-01",
+                    "active_customers": null
+                },
+                {
+                    "cohort_size": 3752,
+                    "month_index": 0,
+                    "cohort_month": "2017-07-01",
+                    "activity_rate": 1.00000000000000000000,
+                    "is_observable": true,
+                    "activity_month": "2017-07-01",
+                    "active_customers": 3752
+                },
+                {
+                    "cohort_size": 3752,
+                    "month_index": 1,
+                    "cohort_month": "2017-07-01",
+                    "activity_rate": 0.00533049040511727079,
+                    "is_observable": true,
+                    "activity_month": "2017-08-01",
+                    "active_customers": 20
+                },
+                {
+                    "cohort_size": 3752,
+                    "month_index": 2,
+                    "cohort_month": "2017-07-01",
+                    "activity_rate": 0.00346481876332622601,
+                    "is_observable": true,
+                    "activity_month": "2017-09-01",
+                    "active_customers": 13
+                },
+                {
+                    "cohort_size": 3752,
+                    "month_index": 3,
+                    "cohort_month": "2017-07-01",
+                    "activity_rate": 0.00239872068230277186,
+                    "is_observable": true,
+                    "activity_month": "2017-10-01",
+                    "active_customers": 9
+                },
+                {
+                    "cohort_size": 3752,
+                    "month_index": 4,
+                    "cohort_month": "2017-07-01",
+                    "activity_rate": 0.00293176972281449893,
+                    "is_observable": true,
+                    "activity_month": "2017-11-01",
+                    "active_customers": 11
+                },
+                {
+                    "cohort_size": 3752,
+                    "month_index": 5,
+                    "cohort_month": "2017-07-01",
+                    "activity_rate": 0.00213219616204690832,
+                    "is_observable": true,
+                    "activity_month": "2017-12-01",
+                    "active_customers": 8
+                },
+                {
+                    "cohort_size": 3752,
+                    "month_index": 6,
+                    "cohort_month": "2017-07-01",
+                    "activity_rate": 0.00319829424307036247,
+                    "is_observable": true,
+                    "activity_month": "2018-01-01",
+                    "active_customers": 12
+                },
+                {
+                    "cohort_size": 3752,
+                    "month_index": 7,
+                    "cohort_month": "2017-07-01",
+                    "activity_rate": 0.00106609808102345416,
+                    "is_observable": true,
+                    "activity_month": "2018-02-01",
+                    "active_customers": 4
+                },
+                {
+                    "cohort_size": 3752,
+                    "month_index": 8,
+                    "cohort_month": "2017-07-01",
+                    "activity_rate": 0.00186567164179104478,
+                    "is_observable": true,
+                    "activity_month": "2018-03-01",
+                    "active_customers": 7
+                },
+                {
+                    "cohort_size": 3752,
+                    "month_index": 9,
+                    "cohort_month": "2017-07-01",
+                    "activity_rate": 0.00266524520255863539,
+                    "is_observable": true,
+                    "activity_month": "2018-04-01",
+                    "active_customers": 10
+                },
+                {
+                    "cohort_size": 3752,
+                    "month_index": 10,
+                    "cohort_month": "2017-07-01",
+                    "activity_rate": 0.00213219616204690832,
+                    "is_observable": true,
+                    "activity_month": "2018-05-01",
+                    "active_customers": 8
+                },
+                {
+                    "cohort_size": 3752,
+                    "month_index": 11,
+                    "cohort_month": "2017-07-01",
+                    "activity_rate": 0.00293176972281449893,
+                    "is_observable": true,
+                    "activity_month": "2018-06-01",
+                    "active_customers": 11
+                },
+                {
+                    "cohort_size": 3752,
+                    "month_index": 12,
+                    "cohort_month": "2017-07-01",
+                    "activity_rate": 0.00133262260127931770,
+                    "is_observable": true,
+                    "activity_month": "2018-07-01",
+                    "active_customers": 5
+                },
+                {
+                    "cohort_size": 3752,
+                    "month_index": 13,
+                    "cohort_month": "2017-07-01",
+                    "activity_rate": null,
+                    "is_observable": false,
+                    "activity_month": "2018-08-01",
+                    "active_customers": null
+                },
+                {
+                    "cohort_size": 3752,
+                    "month_index": 14,
+                    "cohort_month": "2017-07-01",
+                    "activity_rate": null,
+                    "is_observable": false,
+                    "activity_month": "2018-09-01",
+                    "active_customers": null
+                },
+                {
+                    "cohort_size": 3752,
+                    "month_index": 15,
+                    "cohort_month": "2017-07-01",
+                    "activity_rate": null,
+                    "is_observable": false,
+                    "activity_month": "2018-10-01",
+                    "active_customers": null
+                },
+                {
+                    "cohort_size": 3752,
+                    "month_index": 16,
+                    "cohort_month": "2017-07-01",
+                    "activity_rate": null,
+                    "is_observable": false,
+                    "activity_month": "2018-11-01",
+                    "active_customers": null
+                },
+                {
+                    "cohort_size": 3752,
+                    "month_index": 17,
+                    "cohort_month": "2017-07-01",
+                    "activity_rate": null,
+                    "is_observable": false,
+                    "activity_month": "2018-12-01",
+                    "active_customers": null
+                },
+                {
+                    "cohort_size": 3752,
+                    "month_index": 18,
+                    "cohort_month": "2017-07-01",
+                    "activity_rate": null,
+                    "is_observable": false,
+                    "activity_month": "2019-01-01",
+                    "active_customers": null
+                },
+                {
+                    "cohort_size": 4057,
+                    "month_index": 0,
+                    "cohort_month": "2017-08-01",
+                    "activity_rate": 1.00000000000000000000,
+                    "is_observable": true,
+                    "activity_month": "2017-08-01",
+                    "active_customers": 4057
+                },
+                {
+                    "cohort_size": 4057,
+                    "month_index": 1,
+                    "cohort_month": "2017-08-01",
+                    "activity_rate": 0.00690165146660093665,
+                    "is_observable": true,
+                    "activity_month": "2017-09-01",
+                    "active_customers": 28
+                },
+                {
+                    "cohort_size": 4057,
+                    "month_index": 2,
+                    "cohort_month": "2017-08-01",
+                    "activity_rate": 0.00345082573330046833,
+                    "is_observable": true,
+                    "activity_month": "2017-10-01",
+                    "active_customers": 14
+                },
+                {
+                    "cohort_size": 4057,
+                    "month_index": 3,
+                    "cohort_month": "2017-08-01",
+                    "activity_rate": 0.00271136307616465368,
+                    "is_observable": true,
+                    "activity_month": "2017-11-01",
+                    "active_customers": 11
+                },
+                {
+                    "cohort_size": 4057,
+                    "month_index": 4,
+                    "cohort_month": "2017-08-01",
+                    "activity_rate": 0.00345082573330046833,
+                    "is_observable": true,
+                    "activity_month": "2017-12-01",
+                    "active_customers": 14
+                },
+                {
+                    "cohort_size": 4057,
+                    "month_index": 5,
+                    "cohort_month": "2017-08-01",
+                    "activity_rate": 0.00517623859995070249,
+                    "is_observable": true,
+                    "activity_month": "2018-01-01",
+                    "active_customers": 21
+                },
+                {
+                    "cohort_size": 4057,
+                    "month_index": 6,
+                    "cohort_month": "2017-08-01",
+                    "activity_rate": 0.00295785062854325857,
+                    "is_observable": true,
+                    "activity_month": "2018-02-01",
+                    "active_customers": 12
+                },
+                {
+                    "cohort_size": 4057,
+                    "month_index": 7,
+                    "cohort_month": "2017-08-01",
+                    "activity_rate": 0.00271136307616465368,
+                    "is_observable": true,
+                    "activity_month": "2018-03-01",
+                    "active_customers": 11
+                },
+                {
+                    "cohort_size": 4057,
+                    "month_index": 8,
+                    "cohort_month": "2017-08-01",
+                    "activity_rate": 0.00147892531427162928,
+                    "is_observable": true,
+                    "activity_month": "2018-04-01",
+                    "active_customers": 6
+                },
+                {
+                    "cohort_size": 4057,
+                    "month_index": 9,
+                    "cohort_month": "2017-08-01",
+                    "activity_rate": 0.00147892531427162928,
+                    "is_observable": true,
+                    "activity_month": "2018-05-01",
+                    "active_customers": 6
+                },
+                {
+                    "cohort_size": 4057,
+                    "month_index": 10,
+                    "cohort_month": "2017-08-01",
+                    "activity_rate": 0.00246487552378604880,
+                    "is_observable": true,
+                    "activity_month": "2018-06-01",
+                    "active_customers": 10
+                },
+                {
+                    "cohort_size": 4057,
+                    "month_index": 11,
+                    "cohort_month": "2017-08-01",
+                    "activity_rate": 0.00197190041902883904,
+                    "is_observable": true,
+                    "activity_month": "2018-07-01",
+                    "active_customers": 8
+                },
+                {
+                    "cohort_size": 4057,
+                    "month_index": 12,
+                    "cohort_month": "2017-08-01",
+                    "activity_rate": null,
+                    "is_observable": false,
+                    "activity_month": "2018-08-01",
+                    "active_customers": null
+                },
+                {
+                    "cohort_size": 4057,
+                    "month_index": 13,
+                    "cohort_month": "2017-08-01",
+                    "activity_rate": null,
+                    "is_observable": false,
+                    "activity_month": "2018-09-01",
+                    "active_customers": null
+                },
+                {
+                    "cohort_size": 4057,
+                    "month_index": 14,
+                    "cohort_month": "2017-08-01",
+                    "activity_rate": null,
+                    "is_observable": false,
+                    "activity_month": "2018-10-01",
+                    "active_customers": null
+                },
+                {
+                    "cohort_size": 4057,
+                    "month_index": 15,
+                    "cohort_month": "2017-08-01",
+                    "activity_rate": null,
+                    "is_observable": false,
+                    "activity_month": "2018-11-01",
+                    "active_customers": null
+                },
+                {
+                    "cohort_size": 4057,
+                    "month_index": 16,
+                    "cohort_month": "2017-08-01",
+                    "activity_rate": null,
+                    "is_observable": false,
+                    "activity_month": "2018-12-01",
+                    "active_customers": null
+                },
+                {
+                    "cohort_size": 4057,
+                    "month_index": 17,
+                    "cohort_month": "2017-08-01",
+                    "activity_rate": null,
+                    "is_observable": false,
+                    "activity_month": "2019-01-01",
+                    "active_customers": null
+                },
+                {
+                    "cohort_size": 4057,
+                    "month_index": 18,
+                    "cohort_month": "2017-08-01",
+                    "activity_rate": null,
+                    "is_observable": false,
+                    "activity_month": "2019-02-01",
+                    "active_customers": null
+                },
+                {
+                    "cohort_size": 4004,
+                    "month_index": 0,
+                    "cohort_month": "2017-09-01",
+                    "activity_rate": 1.00000000000000000000,
+                    "is_observable": true,
+                    "activity_month": "2017-09-01",
+                    "active_customers": 4004
+                },
+                {
+                    "cohort_size": 4004,
+                    "month_index": 1,
+                    "cohort_month": "2017-09-01",
+                    "activity_rate": 0.00699300699300699301,
+                    "is_observable": true,
+                    "activity_month": "2017-10-01",
+                    "active_customers": 28
+                },
+                {
+                    "cohort_size": 4004,
+                    "month_index": 2,
+                    "cohort_month": "2017-09-01",
+                    "activity_rate": 0.00549450549450549451,
+                    "is_observable": true,
+                    "activity_month": "2017-11-01",
+                    "active_customers": 22
+                },
+                {
+                    "cohort_size": 4004,
+                    "month_index": 3,
+                    "cohort_month": "2017-09-01",
+                    "activity_rate": 0.00274725274725274725,
+                    "is_observable": true,
+                    "activity_month": "2017-12-01",
+                    "active_customers": 11
+                },
+                {
+                    "cohort_size": 4004,
+                    "month_index": 4,
+                    "cohort_month": "2017-09-01",
+                    "activity_rate": 0.00449550449550449550,
+                    "is_observable": true,
+                    "activity_month": "2018-01-01",
+                    "active_customers": 18
+                },
+                {
+                    "cohort_size": 4004,
+                    "month_index": 5,
+                    "cohort_month": "2017-09-01",
+                    "activity_rate": 0.00224775224775224775,
+                    "is_observable": true,
+                    "activity_month": "2018-02-01",
+                    "active_customers": 9
+                },
+                {
+                    "cohort_size": 4004,
+                    "month_index": 6,
+                    "cohort_month": "2017-09-01",
+                    "activity_rate": 0.00224775224775224775,
+                    "is_observable": true,
+                    "activity_month": "2018-03-01",
+                    "active_customers": 9
+                },
+                {
+                    "cohort_size": 4004,
+                    "month_index": 7,
+                    "cohort_month": "2017-09-01",
+                    "activity_rate": 0.00249750249750249750,
+                    "is_observable": true,
+                    "activity_month": "2018-04-01",
+                    "active_customers": 10
+                },
+                {
+                    "cohort_size": 4004,
+                    "month_index": 8,
+                    "cohort_month": "2017-09-01",
+                    "activity_rate": 0.00274725274725274725,
+                    "is_observable": true,
+                    "activity_month": "2018-05-01",
+                    "active_customers": 11
+                },
+                {
+                    "cohort_size": 4004,
+                    "month_index": 9,
+                    "cohort_month": "2017-09-01",
+                    "activity_rate": 0.00174825174825174825,
+                    "is_observable": true,
+                    "activity_month": "2018-06-01",
+                    "active_customers": 7
+                },
+                {
+                    "cohort_size": 4004,
+                    "month_index": 10,
+                    "cohort_month": "2017-09-01",
+                    "activity_rate": 0.00249750249750249750,
+                    "is_observable": true,
+                    "activity_month": "2018-07-01",
+                    "active_customers": 10
+                },
+                {
+                    "cohort_size": 4004,
+                    "month_index": 11,
+                    "cohort_month": "2017-09-01",
+                    "activity_rate": null,
+                    "is_observable": false,
+                    "activity_month": "2018-08-01",
+                    "active_customers": null
+                },
+                {
+                    "cohort_size": 4004,
+                    "month_index": 12,
+                    "cohort_month": "2017-09-01",
+                    "activity_rate": null,
+                    "is_observable": false,
+                    "activity_month": "2018-09-01",
+                    "active_customers": null
+                },
+                {
+                    "cohort_size": 4004,
+                    "month_index": 13,
+                    "cohort_month": "2017-09-01",
+                    "activity_rate": null,
+                    "is_observable": false,
+                    "activity_month": "2018-10-01",
+                    "active_customers": null
+                },
+                {
+                    "cohort_size": 4004,
+                    "month_index": 14,
+                    "cohort_month": "2017-09-01",
+                    "activity_rate": null,
+                    "is_observable": false,
+                    "activity_month": "2018-11-01",
+                    "active_customers": null
+                },
+                {
+                    "cohort_size": 4004,
+                    "month_index": 15,
+                    "cohort_month": "2017-09-01",
+                    "activity_rate": null,
+                    "is_observable": false,
+                    "activity_month": "2018-12-01",
+                    "active_customers": null
+                },
+                {
+                    "cohort_size": 4004,
+                    "month_index": 16,
+                    "cohort_month": "2017-09-01",
+                    "activity_rate": null,
+                    "is_observable": false,
+                    "activity_month": "2019-01-01",
+                    "active_customers": null
+                },
+                {
+                    "cohort_size": 4004,
+                    "month_index": 17,
+                    "cohort_month": "2017-09-01",
+                    "activity_rate": null,
+                    "is_observable": false,
+                    "activity_month": "2019-02-01",
+                    "active_customers": null
+                },
+                {
+                    "cohort_size": 4004,
+                    "month_index": 18,
+                    "cohort_month": "2017-09-01",
+                    "activity_rate": null,
+                    "is_observable": false,
+                    "activity_month": "2019-03-01",
+                    "active_customers": null
+                },
+                {
+                    "cohort_size": 4328,
+                    "month_index": 0,
+                    "cohort_month": "2017-10-01",
+                    "activity_rate": 1.00000000000000000000,
+                    "is_observable": true,
+                    "activity_month": "2017-10-01",
+                    "active_customers": 4328
+                },
+                {
+                    "cohort_size": 4328,
+                    "month_index": 1,
+                    "cohort_month": "2017-10-01",
+                    "activity_rate": 0.00716266173752310536,
+                    "is_observable": true,
+                    "activity_month": "2017-11-01",
+                    "active_customers": 31
+                },
+                {
+                    "cohort_size": 4328,
+                    "month_index": 2,
+                    "cohort_month": "2017-10-01",
+                    "activity_rate": 0.00254158964879852126,
+                    "is_observable": true,
+                    "activity_month": "2017-12-01",
+                    "active_customers": 11
+                },
+                {
+                    "cohort_size": 4328,
+                    "month_index": 3,
+                    "cohort_month": "2017-10-01",
+                    "activity_rate": 0.00092421441774491682,
+                    "is_observable": true,
+                    "activity_month": "2018-01-01",
+                    "active_customers": 4
+                },
+                {
+                    "cohort_size": 4328,
+                    "month_index": 4,
+                    "cohort_month": "2017-10-01",
+                    "activity_rate": 0.00231053604436229205,
+                    "is_observable": true,
+                    "activity_month": "2018-02-01",
+                    "active_customers": 10
+                },
+                {
+                    "cohort_size": 4328,
+                    "month_index": 5,
+                    "cohort_month": "2017-10-01",
+                    "activity_rate": 0.00207948243992606285,
+                    "is_observable": true,
+                    "activity_month": "2018-03-01",
+                    "active_customers": 9
+                },
+                {
+                    "cohort_size": 4328,
+                    "month_index": 6,
+                    "cohort_month": "2017-10-01",
+                    "activity_rate": 0.00207948243992606285,
+                    "is_observable": true,
+                    "activity_month": "2018-04-01",
+                    "active_customers": 9
+                },
+                {
+                    "cohort_size": 4328,
+                    "month_index": 7,
+                    "cohort_month": "2017-10-01",
+                    "activity_rate": 0.00369685767097966728,
+                    "is_observable": true,
+                    "activity_month": "2018-05-01",
+                    "active_customers": 16
+                },
+                {
+                    "cohort_size": 4328,
+                    "month_index": 8,
+                    "cohort_month": "2017-10-01",
+                    "activity_rate": 0.00277264325323475046,
+                    "is_observable": true,
+                    "activity_month": "2018-06-01",
+                    "active_customers": 12
+                },
+                {
+                    "cohort_size": 4328,
+                    "month_index": 9,
+                    "cohort_month": "2017-10-01",
+                    "activity_rate": 0.00184842883548983364,
+                    "is_observable": true,
+                    "activity_month": "2018-07-01",
+                    "active_customers": 8
+                },
+                {
+                    "cohort_size": 4328,
+                    "month_index": 10,
+                    "cohort_month": "2017-10-01",
+                    "activity_rate": null,
+                    "is_observable": false,
+                    "activity_month": "2018-08-01",
+                    "active_customers": null
+                },
+                {
+                    "cohort_size": 4328,
+                    "month_index": 11,
+                    "cohort_month": "2017-10-01",
+                    "activity_rate": null,
+                    "is_observable": false,
+                    "activity_month": "2018-09-01",
+                    "active_customers": null
+                },
+                {
+                    "cohort_size": 4328,
+                    "month_index": 12,
+                    "cohort_month": "2017-10-01",
+                    "activity_rate": null,
+                    "is_observable": false,
+                    "activity_month": "2018-10-01",
+                    "active_customers": null
+                },
+                {
+                    "cohort_size": 4328,
+                    "month_index": 13,
+                    "cohort_month": "2017-10-01",
+                    "activity_rate": null,
+                    "is_observable": false,
+                    "activity_month": "2018-11-01",
+                    "active_customers": null
+                },
+                {
+                    "cohort_size": 4328,
+                    "month_index": 14,
+                    "cohort_month": "2017-10-01",
+                    "activity_rate": null,
+                    "is_observable": false,
+                    "activity_month": "2018-12-01",
+                    "active_customers": null
+                },
+                {
+                    "cohort_size": 4328,
+                    "month_index": 15,
+                    "cohort_month": "2017-10-01",
+                    "activity_rate": null,
+                    "is_observable": false,
+                    "activity_month": "2019-01-01",
+                    "active_customers": null
+                },
+                {
+                    "cohort_size": 4328,
+                    "month_index": 16,
+                    "cohort_month": "2017-10-01",
+                    "activity_rate": null,
+                    "is_observable": false,
+                    "activity_month": "2019-02-01",
+                    "active_customers": null
+                },
+                {
+                    "cohort_size": 4328,
+                    "month_index": 17,
+                    "cohort_month": "2017-10-01",
+                    "activity_rate": null,
+                    "is_observable": false,
+                    "activity_month": "2019-03-01",
+                    "active_customers": null
+                },
+                {
+                    "cohort_size": 4328,
+                    "month_index": 18,
+                    "cohort_month": "2017-10-01",
+                    "activity_rate": null,
+                    "is_observable": false,
+                    "activity_month": "2019-04-01",
+                    "active_customers": null
+                },
+                {
+                    "cohort_size": 7060,
+                    "month_index": 0,
+                    "cohort_month": "2017-11-01",
+                    "activity_rate": 1.00000000000000000000,
+                    "is_observable": true,
+                    "activity_month": "2017-11-01",
+                    "active_customers": 7060
+                },
+                {
+                    "cohort_size": 7060,
+                    "month_index": 1,
+                    "cohort_month": "2017-11-01",
+                    "activity_rate": 0.00566572237960339943,
+                    "is_observable": true,
+                    "activity_month": "2017-12-01",
+                    "active_customers": 40
+                },
+                {
+                    "cohort_size": 7060,
+                    "month_index": 2,
+                    "cohort_month": "2017-11-01",
+                    "activity_rate": 0.00368271954674220963,
+                    "is_observable": true,
+                    "activity_month": "2018-01-01",
+                    "active_customers": 26
+                },
+                {
+                    "cohort_size": 7060,
+                    "month_index": 3,
+                    "cohort_month": "2017-11-01",
+                    "activity_rate": 0.00169971671388101983,
+                    "is_observable": true,
+                    "activity_month": "2018-02-01",
+                    "active_customers": 12
+                },
+                {
+                    "cohort_size": 7060,
+                    "month_index": 4,
+                    "cohort_month": "2017-11-01",
+                    "activity_rate": 0.00169971671388101983,
+                    "is_observable": true,
+                    "activity_month": "2018-03-01",
+                    "active_customers": 12
+                },
+                {
+                    "cohort_size": 7060,
+                    "month_index": 5,
+                    "cohort_month": "2017-11-01",
+                    "activity_rate": 0.00184135977337110482,
+                    "is_observable": true,
+                    "activity_month": "2018-04-01",
+                    "active_customers": 13
+                },
+                {
+                    "cohort_size": 7060,
+                    "month_index": 6,
+                    "cohort_month": "2017-11-01",
+                    "activity_rate": 0.00113314447592067989,
+                    "is_observable": true,
+                    "activity_month": "2018-05-01",
+                    "active_customers": 8
+                },
+                {
+                    "cohort_size": 7060,
+                    "month_index": 7,
+                    "cohort_month": "2017-11-01",
+                    "activity_rate": 0.00184135977337110482,
+                    "is_observable": true,
+                    "activity_month": "2018-06-01",
+                    "active_customers": 13
+                },
+                {
+                    "cohort_size": 7060,
+                    "month_index": 8,
+                    "cohort_month": "2017-11-01",
+                    "activity_rate": 0.00127478753541076487,
+                    "is_observable": true,
+                    "activity_month": "2018-07-01",
+                    "active_customers": 9
+                },
+                {
+                    "cohort_size": 7060,
+                    "month_index": 9,
+                    "cohort_month": "2017-11-01",
+                    "activity_rate": null,
+                    "is_observable": false,
+                    "activity_month": "2018-08-01",
+                    "active_customers": null
+                },
+                {
+                    "cohort_size": 7060,
+                    "month_index": 10,
+                    "cohort_month": "2017-11-01",
+                    "activity_rate": null,
+                    "is_observable": false,
+                    "activity_month": "2018-09-01",
+                    "active_customers": null
+                },
+                {
+                    "cohort_size": 7060,
+                    "month_index": 11,
+                    "cohort_month": "2017-11-01",
+                    "activity_rate": null,
+                    "is_observable": false,
+                    "activity_month": "2018-10-01",
+                    "active_customers": null
+                },
+                {
+                    "cohort_size": 7060,
+                    "month_index": 12,
+                    "cohort_month": "2017-11-01",
+                    "activity_rate": null,
+                    "is_observable": false,
+                    "activity_month": "2018-11-01",
+                    "active_customers": null
+                },
+                {
+                    "cohort_size": 7060,
+                    "month_index": 13,
+                    "cohort_month": "2017-11-01",
+                    "activity_rate": null,
+                    "is_observable": false,
+                    "activity_month": "2018-12-01",
+                    "active_customers": null
+                },
+                {
+                    "cohort_size": 7060,
+                    "month_index": 14,
+                    "cohort_month": "2017-11-01",
+                    "activity_rate": null,
+                    "is_observable": false,
+                    "activity_month": "2019-01-01",
+                    "active_customers": null
+                },
+                {
+                    "cohort_size": 7060,
+                    "month_index": 15,
+                    "cohort_month": "2017-11-01",
+                    "activity_rate": null,
+                    "is_observable": false,
+                    "activity_month": "2019-02-01",
+                    "active_customers": null
+                },
+                {
+                    "cohort_size": 7060,
+                    "month_index": 16,
+                    "cohort_month": "2017-11-01",
+                    "activity_rate": null,
+                    "is_observable": false,
+                    "activity_month": "2019-03-01",
+                    "active_customers": null
+                },
+                {
+                    "cohort_size": 7060,
+                    "month_index": 17,
+                    "cohort_month": "2017-11-01",
+                    "activity_rate": null,
+                    "is_observable": false,
+                    "activity_month": "2019-04-01",
+                    "active_customers": null
+                },
+                {
+                    "cohort_size": 7060,
+                    "month_index": 18,
+                    "cohort_month": "2017-11-01",
+                    "activity_rate": null,
+                    "is_observable": false,
+                    "activity_month": "2019-05-01",
+                    "active_customers": null
+                },
+                {
+                    "cohort_size": 5338,
+                    "month_index": 0,
+                    "cohort_month": "2017-12-01",
+                    "activity_rate": 1.00000000000000000000,
+                    "is_observable": true,
+                    "activity_month": "2017-12-01",
+                    "active_customers": 5338
+                },
+                {
+                    "cohort_size": 5338,
+                    "month_index": 1,
+                    "cohort_month": "2017-12-01",
+                    "activity_rate": 0.00206069689022105658,
+                    "is_observable": true,
+                    "activity_month": "2018-01-01",
+                    "active_customers": 11
+                },
+                {
+                    "cohort_size": 5338,
+                    "month_index": 2,
+                    "cohort_month": "2017-12-01",
+                    "activity_rate": 0.00281004121393780442,
+                    "is_observable": true,
+                    "activity_month": "2018-02-01",
+                    "active_customers": 15
+                },
+                {
+                    "cohort_size": 5338,
+                    "month_index": 3,
+                    "cohort_month": "2017-12-01",
+                    "activity_rate": 0.00337204945672536531,
+                    "is_observable": true,
+                    "activity_month": "2018-03-01",
+                    "active_customers": 18
+                },
+                {
+                    "cohort_size": 5338,
+                    "month_index": 4,
+                    "cohort_month": "2017-12-01",
+                    "activity_rate": 0.00262270513300861746,
+                    "is_observable": true,
+                    "activity_month": "2018-04-01",
+                    "active_customers": 14
+                },
+                {
+                    "cohort_size": 5338,
+                    "month_index": 5,
+                    "cohort_month": "2017-12-01",
+                    "activity_rate": 0.00206069689022105658,
+                    "is_observable": true,
+                    "activity_month": "2018-05-01",
+                    "active_customers": 11
+                },
+                {
+                    "cohort_size": 5338,
+                    "month_index": 6,
+                    "cohort_month": "2017-12-01",
+                    "activity_rate": 0.00168602472836268265,
+                    "is_observable": true,
+                    "activity_month": "2018-06-01",
+                    "active_customers": 9
+                },
+                {
+                    "cohort_size": 5338,
+                    "month_index": 7,
+                    "cohort_month": "2017-12-01",
+                    "activity_rate": 0.00018733608092918696,
+                    "is_observable": true,
+                    "activity_month": "2018-07-01",
+                    "active_customers": 1
+                },
+                {
+                    "cohort_size": 5338,
+                    "month_index": 8,
+                    "cohort_month": "2017-12-01",
+                    "activity_rate": null,
+                    "is_observable": false,
+                    "activity_month": "2018-08-01",
+                    "active_customers": null
+                },
+                {
+                    "cohort_size": 5338,
+                    "month_index": 9,
+                    "cohort_month": "2017-12-01",
+                    "activity_rate": null,
+                    "is_observable": false,
+                    "activity_month": "2018-09-01",
+                    "active_customers": null
+                },
+                {
+                    "cohort_size": 5338,
+                    "month_index": 10,
+                    "cohort_month": "2017-12-01",
+                    "activity_rate": null,
+                    "is_observable": false,
+                    "activity_month": "2018-10-01",
+                    "active_customers": null
+                },
+                {
+                    "cohort_size": 5338,
+                    "month_index": 11,
+                    "cohort_month": "2017-12-01",
+                    "activity_rate": null,
+                    "is_observable": false,
+                    "activity_month": "2018-11-01",
+                    "active_customers": null
+                },
+                {
+                    "cohort_size": 5338,
+                    "month_index": 12,
+                    "cohort_month": "2017-12-01",
+                    "activity_rate": null,
+                    "is_observable": false,
+                    "activity_month": "2018-12-01",
+                    "active_customers": null
+                },
+                {
+                    "cohort_size": 5338,
+                    "month_index": 13,
+                    "cohort_month": "2017-12-01",
+                    "activity_rate": null,
+                    "is_observable": false,
+                    "activity_month": "2019-01-01",
+                    "active_customers": null
+                },
+                {
+                    "cohort_size": 5338,
+                    "month_index": 14,
+                    "cohort_month": "2017-12-01",
+                    "activity_rate": null,
+                    "is_observable": false,
+                    "activity_month": "2019-02-01",
+                    "active_customers": null
+                },
+                {
+                    "cohort_size": 5338,
+                    "month_index": 15,
+                    "cohort_month": "2017-12-01",
+                    "activity_rate": null,
+                    "is_observable": false,
+                    "activity_month": "2019-03-01",
+                    "active_customers": null
+                },
+                {
+                    "cohort_size": 5338,
+                    "month_index": 16,
+                    "cohort_month": "2017-12-01",
+                    "activity_rate": null,
+                    "is_observable": false,
+                    "activity_month": "2019-04-01",
+                    "active_customers": null
+                },
+                {
+                    "cohort_size": 5338,
+                    "month_index": 17,
+                    "cohort_month": "2017-12-01",
+                    "activity_rate": null,
+                    "is_observable": false,
+                    "activity_month": "2019-05-01",
+                    "active_customers": null
+                },
+                {
+                    "cohort_size": 5338,
+                    "month_index": 18,
+                    "cohort_month": "2017-12-01",
+                    "activity_rate": null,
+                    "is_observable": false,
+                    "activity_month": "2019-06-01",
+                    "active_customers": null
+                },
+                {
+                    "cohort_size": 6842,
+                    "month_index": 0,
+                    "cohort_month": "2018-01-01",
+                    "activity_rate": 1.00000000000000000000,
+                    "is_observable": true,
+                    "activity_month": "2018-01-01",
+                    "active_customers": 6842
+                },
+                {
+                    "cohort_size": 6842,
+                    "month_index": 1,
+                    "cohort_month": "2018-01-01",
+                    "activity_rate": 0.00336159017831043555,
+                    "is_observable": true,
+                    "activity_month": "2018-02-01",
+                    "active_customers": 23
+                },
+                {
+                    "cohort_size": 6842,
+                    "month_index": 2,
+                    "cohort_month": "2018-01-01",
+                    "activity_rate": 0.00365390236772873429,
+                    "is_observable": true,
+                    "activity_month": "2018-03-01",
+                    "active_customers": 25
+                },
+                {
+                    "cohort_size": 6842,
+                    "month_index": 3,
+                    "cohort_month": "2018-01-01",
+                    "activity_rate": 0.00292312189418298743,
+                    "is_observable": true,
+                    "activity_month": "2018-04-01",
+                    "active_customers": 20
+                },
+                {
+                    "cohort_size": 6842,
+                    "month_index": 4,
+                    "cohort_month": "2018-01-01",
+                    "activity_rate": 0.00292312189418298743,
+                    "is_observable": true,
+                    "activity_month": "2018-05-01",
+                    "active_customers": 20
+                },
+                {
+                    "cohort_size": 6842,
+                    "month_index": 5,
+                    "cohort_month": "2018-01-01",
+                    "activity_rate": 0.00160771704180064309,
+                    "is_observable": true,
+                    "activity_month": "2018-06-01",
+                    "active_customers": 11
+                },
+                {
+                    "cohort_size": 6842,
+                    "month_index": 6,
+                    "cohort_month": "2018-01-01",
+                    "activity_rate": 0.00175387313650979246,
+                    "is_observable": true,
+                    "activity_month": "2018-07-01",
+                    "active_customers": 12
+                },
+                {
+                    "cohort_size": 6842,
+                    "month_index": 7,
+                    "cohort_month": "2018-01-01",
+                    "activity_rate": null,
+                    "is_observable": false,
+                    "activity_month": "2018-08-01",
+                    "active_customers": null
+                },
+                {
+                    "cohort_size": 6842,
+                    "month_index": 8,
+                    "cohort_month": "2018-01-01",
+                    "activity_rate": null,
+                    "is_observable": false,
+                    "activity_month": "2018-09-01",
+                    "active_customers": null
+                },
+                {
+                    "cohort_size": 6842,
+                    "month_index": 9,
+                    "cohort_month": "2018-01-01",
+                    "activity_rate": null,
+                    "is_observable": false,
+                    "activity_month": "2018-10-01",
+                    "active_customers": null
+                },
+                {
+                    "cohort_size": 6842,
+                    "month_index": 10,
+                    "cohort_month": "2018-01-01",
+                    "activity_rate": null,
+                    "is_observable": false,
+                    "activity_month": "2018-11-01",
+                    "active_customers": null
+                },
+                {
+                    "cohort_size": 6842,
+                    "month_index": 11,
+                    "cohort_month": "2018-01-01",
+                    "activity_rate": null,
+                    "is_observable": false,
+                    "activity_month": "2018-12-01",
+                    "active_customers": null
+                },
+                {
+                    "cohort_size": 6842,
+                    "month_index": 12,
+                    "cohort_month": "2018-01-01",
+                    "activity_rate": null,
+                    "is_observable": false,
+                    "activity_month": "2019-01-01",
+                    "active_customers": null
+                },
+                {
+                    "cohort_size": 6842,
+                    "month_index": 13,
+                    "cohort_month": "2018-01-01",
+                    "activity_rate": null,
+                    "is_observable": false,
+                    "activity_month": "2019-02-01",
+                    "active_customers": null
+                },
+                {
+                    "cohort_size": 6842,
+                    "month_index": 14,
+                    "cohort_month": "2018-01-01",
+                    "activity_rate": null,
+                    "is_observable": false,
+                    "activity_month": "2019-03-01",
+                    "active_customers": null
+                },
+                {
+                    "cohort_size": 6842,
+                    "month_index": 15,
+                    "cohort_month": "2018-01-01",
+                    "activity_rate": null,
+                    "is_observable": false,
+                    "activity_month": "2019-04-01",
+                    "active_customers": null
+                },
+                {
+                    "cohort_size": 6842,
+                    "month_index": 16,
+                    "cohort_month": "2018-01-01",
+                    "activity_rate": null,
+                    "is_observable": false,
+                    "activity_month": "2019-05-01",
+                    "active_customers": null
+                },
+                {
+                    "cohort_size": 6842,
+                    "month_index": 17,
+                    "cohort_month": "2018-01-01",
+                    "activity_rate": null,
+                    "is_observable": false,
+                    "activity_month": "2019-06-01",
+                    "active_customers": null
+                },
+                {
+                    "cohort_size": 6842,
+                    "month_index": 18,
+                    "cohort_month": "2018-01-01",
+                    "activity_rate": null,
+                    "is_observable": false,
+                    "activity_month": "2019-07-01",
+                    "active_customers": null
+                },
+                {
+                    "cohort_size": 6288,
+                    "month_index": 0,
+                    "cohort_month": "2018-02-01",
+                    "activity_rate": 1.00000000000000000000,
+                    "is_observable": true,
+                    "activity_month": "2018-02-01",
+                    "active_customers": 6288
+                },
+                {
+                    "cohort_size": 6288,
+                    "month_index": 1,
+                    "cohort_month": "2018-02-01",
+                    "activity_rate": 0.00349872773536895674,
+                    "is_observable": true,
+                    "activity_month": "2018-03-01",
+                    "active_customers": 22
+                },
+                {
+                    "cohort_size": 6288,
+                    "month_index": 2,
+                    "cohort_month": "2018-02-01",
+                    "activity_rate": 0.00397582697201017812,
+                    "is_observable": true,
+                    "activity_month": "2018-04-01",
+                    "active_customers": 25
+                },
+                {
+                    "cohort_size": 6288,
+                    "month_index": 3,
+                    "cohort_month": "2018-02-01",
+                    "activity_rate": 0.00302162849872773537,
+                    "is_observable": true,
+                    "activity_month": "2018-05-01",
+                    "active_customers": 19
+                },
+                {
+                    "cohort_size": 6288,
+                    "month_index": 4,
+                    "cohort_month": "2018-02-01",
+                    "activity_rate": 0.00254452926208651399,
+                    "is_observable": true,
+                    "activity_month": "2018-06-01",
+                    "active_customers": 16
+                },
+                {
+                    "cohort_size": 6288,
+                    "month_index": 5,
+                    "cohort_month": "2018-02-01",
+                    "activity_rate": 0.00222646310432569975,
+                    "is_observable": true,
+                    "activity_month": "2018-07-01",
+                    "active_customers": 14
+                },
+                {
+                    "cohort_size": 6288,
+                    "month_index": 6,
+                    "cohort_month": "2018-02-01",
+                    "activity_rate": null,
+                    "is_observable": false,
+                    "activity_month": "2018-08-01",
+                    "active_customers": null
+                },
+                {
+                    "cohort_size": 6288,
+                    "month_index": 7,
+                    "cohort_month": "2018-02-01",
+                    "activity_rate": null,
+                    "is_observable": false,
+                    "activity_month": "2018-09-01",
+                    "active_customers": null
+                },
+                {
+                    "cohort_size": 6288,
+                    "month_index": 8,
+                    "cohort_month": "2018-02-01",
+                    "activity_rate": null,
+                    "is_observable": false,
+                    "activity_month": "2018-10-01",
+                    "active_customers": null
+                },
+                {
+                    "cohort_size": 6288,
+                    "month_index": 9,
+                    "cohort_month": "2018-02-01",
+                    "activity_rate": null,
+                    "is_observable": false,
+                    "activity_month": "2018-11-01",
+                    "active_customers": null
+                },
+                {
+                    "cohort_size": 6288,
+                    "month_index": 10,
+                    "cohort_month": "2018-02-01",
+                    "activity_rate": null,
+                    "is_observable": false,
+                    "activity_month": "2018-12-01",
+                    "active_customers": null
+                },
+                {
+                    "cohort_size": 6288,
+                    "month_index": 11,
+                    "cohort_month": "2018-02-01",
+                    "activity_rate": null,
+                    "is_observable": false,
+                    "activity_month": "2019-01-01",
+                    "active_customers": null
+                },
+                {
+                    "cohort_size": 6288,
+                    "month_index": 12,
+                    "cohort_month": "2018-02-01",
+                    "activity_rate": null,
+                    "is_observable": false,
+                    "activity_month": "2019-02-01",
+                    "active_customers": null
+                },
+                {
+                    "cohort_size": 6288,
+                    "month_index": 13,
+                    "cohort_month": "2018-02-01",
+                    "activity_rate": null,
+                    "is_observable": false,
+                    "activity_month": "2019-03-01",
+                    "active_customers": null
+                },
+                {
+                    "cohort_size": 6288,
+                    "month_index": 14,
+                    "cohort_month": "2018-02-01",
+                    "activity_rate": null,
+                    "is_observable": false,
+                    "activity_month": "2019-04-01",
+                    "active_customers": null
+                },
+                {
+                    "cohort_size": 6288,
+                    "month_index": 15,
+                    "cohort_month": "2018-02-01",
+                    "activity_rate": null,
+                    "is_observable": false,
+                    "activity_month": "2019-05-01",
+                    "active_customers": null
+                },
+                {
+                    "cohort_size": 6288,
+                    "month_index": 16,
+                    "cohort_month": "2018-02-01",
+                    "activity_rate": null,
+                    "is_observable": false,
+                    "activity_month": "2019-06-01",
+                    "active_customers": null
+                },
+                {
+                    "cohort_size": 6288,
+                    "month_index": 17,
+                    "cohort_month": "2018-02-01",
+                    "activity_rate": null,
+                    "is_observable": false,
+                    "activity_month": "2019-07-01",
+                    "active_customers": null
+                },
+                {
+                    "cohort_size": 6288,
+                    "month_index": 18,
+                    "cohort_month": "2018-02-01",
+                    "activity_rate": null,
+                    "is_observable": false,
+                    "activity_month": "2019-08-01",
+                    "active_customers": null
+                },
+                {
+                    "cohort_size": 6774,
+                    "month_index": 0,
+                    "cohort_month": "2018-03-01",
+                    "activity_rate": 1.00000000000000000000,
+                    "is_observable": true,
+                    "activity_month": "2018-03-01",
+                    "active_customers": 6774
+                },
+                {
+                    "cohort_size": 6774,
+                    "month_index": 1,
+                    "cohort_month": "2018-03-01",
+                    "activity_rate": 0.00398582816651904340,
+                    "is_observable": true,
+                    "activity_month": "2018-04-01",
+                    "active_customers": 27
+                },
+                {
+                    "cohort_size": 6774,
+                    "month_index": 2,
+                    "cohort_month": "2018-03-01",
+                    "activity_rate": 0.00295246530853262474,
+                    "is_observable": true,
+                    "activity_month": "2018-05-01",
+                    "active_customers": 20
+                },
+                {
+                    "cohort_size": 6774,
+                    "month_index": 3,
+                    "cohort_month": "2018-03-01",
+                    "activity_rate": 0.00295246530853262474,
+                    "is_observable": true,
+                    "activity_month": "2018-06-01",
+                    "active_customers": 20
+                },
+                {
+                    "cohort_size": 6774,
+                    "month_index": 4,
+                    "cohort_month": "2018-03-01",
+                    "activity_rate": 0.00118098612341304990,
+                    "is_observable": true,
+                    "activity_month": "2018-07-01",
+                    "active_customers": 8
+                },
+                {
+                    "cohort_size": 6774,
+                    "month_index": 5,
+                    "cohort_month": "2018-03-01",
+                    "activity_rate": null,
+                    "is_observable": false,
+                    "activity_month": "2018-08-01",
+                    "active_customers": null
+                },
+                {
+                    "cohort_size": 6774,
+                    "month_index": 6,
+                    "cohort_month": "2018-03-01",
+                    "activity_rate": null,
+                    "is_observable": false,
+                    "activity_month": "2018-09-01",
+                    "active_customers": null
+                },
+                {
+                    "cohort_size": 6774,
+                    "month_index": 7,
+                    "cohort_month": "2018-03-01",
+                    "activity_rate": null,
+                    "is_observable": false,
+                    "activity_month": "2018-10-01",
+                    "active_customers": null
+                },
+                {
+                    "cohort_size": 6774,
+                    "month_index": 8,
+                    "cohort_month": "2018-03-01",
+                    "activity_rate": null,
+                    "is_observable": false,
+                    "activity_month": "2018-11-01",
+                    "active_customers": null
+                },
+                {
+                    "cohort_size": 6774,
+                    "month_index": 9,
+                    "cohort_month": "2018-03-01",
+                    "activity_rate": null,
+                    "is_observable": false,
+                    "activity_month": "2018-12-01",
+                    "active_customers": null
+                },
+                {
+                    "cohort_size": 6774,
+                    "month_index": 10,
+                    "cohort_month": "2018-03-01",
+                    "activity_rate": null,
+                    "is_observable": false,
+                    "activity_month": "2019-01-01",
+                    "active_customers": null
+                },
+                {
+                    "cohort_size": 6774,
+                    "month_index": 11,
+                    "cohort_month": "2018-03-01",
+                    "activity_rate": null,
+                    "is_observable": false,
+                    "activity_month": "2019-02-01",
+                    "active_customers": null
+                },
+                {
+                    "cohort_size": 6774,
+                    "month_index": 12,
+                    "cohort_month": "2018-03-01",
+                    "activity_rate": null,
+                    "is_observable": false,
+                    "activity_month": "2019-03-01",
+                    "active_customers": null
+                },
+                {
+                    "cohort_size": 6774,
+                    "month_index": 13,
+                    "cohort_month": "2018-03-01",
+                    "activity_rate": null,
+                    "is_observable": false,
+                    "activity_month": "2019-04-01",
+                    "active_customers": null
+                },
+                {
+                    "cohort_size": 6774,
+                    "month_index": 14,
+                    "cohort_month": "2018-03-01",
+                    "activity_rate": null,
+                    "is_observable": false,
+                    "activity_month": "2019-05-01",
+                    "active_customers": null
+                },
+                {
+                    "cohort_size": 6774,
+                    "month_index": 15,
+                    "cohort_month": "2018-03-01",
+                    "activity_rate": null,
+                    "is_observable": false,
+                    "activity_month": "2019-06-01",
+                    "active_customers": null
+                },
+                {
+                    "cohort_size": 6774,
+                    "month_index": 16,
+                    "cohort_month": "2018-03-01",
+                    "activity_rate": null,
+                    "is_observable": false,
+                    "activity_month": "2019-07-01",
+                    "active_customers": null
+                },
+                {
+                    "cohort_size": 6774,
+                    "month_index": 17,
+                    "cohort_month": "2018-03-01",
+                    "activity_rate": null,
+                    "is_observable": false,
+                    "activity_month": "2019-08-01",
+                    "active_customers": null
+                },
+                {
+                    "cohort_size": 6774,
+                    "month_index": 18,
+                    "cohort_month": "2018-03-01",
+                    "activity_rate": null,
+                    "is_observable": false,
+                    "activity_month": "2019-09-01",
+                    "active_customers": null
+                },
+                {
+                    "cohort_size": 6582,
+                    "month_index": 0,
+                    "cohort_month": "2018-04-01",
+                    "activity_rate": 1.00000000000000000000,
+                    "is_observable": true,
+                    "activity_month": "2018-04-01",
+                    "active_customers": 6582
+                },
+                {
+                    "cohort_size": 6582,
+                    "month_index": 1,
+                    "cohort_month": "2018-04-01",
+                    "activity_rate": 0.00592525068368277119,
+                    "is_observable": true,
+                    "activity_month": "2018-05-01",
+                    "active_customers": 39
+                },
+                {
+                    "cohort_size": 6582,
+                    "month_index": 2,
+                    "cohort_month": "2018-04-01",
+                    "activity_rate": 0.00303859009419629292,
+                    "is_observable": true,
+                    "activity_month": "2018-06-01",
+                    "active_customers": 20
+                },
+                {
+                    "cohort_size": 6582,
+                    "month_index": 3,
+                    "cohort_month": "2018-04-01",
+                    "activity_rate": 0.00243087207535703434,
+                    "is_observable": true,
+                    "activity_month": "2018-07-01",
+                    "active_customers": 16
+                },
+                {
+                    "cohort_size": 6582,
+                    "month_index": 4,
+                    "cohort_month": "2018-04-01",
+                    "activity_rate": null,
+                    "is_observable": false,
+                    "activity_month": "2018-08-01",
+                    "active_customers": null
+                },
+                {
+                    "cohort_size": 6582,
+                    "month_index": 5,
+                    "cohort_month": "2018-04-01",
+                    "activity_rate": null,
+                    "is_observable": false,
+                    "activity_month": "2018-09-01",
+                    "active_customers": null
+                },
+                {
+                    "cohort_size": 6582,
+                    "month_index": 6,
+                    "cohort_month": "2018-04-01",
+                    "activity_rate": null,
+                    "is_observable": false,
+                    "activity_month": "2018-10-01",
+                    "active_customers": null
+                },
+                {
+                    "cohort_size": 6582,
+                    "month_index": 7,
+                    "cohort_month": "2018-04-01",
+                    "activity_rate": null,
+                    "is_observable": false,
+                    "activity_month": "2018-11-01",
+                    "active_customers": null
+                },
+                {
+                    "cohort_size": 6582,
+                    "month_index": 8,
+                    "cohort_month": "2018-04-01",
+                    "activity_rate": null,
+                    "is_observable": false,
+                    "activity_month": "2018-12-01",
+                    "active_customers": null
+                },
+                {
+                    "cohort_size": 6582,
+                    "month_index": 9,
+                    "cohort_month": "2018-04-01",
+                    "activity_rate": null,
+                    "is_observable": false,
+                    "activity_month": "2019-01-01",
+                    "active_customers": null
+                },
+                {
+                    "cohort_size": 6582,
+                    "month_index": 10,
+                    "cohort_month": "2018-04-01",
+                    "activity_rate": null,
+                    "is_observable": false,
+                    "activity_month": "2019-02-01",
+                    "active_customers": null
+                },
+                {
+                    "cohort_size": 6582,
+                    "month_index": 11,
+                    "cohort_month": "2018-04-01",
+                    "activity_rate": null,
+                    "is_observable": false,
+                    "activity_month": "2019-03-01",
+                    "active_customers": null
+                },
+                {
+                    "cohort_size": 6582,
+                    "month_index": 12,
+                    "cohort_month": "2018-04-01",
+                    "activity_rate": null,
+                    "is_observable": false,
+                    "activity_month": "2019-04-01",
+                    "active_customers": null
+                },
+                {
+                    "cohort_size": 6582,
+                    "month_index": 13,
+                    "cohort_month": "2018-04-01",
+                    "activity_rate": null,
+                    "is_observable": false,
+                    "activity_month": "2019-05-01",
+                    "active_customers": null
+                },
+                {
+                    "cohort_size": 6582,
+                    "month_index": 14,
+                    "cohort_month": "2018-04-01",
+                    "activity_rate": null,
+                    "is_observable": false,
+                    "activity_month": "2019-06-01",
+                    "active_customers": null
+                },
+                {
+                    "cohort_size": 6582,
+                    "month_index": 15,
+                    "cohort_month": "2018-04-01",
+                    "activity_rate": null,
+                    "is_observable": false,
+                    "activity_month": "2019-07-01",
+                    "active_customers": null
+                },
+                {
+                    "cohort_size": 6582,
+                    "month_index": 16,
+                    "cohort_month": "2018-04-01",
+                    "activity_rate": null,
+                    "is_observable": false,
+                    "activity_month": "2019-08-01",
+                    "active_customers": null
+                },
+                {
+                    "cohort_size": 6582,
+                    "month_index": 17,
+                    "cohort_month": "2018-04-01",
+                    "activity_rate": null,
+                    "is_observable": false,
+                    "activity_month": "2019-09-01",
+                    "active_customers": null
+                },
+                {
+                    "cohort_size": 6582,
+                    "month_index": 18,
+                    "cohort_month": "2018-04-01",
+                    "activity_rate": null,
+                    "is_observable": false,
+                    "activity_month": "2019-10-01",
+                    "active_customers": null
+                },
+                {
+                    "cohort_size": 6506,
+                    "month_index": 0,
+                    "cohort_month": "2018-05-01",
+                    "activity_rate": 1.00000000000000000000,
+                    "is_observable": true,
+                    "activity_month": "2018-05-01",
+                    "active_customers": 6506
+                },
+                {
+                    "cohort_size": 6506,
+                    "month_index": 1,
+                    "cohort_month": "2018-05-01",
+                    "activity_rate": 0.00522594528127881955,
+                    "is_observable": true,
+                    "activity_month": "2018-06-01",
+                    "active_customers": 34
+                },
+                {
+                    "cohort_size": 6506,
+                    "month_index": 2,
+                    "cohort_month": "2018-05-01",
+                    "activity_rate": 0.00261297264063940978,
+                    "is_observable": true,
+                    "activity_month": "2018-07-01",
+                    "active_customers": 17
+                },
+                {
+                    "cohort_size": 6506,
+                    "month_index": 3,
+                    "cohort_month": "2018-05-01",
+                    "activity_rate": null,
+                    "is_observable": false,
+                    "activity_month": "2018-08-01",
+                    "active_customers": null
+                },
+                {
+                    "cohort_size": 6506,
+                    "month_index": 4,
+                    "cohort_month": "2018-05-01",
+                    "activity_rate": null,
+                    "is_observable": false,
+                    "activity_month": "2018-09-01",
+                    "active_customers": null
+                },
+                {
+                    "cohort_size": 6506,
+                    "month_index": 5,
+                    "cohort_month": "2018-05-01",
+                    "activity_rate": null,
+                    "is_observable": false,
+                    "activity_month": "2018-10-01",
+                    "active_customers": null
+                },
+                {
+                    "cohort_size": 6506,
+                    "month_index": 6,
+                    "cohort_month": "2018-05-01",
+                    "activity_rate": null,
+                    "is_observable": false,
+                    "activity_month": "2018-11-01",
+                    "active_customers": null
+                },
+                {
+                    "cohort_size": 6506,
+                    "month_index": 7,
+                    "cohort_month": "2018-05-01",
+                    "activity_rate": null,
+                    "is_observable": false,
+                    "activity_month": "2018-12-01",
+                    "active_customers": null
+                },
+                {
+                    "cohort_size": 6506,
+                    "month_index": 8,
+                    "cohort_month": "2018-05-01",
+                    "activity_rate": null,
+                    "is_observable": false,
+                    "activity_month": "2019-01-01",
+                    "active_customers": null
+                },
+                {
+                    "cohort_size": 6506,
+                    "month_index": 9,
+                    "cohort_month": "2018-05-01",
+                    "activity_rate": null,
+                    "is_observable": false,
+                    "activity_month": "2019-02-01",
+                    "active_customers": null
+                },
+                {
+                    "cohort_size": 6506,
+                    "month_index": 10,
+                    "cohort_month": "2018-05-01",
+                    "activity_rate": null,
+                    "is_observable": false,
+                    "activity_month": "2019-03-01",
+                    "active_customers": null
+                },
+                {
+                    "cohort_size": 6506,
+                    "month_index": 11,
+                    "cohort_month": "2018-05-01",
+                    "activity_rate": null,
+                    "is_observable": false,
+                    "activity_month": "2019-04-01",
+                    "active_customers": null
+                },
+                {
+                    "cohort_size": 6506,
+                    "month_index": 12,
+                    "cohort_month": "2018-05-01",
+                    "activity_rate": null,
+                    "is_observable": false,
+                    "activity_month": "2019-05-01",
+                    "active_customers": null
+                },
+                {
+                    "cohort_size": 6506,
+                    "month_index": 13,
+                    "cohort_month": "2018-05-01",
+                    "activity_rate": null,
+                    "is_observable": false,
+                    "activity_month": "2019-06-01",
+                    "active_customers": null
+                },
+                {
+                    "cohort_size": 6506,
+                    "month_index": 14,
+                    "cohort_month": "2018-05-01",
+                    "activity_rate": null,
+                    "is_observable": false,
+                    "activity_month": "2019-07-01",
+                    "active_customers": null
+                },
+                {
+                    "cohort_size": 6506,
+                    "month_index": 15,
+                    "cohort_month": "2018-05-01",
+                    "activity_rate": null,
+                    "is_observable": false,
+                    "activity_month": "2019-08-01",
+                    "active_customers": null
+                },
+                {
+                    "cohort_size": 6506,
+                    "month_index": 16,
+                    "cohort_month": "2018-05-01",
+                    "activity_rate": null,
+                    "is_observable": false,
+                    "activity_month": "2019-09-01",
+                    "active_customers": null
+                },
+                {
+                    "cohort_size": 6506,
+                    "month_index": 17,
+                    "cohort_month": "2018-05-01",
+                    "activity_rate": null,
+                    "is_observable": false,
+                    "activity_month": "2019-10-01",
+                    "active_customers": null
+                },
+                {
+                    "cohort_size": 6506,
+                    "month_index": 18,
+                    "cohort_month": "2018-05-01",
+                    "activity_rate": null,
+                    "is_observable": false,
+                    "activity_month": "2019-11-01",
+                    "active_customers": null
+                },
+                {
+                    "cohort_size": 5878,
+                    "month_index": 0,
+                    "cohort_month": "2018-06-01",
+                    "activity_rate": 1.00000000000000000000,
+                    "is_observable": true,
+                    "activity_month": "2018-06-01",
+                    "active_customers": 5878
+                },
+                {
+                    "cohort_size": 5878,
+                    "month_index": 1,
+                    "cohort_month": "2018-06-01",
+                    "activity_rate": 0.00425314732902347737,
+                    "is_observable": true,
+                    "activity_month": "2018-07-01",
+                    "active_customers": 25
+                },
+                {
+                    "cohort_size": 5878,
+                    "month_index": 2,
+                    "cohort_month": "2018-06-01",
+                    "activity_rate": null,
+                    "is_observable": false,
+                    "activity_month": "2018-08-01",
+                    "active_customers": null
+                },
+                {
+                    "cohort_size": 5878,
+                    "month_index": 3,
+                    "cohort_month": "2018-06-01",
+                    "activity_rate": null,
+                    "is_observable": false,
+                    "activity_month": "2018-09-01",
+                    "active_customers": null
+                },
+                {
+                    "cohort_size": 5878,
+                    "month_index": 4,
+                    "cohort_month": "2018-06-01",
+                    "activity_rate": null,
+                    "is_observable": false,
+                    "activity_month": "2018-10-01",
+                    "active_customers": null
+                },
+                {
+                    "cohort_size": 5878,
+                    "month_index": 5,
+                    "cohort_month": "2018-06-01",
+                    "activity_rate": null,
+                    "is_observable": false,
+                    "activity_month": "2018-11-01",
+                    "active_customers": null
+                },
+                {
+                    "cohort_size": 5878,
+                    "month_index": 6,
+                    "cohort_month": "2018-06-01",
+                    "activity_rate": null,
+                    "is_observable": false,
+                    "activity_month": "2018-12-01",
+                    "active_customers": null
+                },
+                {
+                    "cohort_size": 5878,
+                    "month_index": 7,
+                    "cohort_month": "2018-06-01",
+                    "activity_rate": null,
+                    "is_observable": false,
+                    "activity_month": "2019-01-01",
+                    "active_customers": null
+                },
+                {
+                    "cohort_size": 5878,
+                    "month_index": 8,
+                    "cohort_month": "2018-06-01",
+                    "activity_rate": null,
+                    "is_observable": false,
+                    "activity_month": "2019-02-01",
+                    "active_customers": null
+                },
+                {
+                    "cohort_size": 5878,
+                    "month_index": 9,
+                    "cohort_month": "2018-06-01",
+                    "activity_rate": null,
+                    "is_observable": false,
+                    "activity_month": "2019-03-01",
+                    "active_customers": null
+                },
+                {
+                    "cohort_size": 5878,
+                    "month_index": 10,
+                    "cohort_month": "2018-06-01",
+                    "activity_rate": null,
+                    "is_observable": false,
+                    "activity_month": "2019-04-01",
+                    "active_customers": null
+                },
+                {
+                    "cohort_size": 5878,
+                    "month_index": 11,
+                    "cohort_month": "2018-06-01",
+                    "activity_rate": null,
+                    "is_observable": false,
+                    "activity_month": "2019-05-01",
+                    "active_customers": null
+                },
+                {
+                    "cohort_size": 5878,
+                    "month_index": 12,
+                    "cohort_month": "2018-06-01",
+                    "activity_rate": null,
+                    "is_observable": false,
+                    "activity_month": "2019-06-01",
+                    "active_customers": null
+                },
+                {
+                    "cohort_size": 5878,
+                    "month_index": 13,
+                    "cohort_month": "2018-06-01",
+                    "activity_rate": null,
+                    "is_observable": false,
+                    "activity_month": "2019-07-01",
+                    "active_customers": null
+                },
+                {
+                    "cohort_size": 5878,
+                    "month_index": 14,
+                    "cohort_month": "2018-06-01",
+                    "activity_rate": null,
+                    "is_observable": false,
+                    "activity_month": "2019-08-01",
+                    "active_customers": null
+                },
+                {
+                    "cohort_size": 5878,
+                    "month_index": 15,
+                    "cohort_month": "2018-06-01",
+                    "activity_rate": null,
+                    "is_observable": false,
+                    "activity_month": "2019-09-01",
+                    "active_customers": null
+                },
+                {
+                    "cohort_size": 5878,
+                    "month_index": 16,
+                    "cohort_month": "2018-06-01",
+                    "activity_rate": null,
+                    "is_observable": false,
+                    "activity_month": "2019-10-01",
+                    "active_customers": null
+                },
+                {
+                    "cohort_size": 5878,
+                    "month_index": 17,
+                    "cohort_month": "2018-06-01",
+                    "activity_rate": null,
+                    "is_observable": false,
+                    "activity_month": "2019-11-01",
+                    "active_customers": null
+                },
+                {
+                    "cohort_size": 5878,
+                    "month_index": 18,
+                    "cohort_month": "2018-06-01",
+                    "activity_rate": null,
+                    "is_observable": false,
+                    "activity_month": "2019-12-01",
+                    "active_customers": null
+                },
+                {
+                    "cohort_size": 5949,
+                    "month_index": 0,
+                    "cohort_month": "2018-07-01",
+                    "activity_rate": 1.00000000000000000000,
+                    "is_observable": true,
+                    "activity_month": "2018-07-01",
+                    "active_customers": 5949
+                },
+                {
+                    "cohort_size": 5949,
+                    "month_index": 1,
+                    "cohort_month": "2018-07-01",
+                    "activity_rate": null,
+                    "is_observable": false,
+                    "activity_month": "2018-08-01",
+                    "active_customers": null
+                },
+                {
+                    "cohort_size": 5949,
+                    "month_index": 2,
+                    "cohort_month": "2018-07-01",
+                    "activity_rate": null,
+                    "is_observable": false,
+                    "activity_month": "2018-09-01",
+                    "active_customers": null
+                },
+                {
+                    "cohort_size": 5949,
+                    "month_index": 3,
+                    "cohort_month": "2018-07-01",
+                    "activity_rate": null,
+                    "is_observable": false,
+                    "activity_month": "2018-10-01",
+                    "active_customers": null
+                },
+                {
+                    "cohort_size": 5949,
+                    "month_index": 4,
+                    "cohort_month": "2018-07-01",
+                    "activity_rate": null,
+                    "is_observable": false,
+                    "activity_month": "2018-11-01",
+                    "active_customers": null
+                },
+                {
+                    "cohort_size": 5949,
+                    "month_index": 5,
+                    "cohort_month": "2018-07-01",
+                    "activity_rate": null,
+                    "is_observable": false,
+                    "activity_month": "2018-12-01",
+                    "active_customers": null
+                },
+                {
+                    "cohort_size": 5949,
+                    "month_index": 6,
+                    "cohort_month": "2018-07-01",
+                    "activity_rate": null,
+                    "is_observable": false,
+                    "activity_month": "2019-01-01",
+                    "active_customers": null
+                },
+                {
+                    "cohort_size": 5949,
+                    "month_index": 7,
+                    "cohort_month": "2018-07-01",
+                    "activity_rate": null,
+                    "is_observable": false,
+                    "activity_month": "2019-02-01",
+                    "active_customers": null
+                },
+                {
+                    "cohort_size": 5949,
+                    "month_index": 8,
+                    "cohort_month": "2018-07-01",
+                    "activity_rate": null,
+                    "is_observable": false,
+                    "activity_month": "2019-03-01",
+                    "active_customers": null
+                },
+                {
+                    "cohort_size": 5949,
+                    "month_index": 9,
+                    "cohort_month": "2018-07-01",
+                    "activity_rate": null,
+                    "is_observable": false,
+                    "activity_month": "2019-04-01",
+                    "active_customers": null
+                },
+                {
+                    "cohort_size": 5949,
+                    "month_index": 10,
+                    "cohort_month": "2018-07-01",
+                    "activity_rate": null,
+                    "is_observable": false,
+                    "activity_month": "2019-05-01",
+                    "active_customers": null
+                },
+                {
+                    "cohort_size": 5949,
+                    "month_index": 11,
+                    "cohort_month": "2018-07-01",
+                    "activity_rate": null,
+                    "is_observable": false,
+                    "activity_month": "2019-06-01",
+                    "active_customers": null
+                },
+                {
+                    "cohort_size": 5949,
+                    "month_index": 12,
+                    "cohort_month": "2018-07-01",
+                    "activity_rate": null,
+                    "is_observable": false,
+                    "activity_month": "2019-07-01",
+                    "active_customers": null
+                },
+                {
+                    "cohort_size": 5949,
+                    "month_index": 13,
+                    "cohort_month": "2018-07-01",
+                    "activity_rate": null,
+                    "is_observable": false,
+                    "activity_month": "2019-08-01",
+                    "active_customers": null
+                },
+                {
+                    "cohort_size": 5949,
+                    "month_index": 14,
+                    "cohort_month": "2018-07-01",
+                    "activity_rate": null,
+                    "is_observable": false,
+                    "activity_month": "2019-09-01",
+                    "active_customers": null
+                },
+                {
+                    "cohort_size": 5949,
+                    "month_index": 15,
+                    "cohort_month": "2018-07-01",
+                    "activity_rate": null,
+                    "is_observable": false,
+                    "activity_month": "2019-10-01",
+                    "active_customers": null
+                },
+                {
+                    "cohort_size": 5949,
+                    "month_index": 16,
+                    "cohort_month": "2018-07-01",
+                    "activity_rate": null,
+                    "is_observable": false,
+                    "activity_month": "2019-11-01",
+                    "active_customers": null
+                },
+                {
+                    "cohort_size": 5949,
+                    "month_index": 17,
+                    "cohort_month": "2018-07-01",
+                    "activity_rate": null,
+                    "is_observable": false,
+                    "activity_month": "2019-12-01",
+                    "active_customers": null
+                },
+                {
+                    "cohort_size": 5949,
+                    "month_index": 18,
+                    "cohort_month": "2018-07-01",
+                    "activity_rate": null,
+                    "is_observable": false,
+                    "activity_month": "2020-01-01",
+                    "active_customers": null
+                }
+            ]
+        },
+        "quality": {
+            "sql": "SELECT count(*) FILTER (WHERE missing_payment) AS missing_payment_orders,count(*) FILTER (WHERE missing_delivery_date) AS missing_delivery_dates,count(*) FILTER (WHERE missing_approval_date) AS missing_approval_dates,count(*) FILTER (WHERE payment_mismatch) AS payment_mismatch_orders FROM analytics.orders",
+            "rows": [
+                {
+                    "missing_approval_dates": 14,
+                    "missing_delivery_dates": 8,
+                    "missing_payment_orders": 1,
+                    "payment_mismatch_orders": 273
+                }
+            ]
+        },
+        "overview": {
+            "sql": "SELECT count(*) AS customers,sum(order_count) AS orders,sum(monetary_value) AS merchandise_value,count(*) FILTER (WHERE is_repeat_customer) AS repeat_customers,count(*) FILTER (WHERE NOT is_repeat_customer) AS one_time_customers,avg(order_count) AS purchases_per_customer,count(*) FILTER (WHERE is_repeat_customer)::numeric/nullif(count(*),0) AS observed_repeat_rate,sum(monetary_value) FILTER (WHERE is_repeat_customer)/sum(monetary_value) AS repeat_spend_share FROM analytics.customer_metrics",
+            "rows": [
+                {
+                    "orders": 90127,
+                    "customers": 87214,
+                    "repeat_customers": 2621,
+                    "merchandise_value": 12382921.47,
+                    "one_time_customers": 84593,
+                    "repeat_spend_share": 0.05486503258911485288,
+                    "observed_repeat_rate": 0.03005251450455202146,
+                    "purchases_per_customer": 1.0334006008209691
+                }
+            ]
+        },
+        "segments": {
+            "sql": "SELECT * FROM analytics.segment_summary ORDER BY customers DESC",
+            "rows": [
+                {
+                    "orders": 66981,
+                    "segment": "Older one-time",
+                    "customers": 66981,
+                    "average_frequency": 1.00000000000000000000,
+                    "merchandise_value": 9184024.74,
+                    "average_recency_days": 273.1135098012869321,
+                    "median_customer_value": 86.9
+                },
+                {
+                    "orders": 17612,
+                    "segment": "Recent one-time",
+                    "customers": 17612,
+                    "average_frequency": 1.00000000000000000000,
+                    "merchandise_value": 2519507.34,
+                    "average_recency_days": 46.4788780377015671,
+                    "median_customer_value": 89.9
+                },
+                {
+                    "orders": 4169,
+                    "segment": "Less-recent repeat",
+                    "customers": 1985,
+                    "average_frequency": 2.1002518891687657,
+                    "merchandise_value": 503575.57,
+                    "average_recency_days": 257.8574307304785894,
+                    "median_customer_value": 179.44
+                },
+                {
+                    "orders": 1074,
+                    "segment": "Recent high-value repeat",
+                    "customers": 492,
+                    "average_frequency": 2.1829268292682927,
+                    "merchandise_value": 165059.89,
+                    "average_recency_days": 47.3130081300813008,
+                    "median_customer_value": 239.44
+                },
+                {
+                    "orders": 291,
+                    "segment": "Recent repeat",
+                    "customers": 144,
+                    "average_frequency": 2.0208333333333333,
+                    "merchandise_value": 10753.93,
+                    "average_recency_days": 44.3958333333333333,
+                    "median_customer_value": 75.43
+                }
+            ]
+        },
+        "frequency": {
+            "sql": "SELECT * FROM analytics.purchase_frequency ORDER BY order_count",
+            "rows": [
+                {
+                    "customers": 84593,
+                    "order_count": 1,
+                    "merchandise_value": 11703532.08
+                },
+                {
+                    "customers": 2410,
+                    "order_count": 2,
+                    "merchandise_value": 592234.21
+                },
+                {
+                    "customers": 169,
+                    "order_count": 3,
+                    "merchandise_value": 63186.04
+                },
+                {
+                    "customers": 24,
+                    "order_count": 4,
+                    "merchandise_value": 12587.79
+                },
+                {
+                    "customers": 9,
+                    "order_count": 5,
+                    "merchandise_value": 5596.24
+                },
+                {
+                    "customers": 4,
+                    "order_count": 6,
+                    "merchandise_value": 1912.90
+                },
+                {
+                    "customers": 3,
+                    "order_count": 7,
+                    "merchandise_value": 2280.02
+                },
+                {
+                    "customers": 1,
+                    "order_count": 9,
+                    "merchandise_value": 1000.85
+                },
+                {
+                    "customers": 1,
+                    "order_count": 12,
+                    "merchandise_value": 591.34
+                }
+            ]
+        },
+        "intervals": {
+            "sql": "SELECT * FROM analytics.interval_summary ORDER BY population",
+            "rows": [
+                {
+                    "p25_days": 0.0015625,
+                    "p75_days": 114.92649305555555,
+                    "p90_days": 230.60670370370372,
+                    "intervals": 2913,
+                    "mean_days": 74.582088403198942162104748,
+                    "population": "All consecutive intervals",
+                    "median_days": 27.550289351851852,
+                    "zero_duration_intervals": 262
+                },
+                {
+                    "p25_days": 0.000046296296296296294,
+                    "p75_days": 119.23306712962963,
+                    "p90_days": 235.78582175925925,
+                    "intervals": 2621,
+                    "mean_days": 76.335733392683030226089849,
+                    "population": "First-to-second intervals",
+                    "median_days": 26.010659722222222,
+                    "zero_duration_intervals": 248
+                }
+            ]
+        },
+        "exclusions": {
+            "sql": "SELECT * FROM analytics.exclusion_summary ORDER BY eligibility_reason",
+            "rows": [
+                {
+                    "order_count": 6351,
+                    "eligibility_reason": "after_observation_end"
+                },
+                {
+                    "order_count": 90127,
+                    "eligibility_reason": "eligible"
+                },
+                {
+                    "order_count": 2963,
+                    "eligibility_reason": "not_delivered"
+                }
+            ]
+        },
+        "thresholds": {
+            "sql": "SELECT * FROM analytics.rfm_thresholds",
+            "rows": [
+                {
+                    "monetary_p20": 39.90,
+                    "monetary_p40": 69.90,
+                    "monetary_p60": 109.90,
+                    "monetary_p80": 179.90
+                }
+            ]
+        },
+        "validation": {
+            "sql": "SELECT * FROM analytics.validation_results ORDER BY check_name",
+            "rows": [
+                {
+                    "actual": 0,
+                    "passed": true,
+                    "expected": 0,
+                    "check_name": "cohort_bounds",
+                    "checked_at": "2026-09-20T21:49:25.082639+07:00"
+                },
+                {
+                    "actual": 0,
+                    "passed": true,
+                    "expected": 0,
+                    "check_name": "cohort_grain",
+                    "checked_at": "2026-09-20T21:49:25.082639+07:00"
+                },
+                {
+                    "actual": 0,
+                    "passed": true,
+                    "expected": 0,
+                    "check_name": "cohort_month_index",
+                    "checked_at": "2026-09-20T21:49:25.082639+07:00"
+                },
+                {
+                    "actual": 0,
+                    "passed": true,
+                    "expected": 0,
+                    "check_name": "cohort_month_zero",
+                    "checked_at": "2026-09-20T21:49:25.082639+07:00"
+                },
+                {
+                    "actual": 87214,
+                    "passed": true,
+                    "expected": 87214,
+                    "check_name": "customer_count",
+                    "checked_at": "2026-09-20T21:49:25.082639+07:00"
+                },
+                {
+                    "actual": 0,
+                    "passed": true,
+                    "expected": 0,
+                    "check_name": "customer_grain",
+                    "checked_at": "2026-09-20T21:49:25.082639+07:00"
+                },
+                {
+                    "actual": 90127,
+                    "passed": true,
+                    "expected": 90127,
+                    "check_name": "customer_order_reconciliation",
+                    "checked_at": "2026-09-20T21:49:25.082639+07:00"
+                },
+                {
+                    "actual": 12382921.47,
+                    "passed": true,
+                    "expected": 12382921.47,
+                    "check_name": "customer_spend_reconciliation",
+                    "checked_at": "2026-09-20T21:49:25.082639+07:00"
+                },
+                {
+                    "actual": 90127,
+                    "passed": true,
+                    "expected": 90127,
+                    "check_name": "eligible_order_count",
+                    "checked_at": "2026-09-20T21:49:25.082639+07:00"
+                },
+                {
+                    "actual": 0,
+                    "passed": true,
+                    "expected": 0,
+                    "check_name": "eligible_windows_are_known",
+                    "checked_at": "2026-09-20T21:49:25.082639+07:00"
+                },
+                {
+                    "actual": 2621,
+                    "passed": true,
+                    "expected": 2621,
+                    "check_name": "first_to_second_count",
+                    "checked_at": "2026-09-20T21:49:25.082639+07:00"
+                },
+                {
+                    "actual": 0,
+                    "passed": true,
+                    "expected": 0,
+                    "check_name": "frequency_ties",
+                    "checked_at": "2026-09-20T21:49:25.082639+07:00"
+                },
+                {
+                    "actual": 90127,
+                    "passed": true,
+                    "expected": 90127,
+                    "check_name": "history_grain",
+                    "checked_at": "2026-09-20T21:49:25.082639+07:00"
+                },
+                {
+                    "actual": 0,
+                    "passed": true,
+                    "expected": 0,
+                    "check_name": "ineligible_windows_are_null",
+                    "checked_at": "2026-09-20T21:49:25.082639+07:00"
+                },
+                {
+                    "actual": 2913,
+                    "passed": true,
+                    "expected": 2913,
+                    "check_name": "interval_count",
+                    "checked_at": "2026-09-20T21:49:25.082639+07:00"
+                },
+                {
+                    "actual": 0,
+                    "passed": true,
+                    "expected": 0,
+                    "check_name": "invalid_customer_dates",
+                    "checked_at": "2026-09-20T21:49:25.082639+07:00"
+                },
+                {
+                    "actual": 0,
+                    "passed": true,
+                    "expected": 0,
+                    "check_name": "invalid_scores",
+                    "checked_at": "2026-09-20T21:49:25.082639+07:00"
+                },
+                {
+                    "actual": 12382921.47,
+                    "passed": true,
+                    "expected": 12382921.47,
+                    "check_name": "merchandise_reconciliation",
+                    "checked_at": "2026-09-20T21:49:25.082639+07:00"
+                },
+                {
+                    "actual": 0,
+                    "passed": true,
+                    "expected": 0,
+                    "check_name": "missing_segments",
+                    "checked_at": "2026-09-20T21:49:25.082639+07:00"
+                },
+                {
+                    "actual": 0,
+                    "passed": true,
+                    "expected": 0,
+                    "check_name": "monetary_ties",
+                    "checked_at": "2026-09-20T21:49:25.082639+07:00"
+                },
+                {
+                    "actual": 0,
+                    "passed": true,
+                    "expected": 0,
+                    "check_name": "nonnegative_intervals",
+                    "checked_at": "2026-09-20T21:49:25.082639+07:00"
+                },
+                {
+                    "actual": 0,
+                    "passed": true,
+                    "expected": 0,
+                    "check_name": "order_grain",
+                    "checked_at": "2026-09-20T21:49:25.082639+07:00"
+                },
+                {
+                    "actual": 0,
+                    "passed": true,
+                    "expected": 0,
+                    "check_name": "recency_ties",
+                    "checked_at": "2026-09-20T21:49:25.082639+07:00"
+                },
+                {
+                    "actual": 87214,
+                    "passed": true,
+                    "expected": 87214,
+                    "check_name": "repeat_population_partition",
+                    "checked_at": "2026-09-20T21:49:25.082639+07:00"
+                },
+                {
+                    "actual": 261642,
+                    "passed": true,
+                    "expected": 261642,
+                    "check_name": "repeat_window_count",
+                    "checked_at": "2026-09-20T21:49:25.082639+07:00"
+                },
+                {
+                    "actual": 0,
+                    "passed": true,
+                    "expected": 0,
+                    "check_name": "repeat_window_grain",
+                    "checked_at": "2026-09-20T21:49:25.082639+07:00"
+                },
+                {
+                    "actual": 0,
+                    "passed": true,
+                    "expected": 0,
+                    "check_name": "sequence_per_customer",
+                    "checked_at": "2026-09-20T21:49:25.082639+07:00"
+                },
+                {
+                    "actual": 0,
+                    "passed": true,
+                    "expected": 0,
+                    "check_name": "unobservable_cohort_cells",
+                    "checked_at": "2026-09-20T21:49:25.082639+07:00"
+                }
+            ]
+        },
+        "cohort_month1": {
+            "sql": "SELECT sum(active_customers) AS active_customers,sum(cohort_size) AS eligible_cohort_customers,sum(active_customers)::numeric/sum(cohort_size) AS activity_rate FROM analytics.cohort_activity WHERE month_index=1 AND is_observable",
+            "rows": [
+                {
+                    "activity_rate": 0.00480240984679201491,
+                    "active_customers": 389,
+                    "eligible_cohort_customers": 81001
+                }
+            ]
+        },
+        "monthly_orders": {
+            "sql": "SELECT * FROM bi.monthly_orders ORDER BY purchase_month",
+            "rows": [
+                {
+                    "orders": 1,
+                    "purchase_month": "2016-09-01",
+                    "returning_orders": 0,
+                    "merchandise_value": 134.97
+                },
+                {
+                    "orders": 265,
+                    "purchase_month": "2016-10-01",
+                    "returning_orders": 3,
+                    "merchandise_value": 40325.11
+                },
+                {
+                    "orders": 1,
+                    "purchase_month": "2016-12-01",
+                    "returning_orders": 0,
+                    "merchandise_value": 10.90
+                },
+                {
+                    "orders": 750,
+                    "purchase_month": "2017-01-01",
+                    "returning_orders": 33,
+                    "merchandise_value": 111798.36
+                },
+                {
+                    "orders": 1653,
+                    "purchase_month": "2017-02-01",
+                    "returning_orders": 25,
+                    "merchandise_value": 234223.40
+                },
+                {
+                    "orders": 2546,
+                    "purchase_month": "2017-03-01",
+                    "returning_orders": 43,
+                    "merchandise_value": 359198.85
+                },
+                {
+                    "orders": 2303,
+                    "purchase_month": "2017-04-01",
+                    "returning_orders": 47,
+                    "merchandise_value": 340669.68
+                },
+                {
+                    "orders": 3546,
+                    "purchase_month": "2017-05-01",
+                    "returning_orders": 95,
+                    "merchandise_value": 489338.25
+                },
+                {
+                    "orders": 3135,
+                    "purchase_month": "2017-06-01",
+                    "returning_orders": 98,
+                    "merchandise_value": 421923.37
+                },
+                {
+                    "orders": 3872,
+                    "purchase_month": "2017-07-01",
+                    "returning_orders": 120,
+                    "merchandise_value": 481604.52
+                },
+                {
+                    "orders": 4193,
+                    "purchase_month": "2017-08-01",
+                    "returning_orders": 136,
+                    "merchandise_value": 554699.70
+                },
+                {
+                    "orders": 4150,
+                    "purchase_month": "2017-09-01",
+                    "returning_orders": 146,
+                    "merchandise_value": 607399.67
+                },
+                {
+                    "orders": 4478,
+                    "purchase_month": "2017-10-01",
+                    "returning_orders": 150,
+                    "merchandise_value": 648247.65
+                },
+                {
+                    "orders": 7289,
+                    "purchase_month": "2017-11-01",
+                    "returning_orders": 229,
+                    "merchandise_value": 987765.37
+                },
+                {
+                    "orders": 5513,
+                    "purchase_month": "2017-12-01",
+                    "returning_orders": 175,
+                    "merchandise_value": 726033.19
+                },
+                {
+                    "orders": 7069,
+                    "purchase_month": "2018-01-01",
+                    "returning_orders": 227,
+                    "merchandise_value": 924645.00
+                },
+                {
+                    "orders": 6555,
+                    "purchase_month": "2018-02-01",
+                    "returning_orders": 267,
+                    "merchandise_value": 826437.13
+                },
+                {
+                    "orders": 7003,
+                    "purchase_month": "2018-03-01",
+                    "returning_orders": 229,
+                    "merchandise_value": 953356.25
+                },
+                {
+                    "orders": 6798,
+                    "purchase_month": "2018-04-01",
+                    "returning_orders": 216,
+                    "merchandise_value": 973534.09
+                },
+                {
+                    "orders": 6749,
+                    "purchase_month": "2018-05-01",
+                    "returning_orders": 243,
+                    "merchandise_value": 977544.69
+                },
+                {
+                    "orders": 6099,
+                    "purchase_month": "2018-06-01",
+                    "returning_orders": 221,
+                    "merchandise_value": 856077.86
+                },
+                {
+                    "orders": 6159,
+                    "purchase_month": "2018-07-01",
+                    "returning_orders": 210,
+                    "merchandise_value": 867953.46
+                }
+            ]
+        },
+        "interval_caveats": {
+            "sql": "SELECT count(*) FILTER (WHERE same_day) AS same_day_intervals,count(*) FILTER (WHERE same_timestamp) AS same_timestamp_intervals FROM analytics.purchase_intervals",
+            "rows": [
+                {
+                    "same_day_intervals": 876,
+                    "same_timestamp_intervals": 262
+                }
+            ]
+        },
+        "cutoff_sensitivity": {
+            "sql": "SELECT * FROM analytics.cutoff_sensitivity ORDER BY cutoff",
+            "rows": [
+                {
+                    "cutoff": "2018-06-30",
+                    "orders": 83968,
+                    "customers": 81265,
+                    "repeat_customers": 2426,
+                    "merchandise_value": 11514968.01,
+                    "observed_repeat_rate": 0.02985295022457392481
+                },
+                {
+                    "cutoff": "2018-07-31",
+                    "orders": 90127,
+                    "customers": 87214,
+                    "repeat_customers": 2621,
+                    "merchandise_value": 12382921.47,
+                    "observed_repeat_rate": 0.03005251450455202146
+                },
+                {
+                    "cutoff": "2018-08-31",
+                    "orders": 96478,
+                    "customers": 93358,
+                    "repeat_customers": 2801,
+                    "merchandise_value": 13221498.11,
+                    "observed_repeat_rate": 0.03000278497825574670
+                }
+            ]
+        },
+        "interval_distribution": {
+            "sql": "SELECT * FROM analytics.interval_distribution ORDER BY bucket_order",
+            "rows": [
+                {
+                    "gap_bucket": "Exactly 0 days",
+                    "bucket_order": 0,
+                    "all_intervals": 262,
+                    "first_to_second_intervals": 248
+                },
+                {
+                    "gap_bucket": "(0, 1] days",
+                    "bucket_order": 1,
+                    "all_intervals": 643,
+                    "first_to_second_intervals": 590
+                },
+                {
+                    "gap_bucket": "(1, 7] days",
+                    "bucket_order": 2,
+                    "all_intervals": 169,
+                    "first_to_second_intervals": 151
+                },
+                {
+                    "gap_bucket": "(7, 30] days",
+                    "bucket_order": 3,
+                    "all_intervals": 419,
+                    "first_to_second_intervals": 364
+                },
+                {
+                    "gap_bucket": "(30, 60] days",
+                    "bucket_order": 4,
+                    "all_intervals": 338,
+                    "first_to_second_intervals": 280
+                },
+                {
+                    "gap_bucket": "(60, 90] days",
+                    "bucket_order": 5,
+                    "all_intervals": 214,
+                    "first_to_second_intervals": 189
+                },
+                {
+                    "gap_bucket": "(90, 180] days",
+                    "bucket_order": 6,
+                    "all_intervals": 427,
+                    "first_to_second_intervals": 382
+                },
+                {
+                    "gap_bucket": "Over 180 days",
+                    "bucket_order": 7,
+                    "all_intervals": 441,
+                    "first_to_second_intervals": 417
+                }
+            ]
+        },
+        "distinct_day_sensitivity": {
+            "sql": "SELECT * FROM analytics.distinct_day_sensitivity",
+            "rows": [
+                {
+                    "customers": 87214,
+                    "later_day_repeat_rate": 0.02116632650721214484,
+                    "later_day_repeat_customers": 1846
+                }
+            ]
+        }
+    },
+    "generated_at_utc": "2026-09-20T21:49:31.700334+07:00"
+}

@@ -6,3 +6,9 @@
 *.png binary
 *.jpg binary
 *.pdf binary
+*.json text eol=lf
+*.pbip text eol=lf
+*.pbir text eol=lf
+*.pbism text eol=lf
+*.bim text eol=lf
+*.ps1 text eol=lf

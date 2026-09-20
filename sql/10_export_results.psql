@@ -1,0 +1,49 @@
+-- psql-only export. Run from repository root after 02-09. No raw/customer data is published.
+\set ON_ERROR_STOP on
+\pset format unaligned
+\pset tuples_only on
+\o outputs/tables/analysis_results.json
+SELECT jsonb_pretty(jsonb_build_object('generated_at_utc',current_timestamp,
+'source','Olist version 2, local PostgreSQL',
+'queries',jsonb_build_object('config',
+jsonb_build_object('sql',$query$SELECT observation_start,observation_end,observation_end+1 AS reference_date,cutoff_rationale FROM analytics.analysis_config$query$,'rows',(SELECT coalesce(jsonb_agg(x),'[]'::jsonb) FROM (SELECT observation_start,observation_end,observation_end+1 AS reference_date,cutoff_rationale FROM analytics.analysis_config) x)),
+'overview',
+jsonb_build_object('sql',$query$SELECT count(*) AS customers,sum(order_count) AS orders,sum(monetary_value) AS merchandise_value,count(*) FILTER (WHERE is_repeat_customer) AS repeat_customers,count(*) FILTER (WHERE NOT is_repeat_customer) AS one_time_customers,avg(order_count) AS purchases_per_customer,count(*) FILTER (WHERE is_repeat_customer)::numeric/nullif(count(*),0) AS observed_repeat_rate,sum(monetary_value) FILTER (WHERE is_repeat_customer)/sum(monetary_value) AS repeat_spend_share FROM analytics.customer_metrics$query$,'rows',(SELECT coalesce(jsonb_agg(x),'[]'::jsonb) FROM (SELECT count(*) AS customers,sum(order_count) AS orders,sum(monetary_value) AS merchandise_value,count(*) FILTER (WHERE is_repeat_customer) AS repeat_customers,count(*) FILTER (WHERE NOT is_repeat_customer) AS one_time_customers,avg(order_count) AS purchases_per_customer,count(*) FILTER (WHERE is_repeat_customer)::numeric/nullif(count(*),0) AS observed_repeat_rate,sum(monetary_value) FILTER (WHERE is_repeat_customer)/sum(monetary_value) AS repeat_spend_share FROM analytics.customer_metrics) x)),
+'segments',
+jsonb_build_object('sql',$query$SELECT * FROM analytics.segment_summary ORDER BY customers DESC$query$,'rows',(SELECT coalesce(jsonb_agg(x),'[]'::jsonb) FROM (SELECT * FROM analytics.segment_summary ORDER BY customers DESC) x)),
+'thresholds',
+jsonb_build_object('sql',$query$SELECT * FROM analytics.rfm_thresholds$query$,'rows',(SELECT coalesce(jsonb_agg(x),'[]'::jsonb) FROM (SELECT * FROM analytics.rfm_thresholds) x)),
+'frequency',
+jsonb_build_object('sql',$query$SELECT * FROM analytics.purchase_frequency ORDER BY order_count$query$,'rows',(SELECT coalesce(jsonb_agg(x),'[]'::jsonb) FROM (SELECT * FROM analytics.purchase_frequency ORDER BY order_count) x)),
+'cohorts',
+jsonb_build_object('sql',$query$SELECT * FROM analytics.cohort_activity ORDER BY cohort_month,month_index$query$,'rows',(SELECT coalesce(jsonb_agg(x),'[]'::jsonb) FROM (SELECT * FROM analytics.cohort_activity ORDER BY cohort_month,month_index) x)),
+'repeat',
+jsonb_build_object('sql',$query$SELECT * FROM analytics.repeat_summary ORDER BY window_days$query$,'rows',(SELECT coalesce(jsonb_agg(x),'[]'::jsonb) FROM (SELECT * FROM analytics.repeat_summary ORDER BY window_days) x)),
+'intervals',
+jsonb_build_object('sql',$query$SELECT * FROM analytics.interval_summary ORDER BY population$query$,'rows',(SELECT coalesce(jsonb_agg(x),'[]'::jsonb) FROM (SELECT * FROM analytics.interval_summary ORDER BY population) x)),
+'interval_distribution',
+jsonb_build_object('sql',$query$SELECT * FROM analytics.interval_distribution ORDER BY bucket_order$query$,'rows',(SELECT coalesce(jsonb_agg(x),'[]'::jsonb) FROM (SELECT * FROM analytics.interval_distribution ORDER BY bucket_order) x)),
+'monthly_orders',
+jsonb_build_object('sql',$query$SELECT * FROM bi.monthly_orders ORDER BY purchase_month$query$,'rows',(SELECT coalesce(jsonb_agg(x),'[]'::jsonb) FROM (SELECT * FROM bi.monthly_orders ORDER BY purchase_month) x)),
+'cutoff_sensitivity',
+jsonb_build_object('sql',$query$SELECT * FROM analytics.cutoff_sensitivity ORDER BY cutoff$query$,'rows',(SELECT coalesce(jsonb_agg(x),'[]'::jsonb) FROM (SELECT * FROM analytics.cutoff_sensitivity ORDER BY cutoff) x)),
+'exclusions',
+jsonb_build_object('sql',$query$SELECT * FROM analytics.exclusion_summary ORDER BY eligibility_reason$query$,'rows',(SELECT coalesce(jsonb_agg(x),'[]'::jsonb) FROM (SELECT * FROM analytics.exclusion_summary ORDER BY eligibility_reason) x)),
+'quality',
+jsonb_build_object('sql',$query$SELECT count(*) FILTER (WHERE missing_payment) AS missing_payment_orders,count(*) FILTER (WHERE missing_delivery_date) AS missing_delivery_dates,count(*) FILTER (WHERE missing_approval_date) AS missing_approval_dates,count(*) FILTER (WHERE payment_mismatch) AS payment_mismatch_orders FROM analytics.orders$query$,'rows',(SELECT coalesce(jsonb_agg(x),'[]'::jsonb) FROM (SELECT count(*) FILTER (WHERE missing_payment) AS missing_payment_orders,count(*) FILTER (WHERE missing_delivery_date) AS missing_delivery_dates,count(*) FILTER (WHERE missing_approval_date) AS missing_approval_dates,count(*) FILTER (WHERE payment_mismatch) AS payment_mismatch_orders FROM analytics.orders) x)),
+'interval_caveats',
+jsonb_build_object('sql',$query$SELECT count(*) FILTER (WHERE same_day) AS same_day_intervals,count(*) FILTER (WHERE same_timestamp) AS same_timestamp_intervals FROM analytics.purchase_intervals$query$,'rows',(SELECT coalesce(jsonb_agg(x),'[]'::jsonb) FROM (SELECT count(*) FILTER (WHERE same_day) AS same_day_intervals,count(*) FILTER (WHERE same_timestamp) AS same_timestamp_intervals FROM analytics.purchase_intervals) x)),
+'cohort_month1',
+jsonb_build_object('sql',$query$SELECT sum(active_customers) AS active_customers,sum(cohort_size) AS eligible_cohort_customers,sum(active_customers)::numeric/sum(cohort_size) AS activity_rate FROM analytics.cohort_activity WHERE month_index=1 AND is_observable$query$,'rows',(SELECT coalesce(jsonb_agg(x),'[]'::jsonb) FROM (SELECT sum(active_customers) AS active_customers,sum(cohort_size) AS eligible_cohort_customers,sum(active_customers)::numeric/sum(cohort_size) AS activity_rate FROM analytics.cohort_activity WHERE month_index=1 AND is_observable) x)),
+'validation',
+jsonb_build_object('sql',$query$SELECT * FROM analytics.validation_results ORDER BY check_name$query$,'rows',(SELECT coalesce(jsonb_agg(x),'[]'::jsonb) FROM (SELECT * FROM analytics.validation_results ORDER BY check_name) x)),
+'distinct_day_sensitivity',
+jsonb_build_object('sql',$query$SELECT * FROM analytics.distinct_day_sensitivity$query$,'rows',(SELECT coalesce(jsonb_agg(x),'[]'::jsonb) FROM (SELECT * FROM analytics.distinct_day_sensitivity) x)))));
+\o
+\copy (SELECT * FROM bi.customers) TO 'outputs/tables/customers.csv' WITH (FORMAT csv, HEADER true, ENCODING 'UTF8')
+\copy (SELECT * FROM bi.orders) TO 'outputs/tables/orders.csv' WITH (FORMAT csv, HEADER true, ENCODING 'UTF8')
+\copy (SELECT * FROM bi.repeat_windows) TO 'outputs/tables/repeat_windows.csv' WITH (FORMAT csv, HEADER true, ENCODING 'UTF8')
+\copy (SELECT * FROM bi.purchase_intervals) TO 'outputs/tables/purchase_intervals.csv' WITH (FORMAT csv, HEADER true, ENCODING 'UTF8')
+\copy (SELECT * FROM bi.cohort_activity) TO 'outputs/tables/cohort_activity.csv' WITH (FORMAT csv, HEADER true, ENCODING 'UTF8')
+\copy (SELECT * FROM bi.dates) TO 'outputs/tables/dates.csv' WITH (FORMAT csv, HEADER true, ENCODING 'UTF8')
+\copy (SELECT * FROM bi.interval_distribution) TO 'outputs/tables/interval_distribution.csv' WITH (FORMAT csv, HEADER true, ENCODING 'UTF8')

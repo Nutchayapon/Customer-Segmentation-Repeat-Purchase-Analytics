@@ -1,0 +1,16 @@
+{
+  "verified_at_utc": "2026-09-20T14:59:35.861218+00:00",
+  "model_tables": 7,
+  "relationships": 4,
+  "measures": 27,
+  "report_pages": 4,
+  "visual_containers": 32,
+  "model_parse": "Passed using the installed Power BI Tabular Object Model deserializer in PowerBI compatibility mode.",
+  "visual_bindings": "All authored column and measure references resolve to model metadata.",
+  "pbir_schema_validation": {
+    "documents": 40,
+    "result": "Passed against 13 official Microsoft schema documents and resolved references."
+  },
+  "rendered_validation": "Not performed: native Power BI Desktop refresh, DAX execution, and visual interactions remain unverified.",
+  "portfolio_figures": "Four independently rendered SQL-backed PNG figures inspected; these are not Power BI screenshots."
+}

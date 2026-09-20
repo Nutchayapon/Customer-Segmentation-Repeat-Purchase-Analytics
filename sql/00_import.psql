@@ -1,0 +1,39 @@
+-- Client-side import for psql, not the pgAdmin Query Tool.
+-- Run from the repository root after 00_setup.sql:
+-- psql -X -v ON_ERROR_STOP=1 -d olist_customer_analytics -f sql/00_import.psql
+-- Supply host/port/user and a local passfile outside Git.
+-- This script requires empty landing tables and imports all four files atomically.
+-- Expected counts are for the recorded Olist version 2 download.
+
+\set ON_ERROR_STOP on
+
+BEGIN;
+
+DO $$
+BEGIN
+    IF EXISTS (SELECT 1 FROM raw.customers)
+       OR EXISTS (SELECT 1 FROM raw.orders)
+       OR EXISTS (SELECT 1 FROM raw.order_items)
+       OR EXISTS (SELECT 1 FROM raw.order_payments) THEN
+        RAISE EXCEPTION 'Import requires four empty raw tables. No data was changed.';
+    END IF;
+END;
+$$;
+
+\copy raw.customers (customer_id, customer_unique_id, customer_zip_code_prefix, customer_city, customer_state) FROM 'data/raw/olist_customers_dataset.csv' WITH (FORMAT csv, HEADER true, ENCODING 'UTF8')
+\copy raw.orders (order_id, customer_id, order_status, order_purchase_timestamp, order_approved_at, order_delivered_carrier_date, order_delivered_customer_date, order_estimated_delivery_date) FROM 'data/raw/olist_orders_dataset.csv' WITH (FORMAT csv, HEADER true, ENCODING 'UTF8')
+\copy raw.order_items (order_id, order_item_id, product_id, seller_id, shipping_limit_date, price, freight_value) FROM 'data/raw/olist_order_items_dataset.csv' WITH (FORMAT csv, HEADER true, ENCODING 'UTF8')
+\copy raw.order_payments (order_id, payment_sequential, payment_type, payment_installments, payment_value) FROM 'data/raw/olist_order_payments_dataset.csv' WITH (FORMAT csv, HEADER true, ENCODING 'UTF8')
+
+DO $$
+BEGIN
+    IF (SELECT count(*) FROM raw.customers) <> 99441
+       OR (SELECT count(*) FROM raw.orders) <> 99441
+       OR (SELECT count(*) FROM raw.order_items) <> 112650
+       OR (SELECT count(*) FROM raw.order_payments) <> 103886 THEN
+        RAISE EXCEPTION 'Imported counts differ from the recorded source version; rolling back.';
+    END IF;
+END;
+$$;
+
+COMMIT;

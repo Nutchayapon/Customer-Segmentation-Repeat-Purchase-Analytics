@@ -1,6 +1,6 @@
 # Methodology and Assumptions
 
-Status: proposed design informed by the completed [CSV quality review](DATA_QUALITY_SUMMARY.md). Customer analytics and PostgreSQL execution are pending. Observation dates and scoring thresholds remain unset.
+Status: proposed design informed by the completed [CSV quality review](DATA_QUALITY_SUMMARY.md). PostgreSQL setup/import/profiling have executed; customer analytics are pending. Observation dates and scoring thresholds remain unset.
 
 ## Population and period
 

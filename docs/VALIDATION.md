@@ -1,6 +1,6 @@
 # Validation Checklist
 
-Status: source-file checks have executed; PostgreSQL import and all database-side/analytical checks below remain pending. Keep source inspection separate from database validation.
+Status: source inspection, PostgreSQL setup/import, and database profiling completed on September 20, 2026. Analytical transformation and customer-analysis checks remain pending.
 
 Record the date, SQL/output reference, expected condition, actual result, and exceptions when each check is performed.
 
@@ -10,17 +10,17 @@ Record the date, SQL/output reference, expected condition, actual result, and ex
 - [x] Four core files checked for keys, relationships, dates, and numeric fields.
 - [x] Coverage and source exceptions documented in [DATA_QUALITY_SUMMARY.md](DATA_QUALITY_SUMMARY.md).
 - [x] Aggregate evidence preserved in [SOURCE_PROFILE.json](SOURCE_PROFILE.json).
-- [ ] Reproduce these checks after PostgreSQL import.
+- [x] Execute profiling in PostgreSQL and compare imported data with source files.
 
-Completed checks used local standard-library CSV inspection, not PostgreSQL. No customer-analysis correctness or database execution is claimed.
+The original source snapshot used local standard-library CSV inspection. Subsequent PostgreSQL execution is recorded separately in [DATABASE_VALIDATION.json](DATABASE_VALIDATION.json). Four full-table comparisons verified every imported field, including textual identifiers, accents, timestamp NULLs, and numeric values. This verifies ingestion, not customer-analysis correctness.
 
-## Database source and preparation checks (pending)
+## Database source and preparation checks
 
-- [ ] Dataset version, filenames, attribution, and coverage are recorded.
-- [ ] Imported record counts reconcile with source CSVs.
-- [ ] Headers, encoding, and numeric/timestamp formats are verified.
-- [ ] Key nulls, duplicates, and missing join matches are measured.
-- [ ] Status distribution, boundary months, and delivery maturity are reviewed.
+- [x] Dataset version, filenames, attribution, and coverage are recorded.
+- [x] Imported record counts and full-table field fingerprints reconcile with source CSVs.
+- [x] Headers, UTF-8 encoding, and numeric/timestamp formats are verified.
+- [x] Key nulls, duplicates, and missing join matches are measured.
+- [x] Status distribution, boundary months, and delivery lag are profiled; cutoff remains unset.
 - [ ] Items/payments are separately aggregated before joining.
 - [ ] Each eligible order has one row in the prepared dataset.
 - [ ] Counts match the documented eligible population.
@@ -72,5 +72,6 @@ Completed checks used local standard-library CSV inspection, not PostgreSQL. No 
 | Check | Evidence | Expected result | Actual result | Status |
 |---|---|---|---|---|
 | CSV inventory and core profiling | SOURCE_PROFILE.json and DATA_QUALITY_SUMMARY.md | Inspect scope and quantify exceptions | Completed with documented issues | Source inspection complete |
-| PostgreSQL setup/import/profiling | Authored SQL 00 and 01 | Match source baseline | Not executed; server not installed | Pending |
+| PostgreSQL setup/import/profiling | SQL 00, 00_import.psql, SQL 01; DATABASE_VALIDATION.json | Match source baseline | Four table counts and all field fingerprints match; profiling completed | Passed on PostgreSQL 18.6 |
+| Duplicate import guard | 00_import.psql; DATABASE_VALIDATION.json | Reject without adding rows | Expected exception; all counts unchanged | Passed |
 | Transformed/customer analysis | Later SQL placeholders | See checklist | Not executed | Pending |

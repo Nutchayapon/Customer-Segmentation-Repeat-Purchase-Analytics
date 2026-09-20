@@ -1,12 +1,12 @@
 # Data Quality Summary
 
-Status: source-file inspection completed; database import and SQL execution pending.
+Status: source inspection, PostgreSQL import, and database profiling completed. Analytical cutoff and exception policies remain open.
 
 ## Evidence and scope
 
 Source: [Olist dataset](https://www.kaggle.com/datasets/olistbr/brazilian-ecommerce), API version 2. All nine CSVs were checked for record counts, original headers, byte sizes, hashes, and blanks. Four core files received key, relationship, format, timestamp, numeric, and reconciliation checks.
 
-Inspection completed (UTC): 2026-09-20T11:53:48.892515+00:00. A one-off local inspection used the already bundled Python standard library; it did not add a project dependency or substitute another SQL engine. The helper and full local output are in outputs/tables/ and are ignored by Git. [SOURCE_PROFILE.json](SOURCE_PROFILE.json) publishes aggregate evidence and hashes only, without customer/order records. Database-side counterparts are in [01_data_overview_and_quality.sql](../sql/01_data_overview_and_quality.sql), which has not been executed yet.
+Inspection completed (UTC): 2026-09-20T11:53:48.892515+00:00. A one-off local inspection used the already bundled Python standard library; it did not add a project dependency or substitute another SQL engine. The helper and full local output are in outputs/tables/ and are ignored by Git. [SOURCE_PROFILE.json](SOURCE_PROFILE.json) publishes aggregate evidence and hashes only, without customer/order records. Database-side counterparts are in [01_data_overview_and_quality.sql](../sql/01_data_overview_and_quality.sql), which executed successfully on PostgreSQL 18.6 on September 20, 2026. [DATABASE_VALIDATION.json](DATABASE_VALIDATION.json) records matching full-table source/database fingerprints and counts. The source JSON retains its original pre-installation status as a historical snapshot.
 
 ## Source inventory
 
@@ -26,8 +26,8 @@ Inspection completed (UTC): 2026-09-20T11:53:48.892515+00:00. A one-off local in
 
 | Finding | Evidence | Severity for planned analysis | Proposed response |
 |---|---|---|---|
-| Core keys are complete and unique | 0 blank keys, duplicate key groups, and exact duplicate excess rows in each of the 4 core files | No issue detected within checked scope | Recheck after import; these results do not imply optional-file keys were verified |
-| Parent joins are complete | 0 orders without customer; 0 item/payment rows without order | No issue detected within checked scope | Reconcile the same checks in PostgreSQL |
+| Core keys are complete and unique | 0 blank keys, duplicate key groups, and exact duplicate excess rows in each of the 4 core files | No issue detected within checked scope | Reproduced after import; these results do not imply optional-file keys were verified |
+| Parent joins are complete | 0 orders without customer; 0 item/payment rows without order | No issue detected within checked scope | Reproduced in PostgreSQL |
 | Some orders have no items | 775 / 99,441 orders (0.7794%); 0 delivered orders without items | Medium for all-status spending | Preserve diagnostics; status-based eligibility must be explicit |
 | One delivered order has no payment row | 1 / 96,478 delivered orders (0.0010%) | Medium for payment-based measures | Keep merchandise and payment definitions separate; retain missing-payment flag |
 | Delivered status can lack dates | 8 / 96,478 lack delivery date (0.0083%); 14 lack approval date (0.0145%) | Medium for delivery/approval analysis | Do not infer a date; expose missingness and state the population for lag measures |
@@ -36,7 +36,7 @@ Inspection completed (UTC): 2026-09-20T11:53:48.892515+00:00. A one-off local in
 | Numeric values are nonnegative in inspected core fields | No negative price, freight, payment, item sequence, payment sequence, or installment values | No issue detected within checked scope | Preserve numeric precision and rerun range checks after import |
 | Coverage is uneven at the boundaries | Sparse 2016 activity, no November 2016 orders, and no delivered orders purchased in September–October 2018 | High for cohorts and repeat windows | Do not treat the maximum source timestamp as proof of complete follow-up |
 
-These are measured source-file findings. Root causes for missing payments, timestamp gaps, and monetary differences remain unconfirmed.
+These are measured source-file findings reproduced in PostgreSQL. Root causes for missing payments, timestamp gaps, and monetary differences remain unconfirmed.
 
 ## Observation-period decision remains open
 
@@ -83,12 +83,10 @@ This table describes the downloaded extract, not customer retention. A zero reco
 
 ## Current readiness
 
-The source files support beginning the PostgreSQL import and profiling stage. Core keys and joins show no observed defects under the inspected definitions. Analytical preparation remains conditional on a documented cutoff and exception policy. Database execution, transformed datasets, RFM, cohorts, repeat metrics, and Power BI validation are not complete.
+PostgreSQL import and profiling are complete. Core keys and joins show no observed defects under the inspected definitions, and full-table comparisons matched the CSV inputs. Analytical preparation remains conditional on a documented cutoff and exception policy. Transformed datasets, RFM, cohorts, repeat metrics, and Power BI validation are not complete.
 
 ## Next actions
 
-1. Install PostgreSQL Server and pgAdmin when ready; no installation was performed in this stage.
-2. Create a dedicated empty project database and run the authored setup script.
-3. Import each core CSV exactly once and verify the expected record counts.
-4. Run the profiling queries and compare with this source-file baseline.
-5. Finalize cutoff, eligible population, and treatment of source exceptions before implementing preparation.
+1. Finalize the observation cutoff and eligible population.
+2. Document treatment of missing payments/dates and monetary differences.
+3. Implement preparation with separate item/payment aggregation and reconciliation.

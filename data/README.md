@@ -1,6 +1,6 @@
 # Source Data
 
-Status: all nine original CSVs downloaded and inspected locally. The four core files have additional quality checks. PostgreSQL import has not occurred.
+Status: all nine original CSVs downloaded and inspected locally. The four core files have additional quality checks. The four core CSVs were imported into PostgreSQL and verified; see [DATABASE_VALIDATION.json](../docs/DATABASE_VALIDATION.json).
 
 ## Source and retrieval
 

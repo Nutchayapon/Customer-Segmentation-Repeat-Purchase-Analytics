@@ -1,7 +1,7 @@
 -- Purpose: create non-destructive landing tables for the four core Olist CSVs.
 -- Source: Olist version 2, headers verified against the downloaded files.
--- Status: authored and statically reviewed; NOT executed in PostgreSQL yet.
--- Run in a dedicated empty project database, then import through pgAdmin.
+-- Status: executed successfully on PostgreSQL 18.6, 2026-09-20.
+-- Run in a dedicated project database, then use 00_import.psql or pgAdmin.
 -- Raw tables deliberately have no PK/FK/NOT NULL constraints: profile defects
 -- rather than hiding them through rejected imports. Types enforce parseability.
 -- Re-running preserves data. IF NOT EXISTS does not repair schema drift.

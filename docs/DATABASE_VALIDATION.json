@@ -1,0 +1,81 @@
+{
+  "validated_at_utc": "2026-09-20T13:49:12.253023+00:00",
+  "database": "olist_customer_analytics",
+  "runtime": {
+    "version": "PostgreSQL 18.6 on x86_64-windows, compiled by msvc-19.44.35228, 64-bit",
+    "encoding": "UTF8",
+    "role": "olist_analyst",
+    "role_is_superuser": false
+  },
+  "executed_scripts": [
+    "sql/00_setup.sql",
+    "sql/00_import.psql",
+    "sql/01_data_overview_and_quality.sql"
+  ],
+  "baseline": "docs/SOURCE_PROFILE.json",
+  "method": "Compare every source CSV field with PostgreSQL COPY TO STDOUT fields in verified header order. Canonicalize each row as a compact UTF-8 JSON array followed by LF, sort arrays lexicographically, and hash the resulting stream. No customer records are published.",
+  "tables": [
+    {
+      "table": "raw.customers",
+      "source_file": "olist_customers_dataset.csv",
+      "source_file_sha256": "983a422239e1712ded753b3bf9ecf47dc73f144d306029dcfa99e70a226883d2",
+      "expected_rows": 99441,
+      "imported_rows": 99441,
+      "source_canonical_sha256": "1c9bf12c6e399ccee9920dada5779396fd3cfe60b8c17b2055048f5895f6d629",
+      "database_canonical_sha256": "1c9bf12c6e399ccee9920dada5779396fd3cfe60b8c17b2055048f5895f6d629",
+      "all_field_values_match": true,
+      "verification_sql": "COPY (SELECT customer_id, customer_unique_id, customer_zip_code_prefix, customer_city, customer_state FROM raw.customers) TO STDOUT WITH (FORMAT csv, HEADER true, ENCODING 'UTF8');"
+    },
+    {
+      "table": "raw.orders",
+      "source_file": "olist_orders_dataset.csv",
+      "source_file_sha256": "8df58ef3d2d7e9944010f7beecd9b75367f5588ec6e3c91cec19ae3345ef9ecf",
+      "expected_rows": 99441,
+      "imported_rows": 99441,
+      "source_canonical_sha256": "b21b030db47ebe5edf4b904b49229afede071f57d195388b416ba90266e30f25",
+      "database_canonical_sha256": "b21b030db47ebe5edf4b904b49229afede071f57d195388b416ba90266e30f25",
+      "all_field_values_match": true,
+      "verification_sql": "COPY (SELECT order_id, customer_id, order_status, order_purchase_timestamp, order_approved_at, order_delivered_carrier_date, order_delivered_customer_date, order_estimated_delivery_date FROM raw.orders) TO STDOUT WITH (FORMAT csv, HEADER true, ENCODING 'UTF8');"
+    },
+    {
+      "table": "raw.order_items",
+      "source_file": "olist_order_items_dataset.csv",
+      "source_file_sha256": "0bc4d068c4fe38cbb01bd90e8746e3c613fe7b4baef75fab7b0e329701c3e279",
+      "expected_rows": 112650,
+      "imported_rows": 112650,
+      "source_canonical_sha256": "691d793071daa64f5c0976f5c780e0ca60508cb95e06d30369c33e4e6d59e8fa",
+      "database_canonical_sha256": "691d793071daa64f5c0976f5c780e0ca60508cb95e06d30369c33e4e6d59e8fa",
+      "all_field_values_match": true,
+      "verification_sql": "COPY (SELECT order_id, order_item_id, product_id, seller_id, shipping_limit_date, price, freight_value FROM raw.order_items) TO STDOUT WITH (FORMAT csv, HEADER true, ENCODING 'UTF8');"
+    },
+    {
+      "table": "raw.order_payments",
+      "source_file": "olist_order_payments_dataset.csv",
+      "source_file_sha256": "4f713964f2815dbbaa40b9488268c55aac3627bfce5aa96cf58d1f3616de3cc0",
+      "expected_rows": 103886,
+      "imported_rows": 103886,
+      "source_canonical_sha256": "73c94788f42aa3774d487b852dbd36267b61fc3b5a421df8e08c4c45e9055b36",
+      "database_canonical_sha256": "73c94788f42aa3774d487b852dbd36267b61fc3b5a421df8e08c4c45e9055b36",
+      "all_field_values_match": true,
+      "verification_sql": "COPY (SELECT order_id, payment_sequential, payment_type, payment_installments, payment_value FROM raw.order_payments) TO STDOUT WITH (FORMAT csv, HEADER true, ENCODING 'UTF8');"
+    }
+  ],
+  "analysis_config": {
+    "singleton": true,
+    "observation_start": null,
+    "observation_end": null,
+    "cutoff_rationale": null
+  },
+  "status": "Passed: four full-table field comparisons, counts, source hashes, UTF8, restricted role, and unset analysis boundaries.",
+  "pgadmin": {
+    "version": "9.17",
+    "registered_server": "Olist Customer Analytics (Local)",
+    "connection_driver_test": "Passed using the registered host, port, database, login, and local passfile."
+  },
+  "duplicate_import_guard": {
+    "verified_at_utc": "2026-09-20T13:58:25.965279+00:00",
+    "expected": "Reject import into nonempty raw tables without changing data.",
+    "actual": "Expected empty-table exception; all four row counts unchanged.",
+    "status": "Passed"
+  }
+}

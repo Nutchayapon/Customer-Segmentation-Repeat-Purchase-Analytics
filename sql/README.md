@@ -1,10 +1,11 @@
 # SQL Execution Plan
 
-Status: SQL 00 and 01 are authored for PostgreSQL but have not been executed. Files 02-09 remain comment-only placeholders. No database objects or customer analytics have been run.
+Status: setup, import, and profiling executed successfully on PostgreSQL 18.6. Raw tables exist and match their CSV sources. Files 02-09 remain comment-only placeholders; customer analytics have not run.
 
 | File | Planned purpose |
 |---|---|
 | [00_setup.sql](00_setup.sql) | Prepare CSV-compatible raw tables and analysis configuration. |
+| [00_import.psql](00_import.psql) | Import four local CSVs atomically with empty-table and row-count guards (psql only). |
 | [01_data_overview_and_quality.sql](01_data_overview_and_quality.sql) | Profile source structure, quality, and observation coverage. |
 | [02_data_preparation.sql](02_data_preparation.sql) | Build a validated order-level analytical base. |
 | [03_customer_purchase_metrics.sql](03_customer_purchase_metrics.sql) | Summarize customer history and establish purchase sequence. |
@@ -19,13 +20,13 @@ Status: SQL 00 and 01 are authored for PostgreSQL but have not been executed. Fi
 
 After installing PostgreSQL, run the authored setup script in a dedicated database, import each core CSV once, then run profiling. Finalize observation dates and eligibility before preparing analytical datasets. Customer metrics depend on the validated order base; RFM, cohorts, repeat behavior, and intervals use that shared history.
 
-Run relevant validation checks after each implemented stage, even though the validation file has the highest number. Create Power BI views from reviewed outputs after the analysis is ready. Database object names and the final dependency graph remain pending implementation.
+Run relevant validation checks after each implemented stage, even though the validation file has the highest number. Create Power BI views from reviewed outputs after the analysis is ready. Analytical object names and the final dependency graph remain pending implementation.
 
 ## Source baseline and execution
 
-The downloaded version has 99,441 customer records, 99,441 orders, 112,650 item rows, and 103,886 payment entries. See the [quality summary](../docs/DATA_QUALITY_SUMMARY.md) for source exceptions and coverage. These are CSV counts, not database results.
+The downloaded version has 99,441 customer records, 99,441 orders, 112,650 item rows, and 103,886 payment entries. See the [quality summary](../docs/DATA_QUALITY_SUMMARY.md) for source exceptions and coverage. These CSV counts also match the imported PostgreSQL tables; see [DATABASE_VALIDATION.json](../docs/DATABASE_VALIDATION.json).
 
-Setup preserves existing rows and does not repair schema drift. Landing tables have non-unique indexes and no PK/FK/NOT NULL constraints so defects can be profiled. Re-importing appends rows; check empty tables first.
+Setup preserves existing rows and does not repair schema drift. Landing tables have non-unique indexes and no PK/FK/NOT NULL constraints so defects can be profiled. The psql import script refuses nonempty tables and rolls back on errors. Manual pgAdmin imports append rows; check empty tables first.
 
 Profiling is read-only. Select complete numbered statements in pgAdmin to inspect/export results. Running the entire file uses one repeatable read-only transaction.
 

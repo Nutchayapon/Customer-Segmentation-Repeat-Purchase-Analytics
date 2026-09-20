@@ -1,93 +1,95 @@
 # Runbook
 
-Status: all nine CSVs are available locally and source-file inspection is complete. Setup and profiling SQL are authored but have not been executed. PostgreSQL/pgAdmin are not installed in this workflow; no installation was performed. Later SQL/DAX files remain placeholders.
+Status: PostgreSQL setup, four-table import, and source profiling completed on September 20, 2026. Full-table comparisons matched the original CSV fields and record counts. Analytical SQL 02-09 and DAX remain placeholders.
 
-## 1. Install the database tools when ready
+## Installed local environment
 
-For Windows, use the installer linked by the [PostgreSQL project](https://www.postgresql.org/download/windows/). It includes PostgreSQL Server and pgAdmin. The server stores/processes data; pgAdmin is the management interface. Installing pgAdmin alone does not provide a database server.
+| Item | Verified configuration |
+|---|---|
+| PostgreSQL | 18.6, Windows x64; EDB installer 18.6-4 |
+| Program directory | `D:\PostgreSQL\18` |
+| Database cluster | `D:\PostgreSQL\data\18` |
+| pgAdmin | 9.17 at `D:\PostgreSQL\18\pgAdmin 4` |
+| pgAdmin application data | `D:\PostgreSQL\private\pgadmin` |
+| Windows service | `postgresql-x64-18`, running, automatic startup |
+| Host / port | `127.0.0.1` / `5432`; localhost connections |
+| Project database | `olist_customer_analytics`, UTF8 |
+| Project login / owner | `olist_analyst`, not a superuser |
+| pgAdmin registration | `Portfolio` > `Olist Customer Analytics (Local)` |
 
-Record the stable PostgreSQL version, pgAdmin version, local port, and installation date. Keep credentials outside Git. No additional StackBuilder packages are required at this stage. Installation is a separate, pending step.
+Open pgAdmin 4 from the Windows Start menu, expand the registered server, select the project database, and open Query Tool. The connection uses a local password file restricted to the Windows user and administrators. Credentials are outside the repository in `D:\PostgreSQL\private`; never copy them into Git. The PostgreSQL administrator and project login have separate generated credentials.
+
+pgAdmin's `config_local.py` sets DATA_DIR on drive D. Windows shortcuts, installer caches, and some desktop runtime preferences can still use standard Windows locations. Record this override when upgrading pgAdmin.
+
+## 1. Reproduce on another machine
+
+Install PostgreSQL Server and pgAdmin using the installer linked by the [PostgreSQL project](https://www.postgresql.org/download/windows/). Choose the program and data directories explicitly. pgAdmin is the management interface; PostgreSQL Server stores and processes the data. StackBuilder packages are unnecessary for this project.
+
+Create a dedicated UTF-8 database and a project login that owns it without superuser privileges. Record installed versions and connection details locally. The connection paths above describe the current workstation, not requirements for every contributor.
 
 ## 2. Review the source files
 
-A fresh checkout needs its own local download because raw data is ignored by Git. Read [data instructions](../data/README.md), [data dictionary](DATA_DICTIONARY.md), and [quality summary](DATA_QUALITY_SUMMARY.md). Compare file hashes with [SOURCE_PROFILE.json](SOURCE_PROFILE.json).
+Download the same dataset version into `data/raw/`. Compare file hashes with [SOURCE_PROFILE.json](SOURCE_PROFILE.json), then read the [data instructions](../data/README.md), [dictionary](DATA_DICTIONARY.md), and [quality summary](DATA_QUALITY_SUMMARY.md). Raw CSVs are ignored by Git.
 
-## 3. Create an empty project database
+## 3. Create the landing tables
 
-In pgAdmin, connect to the local server and create a dedicated UTF-8 database, for example olist_customer_analytics. This is a proposed name, not an existing database.
+Connect to the project database as its owner and execute [00_setup.sql](../sql/00_setup.sql). It creates raw/analytics/bi schemas, four CSV-compatible landing tables, non-unique indexes, and an analysis configuration row.
 
-Open Query Tool for that database and execute [00_setup.sql](../sql/00_setup.sql). It creates raw/analytics/bi schemas, four landing tables, non-unique indexes, and a configuration row with NULL observation dates.
+Re-running setup preserves data but does not repair schema drift. Observation dates remain NULL until a defensible cutoff is documented.
 
-Inspect the returned columns before importing. Re-running setup preserves rows but does not repair incompatible schemas. Do not use an unrelated database.
+## 4. Import once
 
-## 4. Import the four core CSVs
-
-For each target table, open pgAdmin's Import/Export Data dialog and select Import.
-
-| CSV in data/raw/ | Target table | Expected records |
+| CSV in data/raw/ | Target | Verified rows |
 |---|---|---:|
 | olist_customers_dataset.csv | raw.customers | 99,441 |
 | olist_orders_dataset.csv | raw.orders | 99,441 |
 | olist_order_items_dataset.csv | raw.order_items | 112,650 |
 | olist_order_payments_dataset.csv | raw.order_payments | 103,886 |
 
-Settings:
+The completed import used [00_import.psql](../sql/00_import.psql). Run it with psql from the repository root; its relative paths resolve from that working directory. It uses client-side `\copy`, imports all four tables in one transaction, refuses nonempty tables, and verifies expected counts before committing. These are psql commands, so do not paste this file into pgAdmin Query Tool.
 
-- Format: CSV; encoding: UTF8; header: enabled.
-- Delimiter: comma; quote and escape: double quote.
-- Keep all columns in the verified source-header order.
-- Use the CSV empty-field NULL representation; empty timestamps must become SQL NULL.
-- Keep error handling at stop when available; do not silently discard malformed rows.
-- Inspect completion/process output and the imported count.
+Example in PowerShell after configuring a protected local password file:
 
-The four CSV headers match the landing-table column order. UTF-8 decoding and inspected value types passed local checks; still verify import counts.
+```powershell
+$env:PGPASSFILE = 'D:/PostgreSQL/private/olist.pgpass'
+$env:PGCLIENTENCODING = 'UTF8'
+try {
+    & 'D:/PostgreSQL/18/bin/psql.exe' -X -w -h 127.0.0.1 -p 5432 -U olist_analyst -d olist_customer_analytics -v ON_ERROR_STOP=1 -f sql/00_setup.sql
+    if ($LASTEXITCODE -ne 0) { throw 'Setup failed.' }
+    & 'D:/PostgreSQL/18/bin/psql.exe' -X -w -h 127.0.0.1 -p 5432 -U olist_analyst -d olist_customer_analytics -v ON_ERROR_STOP=1 -f sql/00_import.psql
+    if ($LASTEXITCODE -ne 0) { throw 'Import failed.' }
+} finally {
+    $env:PGPASSFILE = $null
+    $env:PGCLIENTENCODING = $null
+}
+```
 
-Import once into an empty target table. Imports append rows. If an attempt fails, inspect its transaction/process result and table counts before retrying. Do not clear existing tables without an explicit reload plan.
+The current workstation is already imported: do not run the import again. To reproduce elsewhere, use your own paths and credentials. A failed import exits and rolls back rather than partially committing data.
 
-If a file is inaccessible, check the path used by the import process. Server-side COPY uses server filesystem permissions; server and client paths are not interchangeable.
+As an alternative for a fresh database, use pgAdmin Import/Export Data for each empty raw table: CSV, UTF8, header enabled, comma delimiter, double-quote quote/escape, all columns in verified header order, and empty CSV fields as SQL NULL. Manual imports append rows and do not provide the script's four-table transaction.
 
-References: [pgAdmin Import/Export Data](https://www.pgadmin.org/docs/pgadmin4/latest/import_export_data.html) and [PostgreSQL COPY](https://www.postgresql.org/docs/current/sql-copy.html).
+References: [pgAdmin Import/Export](https://www.pgadmin.org/docs/pgadmin4/latest/import_export_data.html), [PostgreSQL COPY](https://www.postgresql.org/docs/current/sql-copy.html), and [password files](https://www.postgresql.org/docs/current/libpq-pgpass.html).
 
-## 5. Reproduce source checks in PostgreSQL
+## 5. Profile and verify
 
-Run the numbered queries in [01_data_overview_and_quality.sql](../sql/01_data_overview_and_quality.sql). Select one complete numbered statement at a time to inspect/export results in pgAdmin. The full file uses a repeatable read-only transaction.
+Run [01_data_overview_and_quality.sql](../sql/01_data_overview_and_quality.sql). The entire file uses a repeatable read-only transaction. In pgAdmin, select complete numbered statements when inspecting individual results. After an error inside an explicit transaction, issue ROLLBACK before retrying.
 
-Compare with this CSV baseline:
+All profiling sections executed successfully. Local execution logs are in `outputs/tables/postgresql_setup.txt`, `postgresql_import.txt`, and `postgresql_profile.txt`; these are ignored by Git. [DATABASE_VALIDATION.json](DATABASE_VALIDATION.json) publishes aggregate verification evidence only.
 
-- 0 duplicate groups or blank expected keys in each core file.
-- 0 orders without customer and 0 item/payment entries without order.
-- 775 orders without items; none are delivered.
-- 1 delivered order without a payment entry.
-- 8 delivered orders without delivery timestamp; 14 without approval timestamp.
-- 299 delivered matched orders with payment versus merchandise-plus-freight difference greater than BRL 0.01.
+Verification compared every source CSV field with PostgreSQL COPY output, in the same column order. Each row was represented as a compact UTF-8 JSON array plus LF; rows were sorted lexicographically and hashed. Matching counts and canonical hashes confirm the imported content. Original source-file hashes were checked before comparison.
 
-These are source-file findings, not completed database tests. Record execution outcomes in [VALIDATION.md](VALIDATION.md). Resolve import differences before interpreting subsequent results.
-
-If a statement fails inside the explicit transaction, use ROLLBACK to end that failed transaction, investigate, then rerun the corrected check.
+The database reproduces the documented missing payments/dates and payment/item differences. These are source exceptions to resolve in the analytical policy, not import failures. See [VALIDATION.md](VALIDATION.md).
 
 ## 6. Select analytical boundaries
 
-Review monthly/daily coverage and delivery lag before choosing observation dates and writing a cutoff rationale. Dates intentionally remain NULL. Do not use October 2018 simply because it contains the last all-status purchase.
+Review monthly/daily coverage and delivery lag before setting observation dates and writing a cutoff rationale. Do not use October 2018 merely because it contains the last all-status purchase.
 
-Decide how to handle sparse early history, incomplete late periods, missing dates/payments, and monetary differences. Preserve available earlier history for first-observed/returning classification even when reporting starts later.
+Document sparse early history, incomplete late periods, missing dates/payments, and monetary differences. Preserve available earlier history for first-observed/returning classification even when reporting starts later.
 
 ## 7. Continue implementation
 
-Implement preparation and customer history, followed by RFM/cohorts/repeat windows/intervals. Add checks in 09_validation.sql as outputs appear. Produce reviewed tables and written findings before Power BI views/measures.
+Prepare and reconcile the order-level dataset, then build customer metrics, RFM, cohorts, repeat windows, and purchase intervals. Add analytical validation checks as outputs appear. Produce reviewed tables and written findings before Power BI views and measures.
 
 ## Development and publication
 
-Use main as the reviewed baseline and dev_v1 for implementation. Inspect diffs and staged files before focused commits. Review before merging.
-
-Do not commit raw CSVs, archives, customer-level exports, credentials, or report caches. User-provided chat screenshots must not be uploaded; reviewed project-generated charts are a separate future deliverable.
-
-## Pending runtime record
-
-| Item | Status |
-|---|---|
-| PostgreSQL and pgAdmin versions | Not installed/recorded |
-| Database name and connection | Proposed only |
-| Setup execution | Not executed |
-| CSV import | Not executed |
-| Profiling SQL execution | Not executed |
-| Observation dates/rationale | Not selected |
+Use main as the reviewed baseline and dev_v1 for implementation. Inspect diffs and staged files before focused commits; review before merging. Never commit raw CSVs, archives, customer-level exports, credentials, or report caches. User-provided chat screenshots must not be uploaded.

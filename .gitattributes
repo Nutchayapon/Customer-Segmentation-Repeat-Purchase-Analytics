@@ -1,6 +1,7 @@
 * text=auto
 *.md text eol=lf
 *.sql text eol=lf
+*.psql text eol=lf
 *.dax text eol=lf
 *.png binary
 *.jpg binary

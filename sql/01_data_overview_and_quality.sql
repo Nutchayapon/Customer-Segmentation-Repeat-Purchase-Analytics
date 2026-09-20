@@ -1,5 +1,5 @@
 -- Purpose: read-only quality and coverage checks on imported raw Olist tables.
--- Status: authored and statically reviewed; NOT executed in PostgreSQL yet.
+-- Status: executed successfully on PostgreSQL 18.6, 2026-09-20.
 -- Prerequisite: run 00_setup.sql and import each of the four CSVs exactly once.
 -- In pgAdmin, run individual numbered SELECT blocks to inspect/export results.
 -- Running the entire file uses a repeatable read-only transaction.

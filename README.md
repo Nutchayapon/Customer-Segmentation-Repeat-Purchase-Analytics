@@ -2,7 +2,7 @@
 
 A PostgreSQL and Power BI portfolio project exploring customer purchasing behavior with the Olist Brazilian E-Commerce dataset.
 
-**Status: source inspection complete; database execution pending.** All nine Olist CSVs were downloaded and inspected locally. PostgreSQL setup and profiling scripts are authored but have not run because PostgreSQL is not installed. RFM, cohorts, repeat-purchase analysis, business findings, and Power BI remain pending.
+**Status: PostgreSQL setup, core import, and source profiling complete.** All nine Olist CSVs were inspected locally; four core tables were imported into PostgreSQL 18.6. Setup and profiling SQL executed successfully, and full-table field comparisons matched the source CSVs. RFM, cohorts, repeat-purchase analysis, business findings, and Power BI remain pending.
 
 ## Business questions
 
@@ -51,7 +51,7 @@ The first analytical deliverable is validated tables and a written findings docu
 ```text
 data/                  Source instructions and local raw data
 docs/                  Plan, dictionary, methodology, runbook, validation
-sql/                   Authored setup/profiling; later placeholders
+sql/                   Executed setup/import/profiling; later placeholders
 outputs/tables/        Local analytical exports; ignored by Git
 outputs/figures/       Reviewed charts for publication
 reports/               Written analytical findings
@@ -64,6 +64,7 @@ powerbi/               Model plan, DAX placeholder, and screenshots
 - [Data dictionary](docs/DATA_DICTIONARY.md)
 - [Source quality summary](docs/DATA_QUALITY_SUMMARY.md)
 - [Aggregate source evidence and hashes](docs/SOURCE_PROFILE.json)
+- [PostgreSQL import validation](docs/DATABASE_VALIDATION.json)
 - [Methodology and assumptions](docs/METHODOLOGY.md)
 - [Setup and execution runbook](docs/RUNBOOK.md)
 - [Validation checklist](docs/VALIDATION.md)
@@ -83,11 +84,11 @@ A one-time observed customer is not necessarily churned. First observed purchase
 
 1. Read the source quality summary and methodology.
 2. For a fresh checkout, download the same version and compare recorded hashes.
-3. Install PostgreSQL Server with pgAdmin when ready.
+3. On a new machine, install PostgreSQL Server with pgAdmin.
 4. Follow the runbook to create an empty database, run setup, and import the four core CSVs.
 5. Run profiling SQL and compare with the source-file baseline before implementing preparation.
 
-**Only SQL 00 and 01 are implemented. PostgreSQL execution is unverified; files 02-09 and DAX remain comment-only placeholders.** Follow the [runbook](docs/RUNBOOK.md).
+**Setup, transactional psql import, and profiling are implemented and executed. Files 02-09 and DAX remain comment-only placeholders.** Follow the [runbook](docs/RUNBOOK.md).
 
 ## Planned deliverables
 
@@ -102,8 +103,8 @@ A one-time observed customer is not necessarily churned. First observed purchase
 - [x] English documentation scaffold and SQL/DAX placeholders
 - [x] All source data acquired; version, headers, counts, and hashes recorded
 - [x] Source-file quality inspection completed
-- [x] PostgreSQL setup/profiling SQL authored (execution pending)
-- [ ] Database setup, import, and quality review completed
+- [x] PostgreSQL setup/import/profiling executed and imports verified
+- [ ] Analytical cutoff and exception policies finalized
 - [ ] Analytical datasets and SQL analyses implemented
 - [ ] Results validated and findings written
 - [ ] Power BI report reconciled with SQL

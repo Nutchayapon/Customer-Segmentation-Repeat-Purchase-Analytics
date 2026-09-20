@@ -1,6 +1,6 @@
 # Project Plan
 
-Status: scaffold, source acquisition, and CSV inspection completed. Setup/profiling SQL are authored but not executed. Database import and customer analytics remain pending.
+Status: scaffold, source acquisition, PostgreSQL installation, core import, and database profiling completed. Analytical boundaries, preparation, and customer analytics remain pending.
 
 ## Objective and scope
 
@@ -36,13 +36,13 @@ Phases 4-6 depend on validated purchase history from phase 3. Phase 8 follows re
 | Repeat windows | One customer per 30/60/90-day window | Eligibility and repeat indicators |
 | Purchase intervals | One order with a preceding order | Time between observed purchases |
 
-These are proposed outputs; database objects do not exist yet.
+These analytical outputs are proposed. Raw landing tables and the analysis configuration exist; analytical datasets do not.
 
 ## Current milestone
 
-All nine CSVs were acquired and inventoried. Four core files received deeper source checks; see the [quality summary](DATA_QUALITY_SUMMARY.md). Setup/profiling SQL are ready for first execution.
+All nine CSVs were acquired and inventoried. PostgreSQL 18.6 and pgAdmin 9.17 are installed on drive D. Four core files were imported, setup/profiling executed, and every imported field matched its CSV source under canonical full-table comparison. See [database validation](DATABASE_VALIDATION.json) and the [quality summary](DATA_QUALITY_SUMMARY.md).
 
-Next: install PostgreSQL Server and pgAdmin, import the four core files, reproduce the profiling baseline, and select a defensible cutoff. Database execution has not occurred. Reconcile the order-level dataset before implementing RFM.
+Next: select a defensible observation cutoff and exception policies, then prepare and reconcile the order-level dataset before implementing RFM.
 
 ## Definition of done
 

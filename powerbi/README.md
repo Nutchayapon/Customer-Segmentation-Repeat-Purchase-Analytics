@@ -6,6 +6,10 @@ Status: semantic model, DAX and four PBIR report pages are authored. The model p
 
 The report, page and visual-container definitions target schema **1.2.0**, released with September 2024 Desktop, to match the installed 2.136.1202.0 version. The report also includes the required `layoutOptimization` property. Newer public schemas can validate successfully while still being unreadable by an older Desktop installation.
 
+The report content version in `definition/version.json` is **2.0.0**, following Microsoft's PBIR sample. It is distinct from the **4.0** project binding version in `definition.pbir`. A valid version-shaped string can pass JSON schema checks without being a supported report content version.
+
+If the model tables appear but the report canvas is blank, close Desktop without saving the blank report and reopen the corrected `Olist.pbip`. The report should contain four named page tabs and authored visuals even before a successful refresh. Local deserialization checks confirm four pages and 32 visual containers; this does not verify rendering in the Desktop window.
+
 If Desktop reports `Can't resolve schema '2.0.0' in 'report.json'`, use the corrected files on `dev_v1` and reopen `Olist.pbip`. Do not change only the report schema: the page and visual-container schemas must also match the supported format. Keep the PBIR preview feature enabled. Refresh and rendered acceptance still need to be checked in Desktop.
 
 1. Start Power BI Desktop and open Olist.pbip in this folder.
@@ -70,5 +74,6 @@ Customers 87,214; Snapshot Orders 90,127; merchandise BRL 12,382,921.47; observe
 - [Report schema release history](https://github.com/microsoft/json-schemas/blob/main/fabric/item/report/definition/report/CHANGELOG.md)
 - [Page schema release history](https://github.com/microsoft/json-schemas/blob/main/fabric/item/report/definition/page/CHANGELOG.md)
 - [Visual-container schema release history](https://github.com/microsoft/json-schemas/blob/main/fabric/item/report/definition/visualContainer/CHANGELOG.md)
+- [Microsoft PBIR report content version example](https://github.com/microsoft/BCApps/blob/main/src/Apps/W1/PowerBIReports/Power%20BI%20Files/Projects%20app/Projects%20app.Report/definition/version.json)
 
 Public metadata formats make the project reviewable in Git. Successful parsing/schema validation does not replace Desktop acceptance.

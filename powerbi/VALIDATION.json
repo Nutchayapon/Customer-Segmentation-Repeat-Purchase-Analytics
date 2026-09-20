@@ -17,5 +17,16 @@
     "native_reopen_after_fix": "Pending; schema validation does not establish native refresh or rendering success."
   },
   "rendered_validation": "Not performed: native Power BI Desktop refresh, DAX execution, and visual interactions remain unverified.",
-  "portfolio_figures": "Four independently rendered SQL-backed PNG figures inspected; these are not Power BI screenshots."
+  "portfolio_figures": "Four independently rendered SQL-backed PNG figures inspected; these are not Power BI screenshots.",
+  "report_deserialization": {
+    "verified_at_utc": "2026-09-20T16:51:38.124281+00:00",
+    "implementation": "Installed September 2024 Microsoft.PowerBI.Packaging.ExplorationSerializer, executed in 32-bit Windows PowerShell with official schema definitions supplied from the local schema cache.",
+    "report_content_version": "2.0.0",
+    "project_binding_version": "4.0",
+    "pages": 4,
+    "visual_containers": 32,
+    "warnings": 0,
+    "result": "Deserialization passed. Native window rendering and refresh remain unverified.",
+    "reported_symptom": "User-provided Desktop screenshot showed seven model tables but a blank report canvas before this content-version correction."
+  }
 }

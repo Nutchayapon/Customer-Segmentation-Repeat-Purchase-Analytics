@@ -28,3 +28,6 @@ pgpass.conf
 Thumbs.db
 .DS_Store
 .vscode/
+
+# User-provided chat screenshots
+codex-clipboard-*.png

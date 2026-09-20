@@ -1,6 +1,6 @@
 # Project Plan
 
-Status: planning and scaffold. Analysis is not implemented.
+Status: scaffold, source acquisition, and CSV inspection completed. Setup/profiling SQL are authored but not executed. Database import and customer analytics remain pending.
 
 ## Objective and scope
 
@@ -22,7 +22,7 @@ The initial scope includes customers, orders, items, and payments; customer metr
 | 8. Power BI | Relationships, measures, visuals, slicers | Report and screenshots | KPIs match SQL under documented filters |
 | 9. Portfolio | Reproduction guide and final presentation | Shareable repository | Another reader can understand and reproduce the work |
 
-Phases 4–6 depend on validated purchase history from phase 3. Phase 8 follows reviewed findings rather than replacing analysis.
+Phases 4-6 depend on validated purchase history from phase 3. Phase 8 follows reviewed findings rather than replacing analysis.
 
 ## Planned analytical outputs
 
@@ -38,9 +38,11 @@ Phases 4–6 depend on validated purchase history from phase 3. Phase 8 follows 
 
 These are proposed outputs; database objects do not exist yet.
 
-## First implementation milestone
+## Current milestone
 
-Acquire the four CSVs, verify headers, implement setup, import the files, and produce a quality summary. Review coverage and delivery lag before choosing the cutoff. Then reconcile the order-level dataset before implementing RFM.
+All nine CSVs were acquired and inventoried. Four core files received deeper source checks; see the [quality summary](DATA_QUALITY_SUMMARY.md). Setup/profiling SQL are ready for first execution.
+
+Next: install PostgreSQL Server and pgAdmin, import the four core files, reproduce the profiling baseline, and select a defensible cutoff. Database execution has not occurred. Reconcile the order-level dataset before implementing RFM.
 
 ## Definition of done
 

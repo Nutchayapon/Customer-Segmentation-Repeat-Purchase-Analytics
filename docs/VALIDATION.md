@@ -1,10 +1,20 @@
 # Validation Checklist
 
-Status: all data and analytical checks are pending. No execution results are implied.
+Status: source-file checks have executed; PostgreSQL import and all database-side/analytical checks below remain pending. Keep source inspection separate from database validation.
 
 Record the date, SQL/output reference, expected condition, actual result, and exceptions when each check is performed.
 
-## Source and preparation
+## Completed source-file inspection
+
+- [x] Nine CSVs inventoried with version, headers, counts, sizes, and hashes.
+- [x] Four core files checked for keys, relationships, dates, and numeric fields.
+- [x] Coverage and source exceptions documented in [DATA_QUALITY_SUMMARY.md](DATA_QUALITY_SUMMARY.md).
+- [x] Aggregate evidence preserved in [SOURCE_PROFILE.json](SOURCE_PROFILE.json).
+- [ ] Reproduce these checks after PostgreSQL import.
+
+Completed checks used local standard-library CSV inspection, not PostgreSQL. No customer-analysis correctness or database execution is claimed.
+
+## Database source and preparation checks (pending)
 
 - [ ] Dataset version, filenames, attribution, and coverage are recorded.
 - [ ] Imported record counts reconcile with source CSVs.
@@ -61,4 +71,6 @@ Record the date, SQL/output reference, expected condition, actual result, and ex
 
 | Check | Evidence | Expected result | Actual result | Status |
 |---|---|---|---|---|
-| Data and analytical validation | Pending implementation | See checklist | Not executed | Pending |
+| CSV inventory and core profiling | SOURCE_PROFILE.json and DATA_QUALITY_SUMMARY.md | Inspect scope and quantify exceptions | Completed with documented issues | Source inspection complete |
+| PostgreSQL setup/import/profiling | Authored SQL 00 and 01 | Match source baseline | Not executed; server not installed | Pending |
+| Transformed/customer analysis | Later SQL placeholders | See checklist | Not executed | Pending |

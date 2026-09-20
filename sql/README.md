@@ -1,6 +1,6 @@
 # SQL Execution Plan
 
-Status: all SQL files are comment-only placeholders. No tables, views, metrics, or results have been implemented.
+Status: SQL 00 and 01 are authored for PostgreSQL but have not been executed. Files 02-09 remain comment-only placeholders. No database objects or customer analytics have been run.
 
 | File | Planned purpose |
 |---|---|
@@ -17,9 +17,17 @@ Status: all SQL files are comment-only placeholders. No tables, views, metrics, 
 
 ## Dependencies
 
-Implement setup first, import the CSVs, then implement profiling. Finalize observation dates and eligibility before preparing analytical datasets. Customer metrics depend on the validated order base; RFM, cohorts, repeat behavior, and intervals use that shared history.
+After installing PostgreSQL, run the authored setup script in a dedicated database, import each core CSV once, then run profiling. Finalize observation dates and eligibility before preparing analytical datasets. Customer metrics depend on the validated order base; RFM, cohorts, repeat behavior, and intervals use that shared history.
 
 Run relevant validation checks after each implemented stage, even though the validation file has the highest number. Create Power BI views from reviewed outputs after the analysis is ready. Database object names and the final dependency graph remain pending implementation.
+
+## Source baseline and execution
+
+The downloaded version has 99,441 customer records, 99,441 orders, 112,650 item rows, and 103,886 payment entries. See the [quality summary](../docs/DATA_QUALITY_SUMMARY.md) for source exceptions and coverage. These are CSV counts, not database results.
+
+Setup preserves existing rows and does not repair schema drift. Landing tables have non-unique indexes and no PK/FK/NOT NULL constraints so defects can be profiled. Re-importing appends rows; check empty tables first.
+
+Profiling is read-only. Select complete numbered statements in pgAdmin to inspect/export results. Running the entire file uses one repeatable read-only transaction.
 
 ## Conventions
 

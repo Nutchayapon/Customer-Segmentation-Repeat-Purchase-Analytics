@@ -1,6 +1,6 @@
 # Methodology and Assumptions
 
-Status: proposed design, not executed analysis. Review defaults against actual CSVs. Dates and scoring thresholds are intentionally unset.
+Status: proposed design informed by the completed [CSV quality review](DATA_QUALITY_SUMMARY.md). Customer analytics and PostgreSQL execution are pending. Observation dates and scoring thresholds remain unset.
 
 ## Population and period
 
@@ -81,9 +81,10 @@ If geography is added, distinguish order delivery location from customer/cohort 
 
 Describe observed differences without claiming causality. Link recommendations to evidence, a plausible mechanism, limitations, and a proposed test. Do not set business targets or claim an intervention works without evidence.
 
-## Decisions pending data inspection
+## Confirmed source evidence and pending decisions
 
-- Dataset version and exact coverage.
+- Version 2 and source timestamp ranges are recorded in [SOURCE_PROFILE.json](SOURCE_PROFILE.json). These ranges do not establish complete follow-up.
+- Review missing-payment/date and monetary reconciliation exceptions before transformation.
 - Order eligibility and exception handling.
 - Monetary definition and reconciliation policy.
 - Observation cutoff, reference date, and delivery maturity policy.
